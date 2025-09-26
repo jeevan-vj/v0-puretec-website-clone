@@ -1,7 +1,9 @@
 {
-  "name": "my-v0-project",
+  "name": "kiwi-lankan-fitness",
   "version": "0.1.0",
   "private": true,
+  "description": "Kiwi Lankan Fitness Coaching - Elite Personal Training & Transformation",
+  "homepage": "https://kiwilankanfitness.com",
   "scripts": {
     "build": "next build",
     "dev": "next dev",

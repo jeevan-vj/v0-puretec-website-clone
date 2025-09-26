@@ -24,9 +24,9 @@ const services = [
 ]
 
 const trainers = [
-  { id: "alex-johnson", name: "Alex Johnson", specialty: "Personal Training" },
-  { id: "sarah-chen", name: "Sarah Chen", specialty: "HIIT & Cardio" },
-  { id: "marcus-rodriguez", name: "Marcus Rodriguez", specialty: "Strength Training" },
+  { id: "ruwan-palihawadana", name: "Ruwan Palihawadana", specialty: "Personal Training" },
+  { id: "priya-fernando", name: "Priya Fernando", specialty: "HIIT & Cardio" },
+  { id: "daniel-silva", name: "Daniel Silva", specialty: "Strength Training" },
 ]
 
 const timeSlots = [
