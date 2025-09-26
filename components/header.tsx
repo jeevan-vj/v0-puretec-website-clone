@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 
 export default function Header() {
@@ -19,27 +20,53 @@ export default function Header() {
   }, [isMobileMenuOpen])
 
   const menuItems = [
-    { label: "OUR STORY", href: "#" },
-    { label: "BRANDS & RETAILERS", href: "#" },
-    { label: "WHY US", href: "#" },
-    { label: "WARRANTY", href: "#" },
-    { label: "CUSTOMER SERVICE", href: "#" },
-    { label: "SOCIAL", href: "#" },
+    { label: "ABOUT", href: "#about-trainer" },
+    { label: "TRAINING", href: "#equipment-series" },
+    { label: "GALLERY", href: "#media-gallery" },
+    { label: "WORKOUTS", href: "#workout-gallery" },
+    { label: "BOOK NOW", href: "#booking" },
+    { label: "CONTACT", href: "#footer" },
   ]
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
       <header className="bg-black text-white py-4 px-6 relative z-50">
         <nav className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="hidden lg:flex items-center space-x-8">
-            <Link href="#" className="text-sm font-medium tracking-wide hover:text-gray-300 transition-colors">
-              OUR STORY
+            <Link 
+              href="#about-trainer" 
+              onClick={(e) => handleNavClick(e, "#about-trainer")}
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors"
+            >
+              ABOUT
             </Link>
-            <Link href="#" className="text-sm font-medium tracking-wide hover:text-gray-300 transition-colors">
-              BRANDS & RETAILERS
+            <Link 
+              href="#equipment-series" 
+              onClick={(e) => handleNavClick(e, "#equipment-series")}
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors"
+            >
+              TRAINING
             </Link>
-            <Link href="#" className="text-sm font-medium tracking-wide hover:text-gray-300 transition-colors">
-              WHY US
+            <Link 
+              href="#media-gallery" 
+              onClick={(e) => handleNavClick(e, "#media-gallery")}
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors"
+            >
+              GALLERY
             </Link>
           </div>
 
@@ -64,20 +91,39 @@ export default function Header() {
           </button>
 
           <div className="flex-1 flex justify-center">
-            <Link href="/" className="text-2xl font-bold italic tracking-wider">
-              PURETEC
+            <Link href="/" className="flex items-center">
+              <Image 
+                src="/logo.png"
+                alt="Kiwi Lankan Fitness Coaching Logo"
+                width={60}
+                height={60}
+                className="object-contain"
+                priority
+              />
             </Link>
           </div>
 
           <div className="hidden lg:flex items-center space-x-8">
-            <Link href="#" className="text-sm font-medium tracking-wide hover:text-gray-300 transition-colors">
-              WARRANTY
+            <Link 
+              href="#workout-gallery" 
+              onClick={(e) => handleNavClick(e, "#workout-gallery")}
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors"
+            >
+              WORKOUTS
             </Link>
-            <Link href="#" className="text-sm font-medium tracking-wide hover:text-gray-300 transition-colors">
-              CUSTOMER SERVICE
+            <Link 
+              href="#booking" 
+              onClick={(e) => handleNavClick(e, "#booking")}
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors bg-gradient-to-r from-yellow-400 to-teal-400 text-black px-4 py-2 rounded-full hover:from-yellow-300 hover:to-teal-300 transform hover:scale-105 transition-all duration-300"
+            >
+              BOOK NOW
             </Link>
-            <Link href="#" className="text-sm font-medium tracking-wide hover:text-gray-300 transition-colors">
-              SOCIAL
+            <Link 
+              href="#footer" 
+              onClick={(e) => handleNavClick(e, "#footer")}
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors"
+            >
+              CONTACT
             </Link>
           </div>
 
@@ -98,10 +144,10 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, item.href)}
               className={`text-2xl font-medium tracking-wide text-white hover:text-yellow-400 transition-all duration-300 transform ${
                 isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-              }`}
+              } ${item.label === "BOOK NOW" ? "bg-gradient-to-r from-yellow-400 to-teal-400 text-black px-6 py-3 rounded-full hover:from-yellow-300 hover:to-teal-300" : ""}`}
               style={{
                 transitionDelay: isMobileMenuOpen ? `${index * 100 + 200}ms` : "0ms",
               }}
@@ -111,14 +157,20 @@ export default function Header() {
           ))}
 
           <div
-            className={`mt-12 text-4xl font-bold italic tracking-wider text-white transform transition-all duration-500 ${
+            className={`mt-12 transform transition-all duration-500 ${
               isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
             style={{
               transitionDelay: isMobileMenuOpen ? "800ms" : "0ms",
             }}
           >
-            PURETEC
+            <Image 
+              src="/logo.png"
+              alt="Kiwi Lankan Fitness Coaching Logo"
+              width={80}
+              height={80}
+              className="object-contain"
+            />
           </div>
         </div>
       </div>

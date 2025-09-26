@@ -15,7 +15,7 @@ interface MediaFile {
 
 interface MediaItem {
   id: string
-  category: "events" | "achievements" | "media" | "tv"
+  category: "events" | "achievements" | "media" | "tv" | "trainers"
   title: string
   description: string
   date: string
@@ -235,10 +235,94 @@ const mediaItems: MediaItem[] = [
       },
     ],
   },
+  {
+    id: "7",
+    category: "trainers",
+    title: "New Zealand Fitness Champions",
+    description: "Our elite trainers are championship-winning athletes from New Zealand and Sri Lankan fitness competitions, bringing world-class expertise to your training.",
+    date: "2025-01-01",
+    tags: ["Champions", "Elite Trainers", "Competition Winners"],
+    files: [
+      {
+        id: "7-1",
+        type: "image",
+        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
+        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
+        caption: "New Zealand South Island Classic 2025 Overall Champion Men's Fitness",
+      },
+      {
+        id: "7-2",
+        type: "image", 
+        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+        caption: "Sri Lankan Men's Fitness Champion",
+      },
+      {
+        id: "7-3",
+        type: "image",
+        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhU_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhU_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+        caption: "Professional Bodybuilder Competition Photo",
+      },
+      {
+        id: "7-4",
+        type: "image",
+        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547310124_783761117731971_7305928698565373587_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=cbNiIBNuS24Q7kNvwFRnXkM&_nc_oc=AdktNUZzrcNuDG7PFtC4Auoq9-1ApbOuXxAVvqbu6TUG1FrCBWf6tx0dgm9320pjVoF1t89etWDIUibEluyw8XTp&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYRIHEJWCU0hCbJEc2Zw8SnXJXQfZQhVW-Bh8DgDF4MfQ&oe=68DBAED6",
+        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547310124_783761117731971_7305928698565373587_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=cbNiIBNuS24Q7kNvwFRnXkM&_nc_oc=AdktNUZzrcNuDG7PFtC4Auoq9-1ApbOuXxAVvqbu6TUG1FrCBWf6tx0dgm9320pjVoF1t89etWDIUibEluyw8XTp&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYRIHEJWCU0hCbJEc2Zw8SnXJXQfZQhVW-Bh8DgDF4MfQ&oe=68DBAED6",
+        caption: "New Zealand South Island Classic 2025 - Multiple Competitors",
+      },
+      {
+        id: "7-5",
+        type: "image",
+        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547005151_783761097731973_3523782292342795538_n.jpg?stp=c0.140.1624.1624a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=o_A8EwfiVMMQ7kNvwGNofA0&_nc_oc=AdlavV4Eal0AdZMwq8oSsicS6cXf45vYPvGvgmAcU39ofDeq6PPeADy6sL0YrLJjHKvI4QGmKVnYZ2wPtMHry0mh&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb36M1X4OnsoRge0bquzHhzW2gnO734na0HzHo8U3rjbw&oe=68DBA41E",
+        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547005151_783761097731973_3523782292342795538_n.jpg?stp=c0.140.1624.1624a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=o_A8EwfiVMMQ7kNvwGNofA0&_nc_oc=AdlavV4Eal0AdZMwq8oSsicS6cXf45vYPvGvgmAcU39ofDeq6PPeADy6sL0YrLJjHKvI4QGmKVnYZ2wPtMHry0mh&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb36M1X4OnsoRge0bquzHhzW2gnO734na0HzHo8U3rjbw&oe=68DBA41E",
+        caption: "Professional Bodybuilder with Competition Text",
+      },
+    ],
+  },
+  {
+    id: "8",
+    category: "trainers",
+    title: "World Champion Trainers",
+    description: "Meet our Muscle Model World Champions and elite athletes who have competed at the highest levels of international fitness competitions.",
+    date: "2025-01-01",
+    tags: ["World Champions", "International", "Muscle Model"],
+    files: [
+      {
+        id: "8-1",
+        type: "image",
+        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547443797_783761091065307_3759639552296253486_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=101&ccb=1-7&_nc_sid=50ad20&_nc_ohc=1q39RCD4C3EQ7kNvwHx1EmQ&_nc_oc=AdmU-QFJfk3u_mFYTuXlfC2kZaR1pcrHpLxUVPdRKP-PuHWjK3J5ROJLK2P9lirowxZXtbnprNb-HA6egQOvCTUv&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfbcRfguPM9A5rVQ4Q4dEnKA2TSlC91rqPNFktfw0fBv3g&oe=68DBAB6F",
+        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547443797_783761091065307_3759639552296253486_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=101&ccb=1-7&_nc_sid=50ad20&_nc_ohc=1q39RCD4C3EQ7kNvwHx1EmQ&_nc_oc=AdmU-QFJfk3u_mFYTuXlfC2kZaR1pcrHpLxUVPdRKP-PuHWjK3J5ROJLK2P9lirowxZXtbnprNb-HA6egQOvCTUv&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfbcRfguPM9A5rVQ4Q4dEnKA2TSlC91rqPNFktfw0fBv3g&oe=68DBAB6F",
+        caption: "Muscle Model World New Zealand Overall Champion",
+      },
+      {
+        id: "8-2",
+        type: "image",
+        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/548207804_783761061065310_1006180264145076764_n.jpg?stp=c85.0.1878.1878a_cp6_dst-jpg_s552x414_tt6&_nc_cat=107&ccb=1-7&_nc_sid=50ad20&_nc_ohc=fnd959aDmE4Q7kNvwEx1jXd&_nc_oc=AdnyYhv3E8C9jdo7x55DuMq5FqhBj9H3q1HaTW92LrvQJArDACP7ggawWq8m_ueZEIvAiTryBsiyhyEAZQ9JMwcg&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afa9ij3uFH9LZoZ2IdgCcijFGjrz_jOpEfZPYnS4NDQWVw&oe=68DB8EB1",
+        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/548207804_783761061065310_1006180264145076764_n.jpg?stp=c85.0.1878.1878a_cp6_dst-jpg_s552x414_tt6&_nc_cat=107&ccb=1-7&_nc_sid=50ad20&_nc_ohc=fnd959aDmE4Q7kNvwEx1jXd&_nc_oc=AdnyYhv3E8C9jdo7x55DuMq5FqhBj9H3q1HaTW92LrvQJArDACP7ggawWq8m_ueZEIvAiTryBsiyhyEAZQ9JMwcg&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afa9ij3uFH9LZoZ2IdgCcijFGjrz_jOpEfZPYnS4NDQWVw&oe=68DB8EB1",
+        caption: "Group of Elite Fitness Competitors",
+      },
+      {
+        id: "8-3",
+        type: "image",
+        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547368206_783761054398644_4339144588284793795_n.jpg?stp=c0.156.1576.1576a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=gGSzY9PB_DEQ7kNvwGNrwuH&_nc_oc=AdmzWZ3q1cVmoz3tN0iLLVo6nI1bv8f-S9gI_MSvH3AkREfN-Fi6YQvcj4dKt9eCag9g4ramuNyPYfOk63TccDoT&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfZHw2Ys-wJK4QM8T7gSDe0Dueh1iHOCYcVwRTPDsqeA4g&oe=68DB893F",
+        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547368206_783761054398644_4339144588284793795_n.jpg?stp=c0.156.1576.1576a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=gGSzY9PB_DEQ7kNvwGNrwuH&_nc_oc=AdmzWZ3q1cVmoz3tN0iLLVo6nI1bv8f-S9gI_MSvH3AkREfN-Fi6YQvcj4dKt9eCag9g4ramuNyPYfOk63TccDoT&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfZHw2Ys-wJK4QM8T7gSDe0Dueh1iHOCYcVwRTPDsqeA4g&oe=68DB893F",
+        caption: "New Zealand Muscle Model World Champion",
+      },
+      {
+        id: "8-4",
+        type: "image",
+        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/546101753_781860691255347_2020129501768908139_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=z8wjAcJf-YQQ7kNvwGMg2h1&_nc_oc=AdlZ0wU1PAiBaHd2HlPA12Ij0-p1nK8KJtit0mBLkdN3mWpy_m6R63aA6dozBnJsDNqjVOFsYoNS6MTKlCXbjJZJ&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=QdmdtFbcw1HaDhmE3Ov2-g&oh=00_AfYnOWzCwX6TrAVrgr0qb-gphLYJBP0OqqPm8oseLf1SLw&oe=68DB8A3C",
+        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/546101753_781860691255347_2020129501768908139_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=z8wjAcJf-YQQ7kNvwGMg2h1&_nc_oc=AdlZ0wU1PAiBaHd2HlPA12Ij0-p1nK8KJtit0mBLkdN3mWpy_m6R63aA6dozBnJsDNqjVOFsYoNS6MTKlCXbjJZJ&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=QdmdtFbcw1HaDhmE3Ov2-g&oh=00_AfYnOWzCwX6TrAVrgr0qb-gphLYJBP0OqqPm8oseLf1SLw&oe=68DB8A3C",
+        caption: "Sri Lankan Men's Fitness Life Champion",
+      },
+    ],
+  },
 ]
 
 const categories = [
   { id: "all", label: "All Media", icon: Camera },
+  { id: "trainers", label: "Trainers", icon: Award },
   { id: "events", label: "Events", icon: Calendar },
   { id: "achievements", label: "Achievements", icon: Award },
   { id: "media", label: "Media Coverage", icon: Camera },
@@ -255,6 +339,8 @@ export default function MediaGallery() {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
+      case "trainers":
+        return "bg-red-600"
       case "events":
         return "bg-blue-500"
       case "achievements":
@@ -286,7 +372,7 @@ export default function MediaGallery() {
   }
 
   return (
-    <section className="py-20 bg-slate-900 text-white">
+    <section id="media-gallery" className="py-20 bg-slate-900 text-white">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">

@@ -30,7 +30,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-black text-white overflow-hidden">
+    <footer id="footer" className="relative bg-black text-white overflow-hidden">
       {/* Geometric accent elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-b from-yellow-400 to-transparent transform -skew-x-12"></div>
