@@ -129,3 +129,107 @@
     background: radial-gradient(circle, var(--tw-gradient-stops));
   }
 }
+
+@layer components {
+  /* Enhanced Hero Animations */
+  .hero-ken-burns {
+    animation: kenBurns 20s ease-out infinite alternate;
+  }
+  
+  .text-reveal-char {
+    animation: revealChar 0.3s ease-out forwards;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  .hero-glow {
+    text-shadow: 0 0 20px rgba(243, 156, 18, 0.4), 0 0 40px rgba(243, 156, 18, 0.2);
+  }
+  
+  /* Button hover effects */
+  .btn-hero-primary {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, transparent 0%, rgba(243, 156, 18, 0.1) 50%, transparent 100%);
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  .btn-hero-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn-hero-primary:hover::before {
+    left: 100%;
+  }
+}
+
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translateX(0) translateY(0);
+  }
+  100% {
+    transform: scale(1.1) translateX(-2%) translateY(-1%);
+  }
+}
+
+@keyframes revealChar {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Media Gallery Animation Classes */
+.animate-slideUp {
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
