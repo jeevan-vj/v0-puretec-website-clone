@@ -8,7 +8,7 @@ const slides = [
   {
     id: 1,
     type: "image",
-    background: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    background: "/images/background.jpg",
     eyebrow: "Our Story",
     title: "KEEPING\nNEW ZEALAND FIT\nWITH PASSION",
     description: "Leading New Zealand's fitness revolution with personalized training and unwavering commitment to results.",
