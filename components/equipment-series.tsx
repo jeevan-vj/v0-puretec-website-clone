@@ -31,7 +31,7 @@ const defaultTransformationReviews: Review[] = [
     title: "Lost 35 lbs & Built Lean Muscle",
     timeframe: "12 Weeks",
     review:
-      "I never thought I could achieve this kind of transformation. Working with the team at Puretec changed everything - not just my body, but my entire mindset about fitness. The personalized training program and nutrition guidance helped me lose 35 pounds while actually building muscle. I feel stronger and more confident than ever before.",
+      "I never thought I could achieve this kind of transformation. Working with the team at Kiwilankan Fitness changed everything - not just my body, but my entire mindset about fitness. The personalized training program and nutrition guidance helped me lose 35 pounds while actually building muscle. I feel stronger and more confident than ever before.",
     beforeImage: "/before-transformation-overweight-man.jpg",
     afterImage: "/after-transformation-fit-muscular-man.jpg",
     backgroundColor: "bg-teal-500",

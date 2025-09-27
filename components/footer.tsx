@@ -43,7 +43,7 @@ export default function Footer() {
           {/* Brand and About Section */}
           <div className="lg:col-span-4">
             <div className="mb-8">
-              <h2 className="text-3xl font-black tracking-wider mb-4">PURETEC</h2>
+              <h2 className="text-3xl font-black tracking-wider mb-4">KIWILANKAN FITNESS</h2>
               <div className="w-16 h-1 bg-yellow-400 mb-6"></div>
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
                 Transform your body and mind with professional fitness training. I'm dedicated to helping you achieve
@@ -148,8 +148,8 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Email</p>
-                  <a href="mailto:info@puretec.com" className="text-white hover:text-yellow-400 transition-colors">
-                    info@puretec.com
+                  <a href="mailto:info@kiwilankanfitness.co.nz" className="text-white hover:text-yellow-400 transition-colors">
+                    info@kiwilankanfitness.co.nz
                   </a>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-16 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <p>&copy; 2025 PURETEC. All rights reserved.</p>
+              <p>&copy; 2025 KIWILANKAN FITNESS. All rights reserved.</p>
               <a href="#" className="hover:text-yellow-400 transition-colors">
                 Privacy Policy
               </a>
