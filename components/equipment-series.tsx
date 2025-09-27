@@ -2,7 +2,29 @@
 
 import { ArrowRight, Star } from "lucide-react"
 
-const transformationReviews = [
+interface Review {
+  id: string
+  clientName: string
+  title: string
+  timeframe: string
+  review: string
+  beforeImage?: string
+  afterImage?: string
+  backgroundColor: string
+  rating: number
+  results: string[]
+}
+
+interface StickyCardSectionProps {
+  id?: string
+  sectionTag?: string
+  sectionTitle: string
+  reviews: Review[]
+  buttonText?: string
+  className?: string
+}
+
+const defaultTransformationReviews: Review[] = [
   {
     id: "01",
     clientName: "Marcus Johnson",
@@ -70,22 +92,31 @@ const transformationReviews = [
   },
 ]
 
-export default function EquipmentSeries() {
+export default function StickyCardSection({
+  id = "sticky-card-section",
+  sectionTag = "CLIENT SUCCESS STORIES",
+  sectionTitle = "REAL TRANSFORMATIONS, REAL RESULTS",
+  reviews = defaultTransformationReviews,
+  buttonText = "Start Your Transformation",
+  className = "",
+}: StickyCardSectionProps) {
+  const isDarkTheme = className.includes('bg-gradient') || className.includes('bg-gray') || className.includes('bg-black') || className.includes('bg-slate')
+
   return (
-    <section id="equipment-series" className="py-20">
+    <section id={id} className={`py-20 ${className}`}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-8 h-0.5 bg-black"></div>
-            <span className="text-sm font-medium text-black uppercase tracking-wider">CLIENT SUCCESS STORIES</span>
+            <div className={`w-8 h-0.5 ${isDarkTheme ? 'bg-yellow-400' : 'bg-black'}`}></div>
+            <span className={`text-sm font-medium uppercase tracking-wider ${isDarkTheme ? 'text-yellow-400' : 'text-black'}`}>{sectionTag}</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-medium text-black max-w-4xl mx-auto leading-tight">
-            REAL TRANSFORMATIONS, REAL RESULTS
+          <h2 className={`text-4xl lg:text-5xl font-medium max-w-4xl mx-auto leading-tight ${isDarkTheme ? 'text-white' : 'text-black'}`}>
+            {sectionTitle}
           </h2>
         </div>
 
         <div className="space-y-12">
-          {transformationReviews.map((review, index) => (
+          {reviews.map((review, index) => (
             <div
               key={review.id}
               className={`sticky top-4 rounded-2xl overflow-hidden shadow-xl ${review.backgroundColor} ${
@@ -123,7 +154,7 @@ export default function EquipmentSeries() {
                   </div>
 
                   <button className="inline-flex items-center gap-3 bg-black hover:bg-black/80 px-6 py-3 rounded-lg transition-all duration-300 group mt-6">
-                    <span className="font-medium text-white">Start Your Transformation</span>
+                    <span className="font-medium text-white">{buttonText}</span>
                     <div className="bg-yellow-400 text-black p-1 rounded group-hover:translate-x-1 transition-transform">
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -180,4 +211,12 @@ export default function EquipmentSeries() {
       </div>
     </section>
   )
+}
+
+// Export the Review interface for use in other components
+export type { Review }
+
+// Create a backward-compatible EquipmentSeries component
+export function EquipmentSeries() {
+  return <StickyCardSection id="equipment-series" />
 }

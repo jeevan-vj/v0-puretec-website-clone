@@ -1,6 +1,7 @@
 import Header from "@/components/header"
 import Hero from "@/components/hero"
-import EquipmentSeries from "@/components/equipment-series"
+import { EquipmentSeries } from "@/components/equipment-series"
+import PersonalTrainingServices from "@/components/personal-training-services"
 import MediaGallery from "@/components/media-gallery"
 import WorkoutGallery from "@/components/workout-gallery"
 import AboutTrainer from "@/components/about-trainer"
@@ -13,7 +14,8 @@ export default function Home() {
       <Header />
       <Hero />
       <AboutTrainer />
-      <EquipmentSeries />
+      <PersonalTrainingServices />
+      {/* <EquipmentSeries /> */}
       <MediaGallery />
       <WorkoutGallery />
       <section id="booking" className="py-20 bg-black text-white text-center">

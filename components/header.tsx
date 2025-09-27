@@ -97,7 +97,7 @@ export default function Header() {
                 alt="Kiwi Lankan Fitness Coaching Logo"
                 width={60}
                 height={60}
-                className="object-contain"
+                className="object-contain rounded-full"
                 priority
               />
             </Link>
@@ -169,7 +169,7 @@ export default function Header() {
               alt="Kiwi Lankan Fitness Coaching Logo"
               width={80}
               height={80}
-              className="object-contain"
+              className="object-contain rounded-full"
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Play, X, Calendar, Award, Tv, Camera, ChevronLeft, ChevronRight } from "lucide-react"
@@ -333,9 +333,32 @@ export default function MediaGallery() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null)
   const [currentFileIndex, setCurrentFileIndex] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [cardAnimationKey, setCardAnimationKey] = useState(0)
+  const modalRef = useRef<HTMLDivElement>(null)
 
   const filteredItems =
     selectedCategory === "all" ? mediaItems : mediaItems.filter((item) => item.category === selectedCategory)
+
+  // Trigger card re-animation when category changes
+  useEffect(() => {
+    setCardAnimationKey(prev => prev + 1)
+  }, [selectedCategory])
+
+  // Handle modal animations
+  useEffect(() => {
+    if (selectedItem) {
+      setIsModalOpen(true)
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [selectedItem])
 
   const getCategoryColor = (category: string) => {
     switch (category) {
@@ -359,16 +382,35 @@ export default function MediaGallery() {
     setCurrentFileIndex(0)
   }
 
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setTimeout(() => {
+      setSelectedItem(null)
+    }, 300) // Match animation duration
+  }
+
   const nextFile = () => {
     if (selectedItem && currentFileIndex < selectedItem.files.length - 1) {
-      setCurrentFileIndex(currentFileIndex + 1)
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentFileIndex(currentFileIndex + 1)
+        setIsTransitioning(false)
+      }, 150)
     }
   }
 
   const prevFile = () => {
     if (currentFileIndex > 0) {
-      setCurrentFileIndex(currentFileIndex - 1)
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentFileIndex(currentFileIndex - 1)
+        setIsTransitioning(false)
+      }, 150)
     }
+  }
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId)
   }
 
   return (
@@ -385,20 +427,25 @@ export default function MediaGallery() {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => {
+          {categories.map((category, index) => {
             const Icon = category.icon
             return (
               <Button
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 ${
+                onClick={() => handleCategoryChange(category.id)}
+                className={`flex items-center gap-2 transform transition-all duration-300 hover:scale-105 ${
                   selectedCategory === category.id
-                    ? "bg-yellow-500 text-black hover:bg-yellow-600"
-                    : "border-gray-600 text-gray-300 hover:bg-gray-800"
+                    ? "bg-yellow-500 text-black hover:bg-yellow-600 scale-105 shadow-lg shadow-yellow-500/20"
+                    : "border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-yellow-500/50"
                 }`}
+                style={{
+                  animationDelay: `${index * 0.1}s`
+                }}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className={`w-4 h-4 transition-transform duration-300 ${
+                  selectedCategory === category.id ? "rotate-12" : ""
+                }`} />
                 {category.label}
               </Button>
             )
@@ -407,10 +454,14 @@ export default function MediaGallery() {
 
         {/* Media Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
+          {filteredItems.map((item, index) => (
             <div
-              key={item.id}
-              className="group cursor-pointer bg-slate-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300"
+              key={`${item.id}-${cardAnimationKey}`}
+              className="group cursor-pointer bg-slate-800 rounded-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/10 opacity-0 animate-slideUp"
+              style={{
+                animationDelay: `${index * 0.15}s`,
+                animationFillMode: 'forwards'
+              }}
               onClick={() => openModal(item)}
             >
               <div className="relative">
@@ -419,12 +470,12 @@ export default function MediaGallery() {
                   <img
                     src={item.files[0]?.thumbnail || "/placeholder.svg"}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                   />
                   {item.files[0]?.type === "video" && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
-                        <Play className="w-6 h-6 text-black ml-1" />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors duration-300">
+                      <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+                        <Play className="w-6 h-6 text-black ml-1 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                     </div>
                   )}
@@ -487,12 +538,25 @@ export default function MediaGallery() {
         </div>
 
         {selectedItem && (
-          <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
-            <div className="bg-slate-800 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+          <div 
+            className={`fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 transition-all duration-300 ${
+              isModalOpen ? 'opacity-100 backdrop-blur-sm' : 'opacity-0'
+            }`}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeModal()
+            }}
+          >
+            <div 
+              ref={modalRef}
+              className={`bg-slate-800 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 ${
+                isModalOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+              }`}
+            >
               <div className="relative">
                 <button
-                  onClick={() => setSelectedItem(null)}
-                  className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                  onClick={closeModal}
+                  title="Close gallery"
+                  className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-200 hover:scale-110 hover:rotate-90"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -503,35 +567,41 @@ export default function MediaGallery() {
                     <button
                       onClick={prevFile}
                       disabled={currentFileIndex === 0}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      title="Previous image"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-110 hover:shadow-lg"
                     >
-                      <ChevronLeft className="w-5 h-5" />
+                      <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
                       onClick={nextFile}
                       disabled={currentFileIndex === selectedItem.files.length - 1}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      title="Next image"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-110 hover:shadow-lg"
                     >
-                      <ChevronRight className="w-5 h-5" />
+                      <ChevronRight className="w-6 h-6" />
                     </button>
                   </>
                 )}
 
-                <div className="aspect-video relative">
-                  {selectedItem.files[currentFileIndex]?.type === "video" ? (
-                    <video
-                      src={selectedItem.files[currentFileIndex]?.url}
-                      poster={selectedItem.files[currentFileIndex]?.thumbnail}
-                      controls
-                      className="w-full h-full object-cover rounded-t-lg"
-                    />
-                  ) : (
-                    <img
-                      src={selectedItem.files[currentFileIndex]?.thumbnail || "/placeholder.svg"}
-                      alt={selectedItem.title}
-                      className="w-full h-full object-cover rounded-t-lg"
-                    />
-                  )}
+                <div className="aspect-video relative overflow-hidden">
+                  <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}>
+                    {selectedItem.files[currentFileIndex]?.type === "video" ? (
+                      <video
+                        key={selectedItem.files[currentFileIndex]?.id}
+                        src={selectedItem.files[currentFileIndex]?.url}
+                        poster={selectedItem.files[currentFileIndex]?.thumbnail}
+                        controls
+                        className="w-full h-full object-cover rounded-t-lg"
+                      />
+                    ) : (
+                      <img
+                        key={selectedItem.files[currentFileIndex]?.id}
+                        src={selectedItem.files[currentFileIndex]?.thumbnail || "/placeholder.svg"}
+                        alt={selectedItem.title}
+                        className="w-full h-full object-cover rounded-t-lg transition-transform duration-300"
+                      />
+                    )}
+                  </div>
                 </div>
 
                 <div className="p-6">
@@ -572,19 +642,24 @@ export default function MediaGallery() {
                         <button
                           key={file.id}
                           onClick={() => setCurrentFileIndex(index)}
-                          className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-colors ${
-                            index === currentFileIndex ? "border-yellow-500" : "border-gray-600"
+                          className={`relative flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all duration-200 hover:scale-105 ${
+                            index === currentFileIndex 
+                              ? "border-yellow-500 shadow-lg shadow-yellow-500/20 scale-105" 
+                              : "border-gray-600 hover:border-yellow-500/50"
                           }`}
                         >
                           <img
                             src={file.thumbnail || "/placeholder.svg"}
                             alt={`${selectedItem.title} ${index + 1}`}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transition-transform duration-200 hover:scale-110"
                           />
                           {file.type === "video" && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                               <Play className="w-3 h-3 text-white" />
                             </div>
+                          )}
+                          {index === currentFileIndex && (
+                            <div className="absolute inset-0 border-2 border-yellow-500 rounded animate-pulse" />
                           )}
                         </button>
                       ))}

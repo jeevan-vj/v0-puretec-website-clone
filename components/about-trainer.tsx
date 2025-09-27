@@ -267,7 +267,7 @@ export default function AboutTrainer() {
             HELLO, MY NAME IS
             <br />
             <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-              ALEX JOHNSON
+             RUWAN PALIHAWADANA
             </span>
           </h2>
         </div>
