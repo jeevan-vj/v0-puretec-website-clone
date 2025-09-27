@@ -8,10 +8,10 @@ const slides = [
   {
     id: 1,
     type: "image",
-    background: "https://www.puretecfitness.com/resources/images/backgrounds/hero_home-overlay.png",
+    background: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     eyebrow: "Our Story",
-    title: "KEEPING\nEUROPE FIT FOR\nOVER 25 YEARS",
-    description: "Leading the fitness industry with innovative equipment and unwavering commitment to quality.",
+    title: "KEEPING\nNEW ZEALAND FIT\nWITH PASSION",
+    description: "Leading New Zealand's fitness revolution with personalized training and unwavering commitment to results.",
     primaryButton: { text: "Discover", icon: ArrowRight },
     secondaryButton: { text: "Watch the Video", icon: Play, action: "video" },
     hasVideoThumbnail: true,
@@ -19,7 +19,7 @@ const slides = [
   {
     id: 2,
     type: "video",
-    background: "https://www.puretecfitness.com/wp-content/uploads/2021/10/pt-thumbnail.mp4",
+    background: "https://videos.pexels.com/video-files/3131142/3131142-hd_1920_1080_30fps.mp4",
     eyebrow: "Innovation",
     title: "CUTTING-EDGE\nFITNESS\nTECHNOLOGY",
     description: "Experience the future of fitness with our state-of-the-art equipment designed for performance.",
@@ -34,7 +34,7 @@ const slides = [
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     eyebrow: "Community",
     title: "JOIN THE\nFITNESS\nREVOLUTION",
-    description: "Connect with thousands of fitness enthusiasts across Europe who trust Puretec equipment.",
+    description: "Connect with thousands of fitness enthusiasts across New Zealand who trust Kiwilankan Fitness equipment.",
     primaryButton: { text: "Find Retailers", icon: ArrowRight },
     secondaryButton: { text: "Success Stories", icon: ArrowRight },
     hasVideoThumbnail: false,
@@ -370,7 +370,7 @@ export default function Hero() {
                   <div className="relative w-80 h-48 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105 hover:shadow-[#f39c12]/20 group">
                     <video className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" muted autoPlay loop playsInline>
                       <source
-                        src="https://www.puretecfitness.com/wp-content/uploads/2021/10/pt-thumbnail.mp4"
+                        src="https://videos.pexels.com/video-files/3131142/3131142-hd_1920_1080_30fps.mp4"
                         type="video/mp4"
                       />
                     </video>
@@ -456,7 +456,7 @@ export default function Hero() {
           >
             <video className="w-full h-full rounded-2xl" controls autoPlay playsInline>
               <source
-                src="https://www.puretecfitness.com/wp-content/uploads/2021/10/lb-puretecvideo-comp.mp4"
+                src="https://videos.pexels.com/video-files/3131142/3131142-hd_1920_1080_30fps.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
