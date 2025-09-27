@@ -529,7 +529,7 @@ export default function MediaGallery() {
                   ))}
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-xs text-gray-500">{new Date(item.date).toLocaleDateString()}</p>
+                  <p className="text-xs text-gray-500">{new Date(item.date).toLocaleDateString("en-US")}</p>
                   <p className="text-xs text-gray-400">{item.files.length} files</p>
                 </div>
               </div>
@@ -612,7 +612,7 @@ export default function MediaGallery() {
                       >
                         {selectedItem.category.toUpperCase()}
                       </div>
-                      <span className="text-gray-400 text-sm">{new Date(selectedItem.date).toLocaleDateString()}</span>
+                      <span className="text-gray-400 text-sm">{new Date(selectedItem.date).toLocaleDateString("en-US")}</span>
                     </div>
                     {selectedItem.files.length > 1 && (
                       <span className="text-gray-400 text-sm">
