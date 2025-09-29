@@ -592,9 +592,9 @@ export default function AboutTrainer() {
         {/* Modern Image Carousel Section */}
         <div className="max-w-7xl mx-auto mb-20">
           <div className="text-center mb-12">
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+            {/* <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
               Visual <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">Journey</span>
-            </h3>
+            </h3> */}
             <p className="text-gray-300 text-lg">Moments that defined the championship path</p>
           </div>
           
