@@ -484,71 +484,213 @@ export default function AboutTrainer() {
           </div>
         </div>
 
-        {/* Achievements Section */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Championship <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">Achievements</span>
+        {/* Modern Achievements Showcase */}
+        <div className="max-w-7xl mx-auto mb-20">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+              Championship <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">Showcase</span>
             </h3>
-            <p className="text-gray-300 text-lg">Proven excellence in natural bodybuilding competitions</p>
+            <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+              A visual journey through Ruwan's championship victories and historic achievements
+            </p>
           </div>
           
-          <div className="space-y-8">
+          {/* Interactive Event Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {achievements.map((achievement, index) => (
               <div
                 key={index}
-                className={`bg-gradient-to-r from-gray-900/90 to-gray-800/90 backdrop-blur-sm rounded-3xl p-8 border border-white/10 shadow-2xl transform transition-all duration-700 hover:scale-105 ${
+                className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm border border-white/10 shadow-2xl transform transition-all duration-700 hover:scale-105 hover:shadow-3xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
                 style={{ transitionDelay: isVisible ? `${1000 + index * 200}ms` : "0ms" }}
               >
-                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-20 h-20 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center">
-                      <Trophy className="w-10 h-10 text-black" />
-                    </div>
+                {/* Hero Image Section */}
+                <div className="relative h-64 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-teal-400/20"></div>
+                  <img
+                    src={index === 0 ? "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829" :
+                         index === 1 ? "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC" :
+                         "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42"}
+                    alt={achievement.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  
+                  {/* Overlay with Trophy Icon */}
+                  <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                    <Trophy className="w-8 h-8 text-black" />
                   </div>
                   
-                  <div className="flex-1">
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
-                      <div>
-                        <h4 className="text-2xl font-bold text-white mb-2">{achievement.title}</h4>
-                        <div className="flex items-center gap-2 text-gray-300">
-                          <MapPin className="w-4 h-4" />
-                          <span>{achievement.location}</span>
-                          <span className="text-yellow-400 font-bold">{achievement.year}</span>
-                        </div>
-                      </div>
-                      <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 text-sm font-bold">
-                        {achievement.highlight}
-                      </Badge>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {achievement.awards.map((award, awardIndex) => (
-                        <div
-                          key={awardIndex}
-                          className="flex items-center gap-3 p-3 bg-black/50 rounded-lg border border-white/10"
-                        >
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                            award.type === 'Gold' ? 'bg-yellow-400' : 
-                            award.type === 'Silver' ? 'bg-gray-300' : 'bg-orange-400'
-                          }`}>
-                            <Medal className={`w-5 h-5 ${
-                              award.type === 'Gold' ? 'text-black' : 'text-black'
-                            }`} />
-                          </div>
-                          <div>
-                            <div className="text-white font-semibold">{award.category}</div>
-                            <div className="text-gray-300 text-sm">{award.type} - {award.position} Place</div>
-                          </div>
-                        </div>
-                      ))}
+                  {/* Year Badge */}
+                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2">
+                    <span className="text-yellow-400 font-bold text-lg">{achievement.year}</span>
+                  </div>
+                  
+                  {/* Highlight Badge */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-lg font-bold text-sm text-center">
+                      {achievement.highlight}
                     </div>
                   </div>
                 </div>
+
+                {/* Content Section */}
+                <div className="p-6">
+                  <div className="mb-4">
+                    <h4 className="text-xl font-bold text-white mb-2 line-clamp-2">{achievement.title}</h4>
+                    <div className="flex items-center gap-2 text-gray-300 mb-4">
+                      <MapPin className="w-4 h-4 text-yellow-400" />
+                      <span className="text-sm">{achievement.location}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Awards Grid */}
+                  <div className="space-y-3">
+                    {achievement.awards.map((award, awardIndex) => (
+                      <div
+                        key={awardIndex}
+                        className="flex items-center gap-3 p-3 bg-black/30 rounded-lg border border-white/10 hover:bg-black/50 transition-colors duration-200"
+                      >
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                          award.type === 'Gold' ? 'bg-yellow-400' : 
+                          award.type === 'Silver' ? 'bg-gray-300' : 'bg-orange-400'
+                        }`}>
+                          <Medal className={`w-4 h-4 ${
+                            award.type === 'Gold' ? 'text-black' : 'text-black'
+                          }`} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-white font-semibold text-sm truncate">{award.category}</div>
+                          <div className="text-gray-300 text-xs">{award.type} - {award.position} Place</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* View Details Button */}
+                  <button 
+                    className="w-full mt-4 bg-gradient-to-r from-yellow-400/20 to-teal-400/20 hover:from-yellow-400/30 hover:to-teal-400/30 border border-yellow-400/30 text-yellow-400 py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+                    onClick={() => {
+                      setCurrentImages([
+                        index === 0 ? "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829" :
+                        index === 1 ? "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC" :
+                        "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42"
+                      ])
+                      setSelectedImageIndex(0)
+                      setIsImageModalOpen(true)
+                    }}
+                  >
+                    View Full Gallery
+                    <ArrowRight className="inline-block ml-2 w-4 h-4" />
+                  </button>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Modern Image Carousel Section */}
+        <div className="max-w-7xl mx-auto mb-20">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Visual <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">Journey</span>
+            </h3>
+            <p className="text-gray-300 text-lg">Moments that defined the championship path</p>
+          </div>
+          
+          {/* Horizontal Scrolling Gallery */}
+          <div className="relative">
+            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+              {[
+                {
+                  src: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
+                  title: "First Gold Victory",
+                  year: "2022",
+                  description: "The Great Lake Muscle & Model Classic"
+                },
+                {
+                  src: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+                  title: "National Championship",
+                  year: "2022",
+                  description: "NZ National Muscle & Model Championship"
+                },
+                {
+                  src: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+                  title: "Historic Achievement",
+                  year: "2025",
+                  description: "First Sri Lankan Winner in Christchurch"
+                },
+                {
+                  src: "/fitness-trainer-award-trophy-display.jpg",
+                  title: "Championship Trophy",
+                  year: "2025",
+                  description: "Men's Fitness Model Championship"
+                },
+                {
+                  src: "/fitness-trainer-award-certificate-ceremony.jpg",
+                  title: "Professional Certification",
+                  year: "2022",
+                  description: "NZ Qualified Personal Trainer"
+                },
+                {
+                  src: "/transformation-before-after-collage.jpg",
+                  title: "Transformation Journey",
+                  year: "2021",
+                  description: "12kg Weight Loss Success"
+                }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-80 group cursor-pointer"
+                  onClick={() => {
+                    setCurrentImages([
+                      "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
+                      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+                      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+                      "/fitness-trainer-award-trophy-display.jpg",
+                      "/fitness-trainer-award-certificate-ceremony.jpg",
+                      "/transformation-before-after-collage.jpg"
+                    ])
+                    setSelectedImageIndex(index)
+                    setIsImageModalOpen(true)
+                  }}
+                >
+                  <div className="relative h-64 rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-400/20 to-teal-400/20 p-1 group-hover:scale-105 transition-transform duration-300">
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                    
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h4 className="text-white font-bold text-lg mb-1">{item.title}</h4>
+                        <p className="text-gray-200 text-sm mb-2">{item.description}</p>
+                        <div className="flex items-center gap-2">
+                          <span className="text-yellow-400 font-bold text-sm">{item.year}</span>
+                          <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Year Badge */}
+                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1">
+                      <span className="text-yellow-400 font-bold text-sm">{item.year}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Scroll Indicator */}
+            <div className="flex justify-center mt-6">
+              <div className="flex gap-2">
+                {[1, 2, 3].map((dot) => (
+                  <div key={dot} className="w-2 h-2 bg-white/30 rounded-full"></div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
