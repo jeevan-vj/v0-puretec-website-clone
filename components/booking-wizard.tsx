@@ -37,20 +37,6 @@ const trainers = [
     rating: 4.9,
     sessions: 150
   },
-  { 
-    id: "priya-fernando", 
-    name: "Priya Fernando", 
-    specialty: "HIIT & Cardio",
-    rating: 4.8,
-    sessions: 120
-  },
-  { 
-    id: "daniel-silva", 
-    name: "Daniel Silva", 
-    specialty: "Strength Training",
-    rating: 4.9,
-    sessions: 200
-  },
 ]
 
 const timeSlots = [
@@ -77,7 +63,7 @@ export default function BookingWizard() {
   const [currentStep, setCurrentStep] = useState(0)
   const [bookingData, setBookingData] = useState<BookingData>({
     service: "",
-    trainer: "",
+    trainer: "ruwan-palihawadana",
     date: "",
     time: "",
     firstName: "",
@@ -214,7 +200,7 @@ export default function BookingWizard() {
       setErrors({})
       setBookingData({
         service: "",
-        trainer: "",
+        trainer: "ruwan-palihawadana",
         date: "",
         time: "",
         firstName: "",
