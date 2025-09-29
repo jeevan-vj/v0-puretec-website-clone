@@ -271,7 +271,7 @@ export default function Hero() {
                       >
                         {line.split('').map((char, charIndex) => (
                           <span
-                            key={charIndex}
+                            key={`title-line-${lineIndex}-char-${charIndex}`}
                             className={`inline-block transition-all duration-300 ease-out ${
                               showContent && !isTransitioning 
                                 ? 'transform scale-100 opacity-100' 
@@ -300,7 +300,7 @@ export default function Hero() {
                   <span>
                     {currentSlideData.description.split('').map((char, index) => (
                       <span
-                        key={index}
+                        key={`description-char-${index}`}
                         className={`inline transition-all duration-200 ease-out ${
                           index < descriptionChars ? 'opacity-100' : 'opacity-0'
                         }`}
