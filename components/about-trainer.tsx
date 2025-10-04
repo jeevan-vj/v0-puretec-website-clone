@@ -199,7 +199,9 @@ export default function AboutTrainer() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [isImageModalOpen, setIsImageModalOpen] = useState(false)
   const [currentImages, setCurrentImages] = useState<string[]>([])
+  const [visibleTimelineItems, setVisibleTimelineItems] = useState<Set<number>>(new Set())
   const sectionRef = useRef<HTMLElement>(null)
+  const timelineItemRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -216,6 +218,32 @@ export default function AboutTrainer() {
     }
 
     return () => observer.disconnect()
+  }, [])
+
+  // Timeline items intersection observer
+  useEffect(() => {
+    const timelineObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-timeline-index') || '0')
+            setVisibleTimelineItems(prev => new Set([...prev, index]))
+          }
+        })
+      },
+      { 
+        threshold: 0.3,
+        rootMargin: '-50px 0px -50px 0px'
+      }
+    )
+
+    timelineItemRefs.current.forEach((ref) => {
+      if (ref) {
+        timelineObserver.observe(ref)
+      }
+    })
+
+    return () => timelineObserver.disconnect()
   }, [])
 
   useEffect(() => {
@@ -374,30 +402,65 @@ export default function AboutTrainer() {
           
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-400 via-teal-400 to-green-400"></div>
+            <div className="absolute left-8 top-0 w-0.5 bg-gradient-to-b from-yellow-400 via-teal-400 to-green-400 transition-all duration-1000 ease-out"
+                 style={{
+                   height: isVisible ? "100%" : "0%",
+                   transitionDelay: isVisible ? "500ms" : "0ms"
+                 }}></div>
             
             <div className="space-y-8">
               {journeyTimeline.map((item, index) => {
                 const Icon = item.icon
                 const isExpanded = expandedCard === index
+                const isTimelineItemVisible = visibleTimelineItems.has(index)
                 return (
                   <div
                     key={index}
+                    ref={(el) => {
+                      timelineItemRefs.current[index] = el
+                    }}
+                    data-timeline-index={index}
                     className={`relative flex items-start gap-8 transform transition-all duration-700 ${
-                      isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+                      isTimelineItemVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
                     }`}
-                    style={{ transitionDelay: isVisible ? `${800 + index * 200}ms` : "0ms" }}
+                    style={{ 
+                      transitionDelay: isTimelineItemVisible ? `${index * 200}ms` : "0ms",
+                      transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)"
+                    }}
                   >
                     {/* Timeline Dot */}
-                    <div className={`relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-yellow-400 to-teal-400 flex items-center justify-center shadow-lg ${item.color} cursor-pointer hover:scale-110 transition-all duration-300`}
-                         onClick={() => setExpandedCard(isExpanded ? null : index)}>
-                      <Icon className="w-8 h-8 text-white" />
+                    <div 
+                      className={`relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-yellow-400 to-teal-400 flex items-center justify-center shadow-lg ${item.color} cursor-pointer hover:scale-110 transition-all duration-500 transform ${
+                        isTimelineItemVisible ? "scale-100 rotate-0" : "scale-0 rotate-180"
+                      } ${isTimelineItemVisible ? "animate-pulse" : ""}`}
+                      style={{
+                        transitionDelay: isTimelineItemVisible ? `${index * 200 + 100}ms` : "0ms",
+                        transitionTimingFunction: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+                        animationDelay: isTimelineItemVisible ? `${index * 200 + 1000}ms` : "0ms",
+                        animationDuration: "2s",
+                        animationIterationCount: "3"
+                      }}
+                      onClick={() => setExpandedCard(isExpanded ? null : index)}
+                    >
+                      <Icon className={`w-8 h-8 text-white transition-all duration-500 ${
+                        isTimelineItemVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
+                      }`} 
+                      style={{
+                        transitionDelay: isTimelineItemVisible ? `${index * 200 + 200}ms` : "0ms"
+                      }}
+                      />
                     </div>
                     
                     {/* Collapsible Content Card */}
-                    <div className={`flex-1 bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl transition-all duration-500 overflow-hidden ${
+                    <div className={`flex-1 bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl transition-all duration-700 overflow-hidden transform ${
+                      isTimelineItemVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    } ${
                       isExpanded ? 'shadow-2xl scale-105' : 'hover:shadow-2xl hover:scale-105'
-                    }`}>
+                    }`}
+                    style={{
+                      transitionDelay: isTimelineItemVisible ? `${index * 200 + 300}ms` : "0ms",
+                      transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)"
+                    }}>
                       {/* Card Header - Always Visible */}
                       <div 
                         className="p-6 cursor-pointer"
@@ -860,6 +923,8 @@ export default function AboutTrainer() {
                   <button
                     onClick={() => setSelectedImageIndex(selectedImageIndex - 1)}
                     className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-200"
+                    title="Previous image"
+                    aria-label="Previous image"
                   >
                     <ArrowRight className="w-6 h-6 text-white transform rotate-180" />
                   </button>
@@ -870,6 +935,8 @@ export default function AboutTrainer() {
                   <button
                     onClick={() => setSelectedImageIndex(selectedImageIndex + 1)}
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-200"
+                    title="Next image"
+                    aria-label="Next image"
                   >
                     <ArrowRight className="w-6 h-6 text-white" />
                   </button>

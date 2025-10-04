@@ -94,12 +94,24 @@ export default function Hero() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
+    // Set CSS custom property for mobile viewport height
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    }
+    
+    setVH()
+    window.addEventListener('resize', setVH)
+    window.addEventListener('orientationchange', setVH)
+    
     intervalRef.current = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 8000) // Longer duration for better UX
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
+      window.removeEventListener('resize', setVH)
+      window.removeEventListener('orientationchange', setVH)
     }
   }, [])
 
@@ -154,7 +166,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative h-screen bg-black overflow-hidden">
+      <section className="relative hero-mobile-fix bg-black overflow-hidden">
         {/* Enhanced Background with Ken Burns Effect */}
         <div className="absolute inset-0">
           {slides.map((slide, index) => (
@@ -170,7 +182,7 @@ export default function Hero() {
               {slide.type === "video" ? (
                 <div className="relative w-full h-full overflow-hidden">
                   <video 
-                    className={`w-full h-full object-cover object-center transition-transform duration-[20000ms] ease-linear ${
+                    className={`hero-bg-mobile transition-transform duration-[20000ms] ease-linear ${
                       index === currentSlide && !isTransitioning 
                         ? 'scale-110' 
                         : 'scale-100'
@@ -188,14 +200,14 @@ export default function Hero() {
                   <img
                     src={slide.background || "/placeholder.svg"}
                     alt="Fitness background"
-                    className={`w-full h-full object-cover object-center transition-all duration-[20000ms] ease-out ${
+                    className={`hero-bg-mobile transition-all duration-[20000ms] ease-out ${
                       index === currentSlide && !isTransitioning
                         ? 'scale-110 transform' 
                         : 'scale-100'
                     }`}
                     onLoad={() => setImageLoaded(true)}
                     style={{
-                      filter: index === currentSlide ? 'brightness(1.1) contrast(1.05)' : 'brightness(1)',
+                      filter: index === currentSlide ? 'brightness(1.1) contrast(1.05)' : 'brightness(1)'
                     }}
                   />
                 </div>
@@ -214,22 +226,22 @@ export default function Hero() {
           onClick={prevSlide}
           disabled={isTransitioning}
           aria-label="Previous slide"
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 text-white/70 hover:text-white transition-all duration-300 p-2 hover:scale-110 disabled:opacity-50 bg-black/20 backdrop-blur-sm rounded-full hover:bg-black/40"
+          className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 text-white/70 hover:text-white transition-all duration-300 p-2 hover:scale-110 disabled:opacity-50 bg-black/20 backdrop-blur-sm rounded-full hover:bg-black/40"
         >
-          <ChevronLeft className="h-8 w-8" />
+          <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
         </button>
         <button
           onClick={nextSlide}
           disabled={isTransitioning}
           aria-label="Next slide"
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 text-white/70 hover:text-white transition-all duration-300 p-2 hover:scale-110 disabled:opacity-50 bg-black/20 backdrop-blur-sm rounded-full hover:bg-black/40"
+          className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 text-white/70 hover:text-white transition-all duration-300 p-2 hover:scale-110 disabled:opacity-50 bg-black/20 backdrop-blur-sm rounded-full hover:bg-black/40"
         >
-          <ChevronRight className="h-8 w-8" />
+          <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
         </button>
 
         <div className="relative z-10 h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-6 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
               <div className="max-w-2xl">
                 {/* Enhanced Eyebrow with Character Reveal */}
                 <div
@@ -257,7 +269,7 @@ export default function Hero() {
                 </div>
 
                 {/* Enhanced Title with Staggered Line Animation */}
-                <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-black leading-none mb-6 tracking-tight">
+                <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-none mb-4 sm:mb-6 tracking-tight">
                   {currentSlideData.title.split("\n").map((line, lineIndex) => (
                     <div key={lineIndex} className="block overflow-hidden">
                       <span
@@ -292,7 +304,7 @@ export default function Hero() {
 
                 {/* Enhanced Description with Character Reveal */}
                 <div
-                  className={`text-white/90 text-lg mb-8 leading-relaxed transform transition-all duration-700 ease-out ${
+                  className={`text-white/90 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed transform transition-all duration-700 ease-out ${
                     showContent && !isTransitioning ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                   }`}
                   style={{ transitionDelay: showContent ? "700ms" : "0ms" }}
@@ -400,7 +412,7 @@ export default function Hero() {
         </div>
 
         {/* Enhanced Navigation Dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-4">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3 sm:space-x-4">
           {slides.map((_, index) => (
             <button
               key={index}
