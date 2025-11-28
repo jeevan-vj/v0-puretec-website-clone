@@ -189,6 +189,161 @@
   .btn-hero-primary:hover::before {
     left: 100%;
   }
+
+  /* Timeline Enhancements */
+  .timeline-card {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s ease;
+  }
+
+  .timeline-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(250, 204, 21, 0.12),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .timeline-card:hover::after {
+    opacity: 1;
+  }
+
+  .timeline-card_trigger {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .timeline-card_trigger:focus-visible {
+    outline: 2px solid rgba(250, 204, 21, 0.7);
+    outline-offset: 4px;
+  }
+
+  .timeline-card_trigger::after {
+    content: "";
+    position: absolute;
+    top: var(--ripple-y, 50%);
+    left: var(--ripple-x, 50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: rgba(250, 204, 21, 0.3);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+
+  .timeline-card_trigger:active::after {
+    animation: rippleButton 0.6s ease-out forwards;
+  }
+
+  .chevron-indicator {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .collapse-gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 64px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(250, 204, 21, 0.08) 80%
+    );
+  }
+
+  .timeline-pulse::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 9999px;
+    border: 2px solid rgba(250, 204, 21, 0.4);
+    animation: pulseDot 2s ease infinite;
+  }
+
+  .champion-ribbon {
+    position: absolute;
+    top: 14px;
+    right: -40px;
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, #facc15, #fbbf24);
+    color: #1f2937;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.25rem 2.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 12px 30px rgba(250, 204, 21, 0.3);
+    pointer-events: none;
+  }
+
+  .champion-confetti {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, #fde68a, #fcd34d);
+    border-radius: 2px;
+    opacity: 0.7;
+    animation: confettiFloat 4s linear infinite;
+    pointer-events: none;
+  }
+
+  .champion-confetti.one {
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+  }
+
+  .champion-confetti.two {
+    bottom: 15%;
+    left: 12%;
+    animation-delay: 1s;
+  }
+
+  .shimmer-border {
+    position: relative;
+  }
+
+  .shimmer-border::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(250, 204, 21, 0.65),
+      transparent
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: shimmerOutline 2.5s linear infinite;
+    pointer-events: none;
+  }
 }
 
 @keyframes kenBurns {
@@ -335,6 +490,18 @@
 .animate-ripple {
   animation: ripple 0.6s ease-out;
 }
+
+@keyframes rippleButton {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(18);
+    opacity: 0;
+  }
+}
+
 @keyframes marquee-left {
   from {
     transform: translateX(0);
@@ -397,4 +564,41 @@
 }
 .group:hover .group-hover\:\[animation-play-state\:paused\] {
   animation-play-state: paused;
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes confettiFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) rotate(210deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmerOutline {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
 }

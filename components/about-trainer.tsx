@@ -1,6 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  type MouseEvent as ReactMouseEvent,
+} from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
@@ -233,6 +238,41 @@ const journeyTimeline = [
   },
 ];
 
+const getProgressionStyles = (index: number, total: number) => {
+  const safeTotal = Math.max(total - 1, 1);
+  const progress = index / safeTotal;
+  return {
+    progress,
+    iconSize: 48 + progress * 24,
+    iconBackground:
+      progress < 0.4
+        ? "from-neutral-200 to-neutral-300"
+        : progress < 0.8
+        ? "from-yellow-200 to-yellow-300"
+        : "from-yellow-300 via-yellow-400 to-yellow-500",
+    ringGlow:
+      progress > 0.7
+        ? "ring-4 ring-yellow-400/40 shadow-[0_0_30px_rgba(250,204,21,0.35)]"
+        : "ring-2 ring-white/60 shadow-[0_5px_20px_rgba(15,23,42,0.06)]",
+  };
+};
+
+const getCardTone = (progress: number) => {
+  if (progress < 0.35) return "early";
+  if (progress < 0.65) return "middle";
+  if (progress < 0.95) return "late";
+  return "champion";
+};
+
+const cardToneClasses: Record<string, string> = {
+  early: "bg-neutral-50/80 border border-neutral-200/80",
+  middle:
+    "bg-gradient-to-br from-neutral-50 via-yellow-50/20 to-white border border-yellow-100/70 shadow-md",
+  late: "bg-gradient-to-br from-yellow-50 via-white to-yellow-100/60 border border-yellow-200 shadow-lg",
+  champion:
+    "bg-gradient-to-br from-yellow-50 via-white to-yellow-100 border border-yellow-300 shadow-xl ring-1 ring-yellow-300/40 shimmer-border",
+};
+
 export default function AboutTrainer() {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -245,6 +285,7 @@ export default function AboutTrainer() {
   );
   const sectionRef = useRef<HTMLElement>(null);
   const timelineItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const totalTimelineItems = journeyTimeline.length;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -309,6 +350,21 @@ export default function AboutTrainer() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const lineFill = totalTimelineItems
+    ? Math.min(visibleTimelineItems.size / totalTimelineItems, 1)
+    : 0;
+
+  const handleCardToggle = (
+    event: ReactMouseEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    const target = event.currentTarget;
+    const rect = target.getBoundingClientRect();
+    target.style.setProperty("--ripple-x", `${event.clientX - rect.left}px`);
+    target.style.setProperty("--ripple-y", `${event.clientY - rect.top}px`);
+    setExpandedCard((prev) => (prev === index ? null : index));
+  };
 
   return (
     <section
@@ -404,19 +460,37 @@ export default function AboutTrainer() {
 
           <div className="relative">
             {/* Timeline Line */}
-            <div
-              className="absolute left-8 top-0 w-0.5 bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-300 transition-all duration-1000 ease-out"
-              style={{
-                height: isVisible ? "100%" : "0%",
-                transitionDelay: isVisible ? "500ms" : "0ms",
-              }}
-            ></div>
-
+            <div className="absolute left-8 top-0 bottom-0 w-0.5">
+              <div className="h-full w-full bg-neutral-200 rounded-full"></div>
+              <div
+                className="absolute left-0 top-0 w-full bg-gradient-to-b from-yellow-200 via-yellow-300 to-yellow-400 rounded-full transition-all duration-700 ease-out"
+                style={{
+                  height: `${Math.max(lineFill * 100, isVisible ? 5 : 0)}%`,
+                }}
+              ></div>
+              <div
+                className={`timeline-pulse absolute -left-3 w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 to-yellow-400 shadow-lg transition-all duration-700 ${
+                  isVisible ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                  top: `calc(${Math.max(lineFill * 100, 5)}% - 12px)`,
+                }}
+              ></div>
+            </div>
             <div className="space-y-8">
               {journeyTimeline.map((item, index) => {
                 const Icon = item.icon;
                 const isExpanded = expandedCard === index;
                 const isTimelineItemVisible = visibleTimelineItems.has(index);
+                const progression = getProgressionStyles(
+                  index,
+                  totalTimelineItems
+                );
+                const cardTone = getCardTone(progression.progress);
+                const previewImage = item.details.images?.[0];
+                const isChampion = index === totalTimelineItems - 1;
+                const iconColor = item.color ?? "text-neutral-800";
+
                 return (
                   <div
                     key={index}
@@ -424,107 +498,121 @@ export default function AboutTrainer() {
                       timelineItemRefs.current[index] = el;
                     }}
                     data-timeline-index={index}
-                    className={`relative flex items-start gap-8 transform transition-all duration-700 ${
+                    className={`relative flex items-start gap-8 transition-all duration-700 ${
                       isTimelineItemVisible
                         ? "opacity-100 translate-x-0"
-                        : "opacity-0 -translate-x-8"
+                        : "opacity-0 -translate-x-6"
                     }`}
                     style={{
                       transitionDelay: isTimelineItemVisible
-                        ? `${index * 200}ms`
+                        ? `${index * 150}ms`
                         : "0ms",
                       transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
                   >
                     {/* Timeline Dot */}
-                    <div
-                      className={`relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-yellow-200 to-yellow-400 flex items-center justify-center shadow-lg ${
-                        item.color
-                      } cursor-pointer hover:scale-110 transition-all duration-500 transform ${
-                        isTimelineItemVisible
-                          ? "scale-100 rotate-0"
-                          : "scale-0 rotate-180"
-                      } ${isTimelineItemVisible ? "animate-pulse" : ""}`}
+                    <button
+                      type="button"
+                      className={`relative z-10 flex items-center justify-center rounded-full bg-gradient-to-br ${progression.iconBackground} text-neutral-800 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300`}
                       style={{
-                        transitionDelay: isTimelineItemVisible
-                          ? `${index * 200 + 100}ms`
-                          : "0ms",
-                        transitionTimingFunction:
-                          "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-                        animationDelay: isTimelineItemVisible
-                          ? `${index * 200 + 1000}ms`
-                          : "0ms",
-                        animationDuration: "2s",
-                        animationIterationCount: "3",
+                        width: progression.iconSize,
+                        height: progression.iconSize,
                       }}
                       onClick={() => setExpandedCard(isExpanded ? null : index)}
+                      aria-label={`${item.year} milestone: ${item.title}`}
+                      title={`${item.year} milestone: ${item.title}`}
                     >
+                      <div
+                        className={`absolute inset-0 rounded-full ${progression.ringGlow}`}
+                      ></div>
                       <Icon
-                        className={`w-8 h-8 text-neutral-700 transition-all duration-500 ${
+                        className={`relative z-10 transition-all duration-500 ${iconColor} ${
                           isTimelineItemVisible
                             ? "opacity-100 scale-100"
-                            : "opacity-0 scale-50"
+                            : "opacity-0 scale-75"
                         }`}
                         style={{
                           transitionDelay: isTimelineItemVisible
-                            ? `${index * 200 + 200}ms`
+                            ? `${index * 150 + 100}ms`
                             : "0ms",
                         }}
                       />
-                    </div>
+                    </button>
 
                     {/* Collapsible Content Card */}
                     <div
-                      className={`flex-1 bg-neutral-50 backdrop-blur-sm rounded-2xl border border-white/10 shadow-md transition-all duration-700 overflow-hidden transform ${
+                      className={`group timeline-card relative flex-1 backdrop-blur-sm rounded-3xl overflow-hidden transition-all duration-700 ${
+                        cardToneClasses[cardTone]
+                      } ${
                         isTimelineItemVisible
                           ? "opacity-100 translate-y-0"
-                          : "opacity-0 translate-y-8"
+                          : "opacity-0 translate-y-6"
                       } ${
                         isExpanded
-                          ? "shadow-2xl scale-105"
-                          : "hover:shadow-2xl hover:scale-105"
-                      }`}
+                          ? "scale-[1.015] shadow-2xl"
+                          : "hover:scale-[1.01]"
+                      } ${isChampion ? "timeline-card_champion" : ""}`}
                       style={{
                         transitionDelay: isTimelineItemVisible
-                          ? `${index * 200 + 300}ms`
+                          ? `${index * 150 + 180}ms`
                           : "0ms",
-                        transitionTimingFunction:
-                          "cubic-bezier(0.4, 0, 0.2, 1)",
                       }}
                     >
+                      {isChampion && (
+                        <>
+                          <span className="champion-ribbon">Historic Achievement</span>
+                          <div className="champion-confetti one"></div>
+                          <div className="champion-confetti two"></div>
+                        </>
+                      )}
                       {/* Card Header - Always Visible */}
-                      <div
-                        className="p-6 cursor-pointer"
-                        onClick={() =>
-                          setExpandedCard(isExpanded ? null : index)
-                        }
+                      <button
+                        type="button"
+                        className="timeline-card_trigger"
+                        onClick={(event) => handleCardToggle(event, index)}
                       >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4">
-                            <span className="text-2xl font-bold text-black">
-                              {item.year}
-                            </span>
-                            <h4 className="text-xl font-bold text-neutral-500">
-                              {item.title}
-                            </h4>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm text-neutral-600">
-                              Click to {isExpanded ? "collapse" : "expand"}
-                            </span>
-                            <div
-                              className={`w-6 h-6 rounded-full bg-neutral-200 flex items-center justify-center transition-transform duration-300 ${
-                                isExpanded ? "rotate-180" : ""
-                              }`}
-                            >
-                              <ArrowRight className="w-4 h-4 text-neutral-500 transform rotate-90" />
+                        <div className="flex items-start gap-4">
+                          <div className="flex-1 space-y-2 text-left">
+                            <div className="flex flex-wrap items-center gap-4">
+                              <span className="text-2xl font-black text-black">
+                                {item.year}
+                              </span>
+                              <h4 className="text-xl font-semibold text-neutral-700">
+                                {item.title}
+                              </h4>
                             </div>
+                            <p className="text-neutral-600 leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                          {previewImage && (
+                            <div className="relative w-20 h-20 rounded-2xl overflow-hidden border border-white/40 shadow-lg hidden sm:block">
+                              <img
+                                src={previewImage}
+                                alt={`${item.title} preview`}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                            </div>
+                          )}
+                        </div>
+                        <div className="mt-4 flex items-center justify-between text-sm">
+                          <span className="text-neutral-500">
+                            {isExpanded ? "Hide details" : "See the story"}
+                          </span>
+                          <div
+                            className={`chevron-indicator ${
+                              isExpanded ? "rotate-180" : ""
+                            }`}
+                          >
+                            <ArrowRight className="w-4 h-4 text-neutral-600" />
                           </div>
                         </div>
-                        <p className="text-neutral-500 leading-relaxed mt-3">
-                          {item.description}
-                        </p>
-                      </div>
+                      </button>
+
+                      {!isExpanded && previewImage && (
+                        <div className="collapse-gradient pointer-events-none"></div>
+                      )}
 
                       {/* Expanded Content */}
                       <div
@@ -536,18 +624,18 @@ export default function AboutTrainer() {
                       >
                         <div className="px-6 pb-6 border-t border-white/10">
                           {/* Detailed Content */}
-                          <div className="mt-6">
-                            <p className="text-neutral-600 leading-relaxed mb-6">
+                          <div className="mt-6 space-y-6">
+                            <p className="text-neutral-600 leading-relaxed">
                               {item.details.content}
                             </p>
 
                             {/* Highlights */}
-                            <div className="flex flex-wrap gap-2 mb-6">
+                            <div className="flex flex-wrap gap-2">
                               {item.details.highlights.map(
                                 (highlight, highlightIndex) => (
                                   <Badge
                                     key={highlightIndex}
-                                    className="bg-yellow-400/20 text-neutral-700 border border-yellow-400/30 px-3 py-1 text-xs font-medium"
+                                    className="bg-yellow-400/15 text-neutral-700 border border-yellow-400/30 px-3 py-1 text-xs font-semibold tracking-wide"
                                   >
                                     {highlight}
                                   </Badge>
@@ -559,7 +647,7 @@ export default function AboutTrainer() {
                             {item.details.images &&
                               item.details.images.length > 0 && (
                                 <div className="space-y-4">
-                                  <h5 className="text-lg font-semibold text-white mb-3">
+                                  <h5 className="text-lg font-semibold text-neutral-900">
                                     Gallery
                                   </h5>
                                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
