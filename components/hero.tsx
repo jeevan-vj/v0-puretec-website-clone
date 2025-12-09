@@ -25,13 +25,13 @@ export default function Hero() {
           reverse={false}
           pauseOnHover={false}
           className="absolute top-3/4 left-0 transform -translate-y-[30%] -z-0 h-auto w-full" // pass class to change gap or speed
-          innerClassName="gap-[10rem] font-display uppercase text-[16rem]" // pass class to change gap or speed
+          innerClassName="gap-[3rem] lg:gap-[10rem] font-display uppercase text-[5rem] lg:text-[16rem]" // pass class to change gap or speed
         >
           <span className="inline-block text-white">Personal Trainer</span>
           <span className="inline-block text-white">Certified Coach</span>
           <span className="inline-block text-white">NZ Champion</span>
         </Marquee>
-        <div className="container mx-auto relative h-full flex flex-col lg:flex-row w-full lg:justify-center gap-10 lg:gap-0 items-center justify-end">
+        <div className="container mx-auto relative z-10 h-full flex flex-col lg:flex-row w-full lg:justify-center gap-6 lg:gap-0 items-center justify-center pt-36 lg:pt-0 pb-32 lg:pb-0">
           <div className="w-full  lg:w-1/2 flex flex-col text-white gap-8">
             <div className="space-y-5">
               <h1 className="text-4xl lg:text-6xl font-bold font-display">
@@ -51,7 +51,7 @@ export default function Hero() {
               Book a Free Consultation
             </Button>
           </div>
-          <div className="w-full lg:w-1/2 relative h-5/12 lg:h-full flex items-end">
+          <div className="w-full lg:w-1/2 relative min-h-[300px] h-[45%] lg:h-full flex items-end">
             <Image
               src="/images/hero-portrait-1.png"
               alt="Hero Background"
