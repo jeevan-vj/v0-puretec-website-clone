@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import Header from "./header";
 import Image from "next/image";
 import { Marquee } from "@devnomic/marquee";
+import { useCalEmbed } from "@/lib/useCalEmbed";
 
 export default function Hero() {
+  const { openCal } = useCalEmbed();
   return (
     <>
       <section
@@ -45,6 +47,7 @@ export default function Hero() {
             <Button
               variant="gradient"
               className="px-6 py-6 lg:px-8 lg:py-8 text-lg w-full lg:w-fit tracking-wide rounded-full"
+              onClick={openCal}
             >
               Book a Free Consultation
             </Button>

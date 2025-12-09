@@ -3,9 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useCalEmbed } from "@/lib/useCalEmbed";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openCal } = useCalEmbed();
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -42,6 +44,14 @@ export default function Header() {
     href: string
   ) => {
     e.preventDefault();
+    
+    // Handle Book Now specially - open Cal popup
+    if (href === "#booking") {
+      openCal();
+      setIsMobileMenuOpen(false);
+      return;
+    }
+    
     if (href.startsWith("#")) {
       const element = document.querySelector(href);
       if (element) {

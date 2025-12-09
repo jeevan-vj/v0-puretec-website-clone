@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { useToast } from "@/components/ui/toast"
 import { Calendar, User, CheckCircle, ChevronLeft, ChevronRight, Clock, X, Phone, Mail, Star, Dumbbell } from "lucide-react"
+import { useCalEmbed } from "@/lib/useCalEmbed"
 
 interface BookingData {
   service: string
@@ -76,6 +77,7 @@ export default function BookingWizard() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { openCal } = useCalEmbed()
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -571,80 +573,12 @@ export default function BookingWizard() {
   return (
     <>
       <ToastContainer />
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-3 text-sm font-medium tracking-wide uppercase hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-          Book Appointment
-        </Button>
-      </DialogTrigger>
-      <DialogContent 
-        className="sm:max-w-md w-full max-w-[95vw] h-[90vh] max-h-[90vh] bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#0a0a0a] border-white/10 text-white p-0 overflow-hidden"
-        onInteractOutside={(e) => e.preventDefault()}
+      <Button 
+        className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-3 text-sm font-medium tracking-wide uppercase hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        onClick={openCal}
       >
-        {/* Mobile Header */}
-        <DialogHeader className="p-4 border-b border-white/10 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              {currentStep > 0 && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={prevStep}
-                  className="text-white hover:bg-gray-700 p-2"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-              )}
-              <DialogTitle className="text-lg font-semibold">
-                {steps[currentStep].title}
-              </DialogTitle>
-            </div>
-          </div>
-        </DialogHeader>
-
-        {/* Step Indicator */}
-        {renderMobileStepIndicator()}
-
-        {/* Content */}
-        <div className="flex-1 overflow-y-auto pb-20">
-          {renderStepContent()}
-        </div>
-
-        {/* Mobile Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0a0a0a] to-gray-900/95 border-t border-white/10 backdrop-blur-sm">
-          {currentStep < steps.length - 1 ? (
-            <Button
-              onClick={nextStep}
-              disabled={!canProceedToNext()}
-              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed py-3 font-semibold shadow-lg transition-all duration-200 active:scale-95"
-              aria-label={`Continue to ${steps[currentStep + 1]?.title}`}
-            >
-              Continue
-              <ChevronRight className="w-4 h-4 ml-2" />
-            </Button>
-          ) : (
-            <Button
-              onClick={handleSubmit}
-              disabled={!canProceedToNext() || isSubmitting}
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed py-3 font-semibold shadow-lg transition-all duration-200 active:scale-95"
-              aria-label="Submit booking appointment"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                  Processing...
-                </>
-              ) : (
-                <>
-                  Book Appointment
-                  <CheckCircle className="w-4 h-4 ml-2" />
-                </>
-              )}
-            </Button>
-          )}
-        </div>
-      </DialogContent>
-    </Dialog>
+        Book Appointment
+      </Button>
     </>
   )
 }
