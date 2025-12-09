@@ -715,7 +715,7 @@ export default function MediaGallery() {
                   </>
                 )}
 
-                <div className="aspect-video relative overflow-hidden bg-gray-800">
+                <div className="relative overflow-hidden bg-gray-900 rounded-t-2xl" style={{ minHeight: '60vh', maxHeight: '70vh' }}>
                   <div className={`w-full h-full transition-all duration-300 ${isTransitioning ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}>
                     {selectedItem.files[currentFileIndex]?.type === "video" ? (
                       <video
@@ -723,10 +723,11 @@ export default function MediaGallery() {
                         src={selectedItem.files[currentFileIndex]?.url}
                         poster={selectedItem.files[currentFileIndex]?.thumbnail}
                         controls
-                        className="w-full h-full object-cover rounded-t-2xl"
+                        className="w-full h-full object-contain rounded-t-2xl"
+                        style={{ minHeight: '60vh', maxHeight: '70vh' }}
                       />
                     ) : (
-                      <div className="relative w-full h-full">
+                      <div className="relative w-full flex items-center justify-center" style={{ minHeight: '60vh', maxHeight: '70vh' }}>
                         {/* Modal skeleton */}
                         {!loadedImages.has(`modal-${selectedItem.files[currentFileIndex]?.id}`) && (
                           <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 animate-pulse">
@@ -744,7 +745,7 @@ export default function MediaGallery() {
                           priority
                           placeholder="blur"
                           blurDataURL={blurDataURL}
-                          className={`object-cover rounded-t-2xl transition-all duration-500 ${
+                          className={`object-contain rounded-t-2xl transition-all duration-500 ${
                             loadedImages.has(`modal-${selectedItem.files[currentFileIndex]?.id}`) ? 'opacity-100' : 'opacity-0'
                           }`}
                           onLoad={() => handleImageLoad(`modal-${selectedItem.files[currentFileIndex]?.id}`)}
