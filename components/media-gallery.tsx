@@ -414,11 +414,19 @@ export default function MediaGallery() {
   }
 
   return (
-    <section id="media-gallery" className="py-20 bg-slate-900 text-white">
+    <section id="media-gallery" className="relative py-20 bg-gradient-to-br from-[#05070f] via-[#0f111d] to-[#05070f] text-white overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.2),_transparent_65%)]"></div>
+      <div className="absolute inset-0 showcase-noise opacity-50"></div>
+      
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Media & Achievements</h2>
+        <div className="text-center mb-16 relative z-10">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-8 h-0.5 bg-yellow-400"></div>
+            <span className="text-sm font-medium text-yellow-400 uppercase tracking-wider">OUR JOURNEY</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Media & Achievements</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Showcasing our journey through events, achievements, media coverage, and the incredible transformations
             we've helped create
@@ -426,7 +434,7 @@ export default function MediaGallery() {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12 relative z-10">
           {categories.map((category, index) => {
             const Icon = category.icon
             return (
@@ -453,84 +461,92 @@ export default function MediaGallery() {
         </div>
 
         {/* Media Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
           {filteredItems.map((item, index) => (
             <div
               key={`${item.id}-${cardAnimationKey}`}
-              className="group cursor-pointer bg-slate-800 rounded-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/10 opacity-0 animate-slideUp"
+              className="group cursor-pointer relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-white/10 hover:border-yellow-400/30 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(250,204,21,0.15)] opacity-0 animate-slideUp"
               style={{
-                animationDelay: `${index * 0.15}s`,
+                animationDelay: `${index * 0.1}s`,
                 animationFillMode: 'forwards'
               }}
               onClick={() => openModal(item)}
             >
-              <div className="relative">
-                {/* Main image */}
-                <div className="aspect-[4/3] overflow-hidden relative">
-                  <img
-                    src={item.files[0]?.thumbnail || "/placeholder.svg"}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
-                  />
-                  {item.files[0]?.type === "video" && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors duration-300">
-                      <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl">
-                        <Play className="w-6 h-6 text-black ml-1 transition-transform duration-300 group-hover:scale-110" />
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.1),_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <div className="relative">
+                  {/* Main image */}
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img
+                      src={item.files[0]?.thumbnail || "/placeholder.svg"}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    {/* Dark gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                    
+                    {item.files[0]?.type === "video" && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors duration-300">
+                        <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+                          <Play className="w-6 h-6 text-black ml-1 transition-transform duration-300 group-hover:scale-110" />
+                        </div>
                       </div>
+                    )}
+                    <div
+                      className={`absolute top-3 left-3 px-2 py-1 rounded text-xs font-semibold text-white ${getCategoryColor(item.category)}`}
+                    >
+                      {item.category.toUpperCase()}
                     </div>
-                  )}
-                  <div
-                    className={`absolute top-3 left-3 px-2 py-1 rounded text-xs font-semibold text-white ${getCategoryColor(item.category)}`}
-                  >
-                    {item.category.toUpperCase()}
+                    {/* Media count badge */}
+                    {item.files.length > 1 && (
+                      <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-semibold">
+                        +{item.files.length - 1} more
+                      </div>
+                    )}
                   </div>
-                  {/* Media count badge */}
+
+                  {/* Thumbnail grid for additional files */}
                   {item.files.length > 1 && (
-                    <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-semibold">
-                      +{item.files.length - 1} more
+                    <div className="grid grid-cols-4 gap-1 p-2 bg-gray-900/50">
+                      {item.files.slice(1, 5).map((file, index) => (
+                        <div key={file.id} className="aspect-square relative overflow-hidden rounded">
+                          <img
+                            src={file.thumbnail || "/placeholder.svg"}
+                            alt={`${item.title} ${index + 2}`}
+                            className="w-full h-full object-cover"
+                          />
+                          {file.type === "video" && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                              <Play className="w-3 h-3 text-white" />
+                            </div>
+                          )}
+                          {index === 3 && item.files.length > 5 && (
+                            <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-xs font-semibold">
+                              +{item.files.length - 5}
+                            </div>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
 
-                {/* Thumbnail grid for additional files */}
-                {item.files.length > 1 && (
-                  <div className="grid grid-cols-4 gap-1 p-2 bg-slate-700">
-                    {item.files.slice(1, 5).map((file, index) => (
-                      <div key={file.id} className="aspect-square relative overflow-hidden rounded">
-                        <img
-                          src={file.thumbnail || "/placeholder.svg"}
-                          alt={`${item.title} ${index + 2}`}
-                          className="w-full h-full object-cover"
-                        />
-                        {file.type === "video" && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                            <Play className="w-3 h-3 text-white" />
-                          </div>
-                        )}
-                        {index === 3 && item.files.length > 5 && (
-                          <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-xs font-semibold">
-                            +{item.files.length - 5}
-                          </div>
-                        )}
-                      </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">{item.title}</h3>
+                  <p className="text-gray-400 text-sm mb-3 line-clamp-2">{item.description}</p>
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {item.tags.slice(0, 2).map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs bg-gray-700 text-gray-300">
+                        {tag}
+                      </Badge>
                     ))}
                   </div>
-                )}
-              </div>
-
-              <div className="p-4">
-                <h3 className="font-semibold text-lg mb-2 line-clamp-2">{item.title}</h3>
-                <p className="text-gray-400 text-sm mb-3 line-clamp-2">{item.description}</p>
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {item.tags.slice(0, 2).map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs bg-gray-700 text-gray-300">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="flex justify-between items-center">
-                  <p className="text-xs text-gray-500">{new Date(item.date).toLocaleDateString("en-US")}</p>
-                  <p className="text-xs text-gray-400">{item.files.length} files</p>
+                  <div className="flex justify-between items-center">
+                    <p className="text-xs text-gray-500">{new Date(item.date).toLocaleDateString("en-US")}</p>
+                    <p className="text-xs text-gray-400">{item.files.length} files</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -539,8 +555,8 @@ export default function MediaGallery() {
 
         {selectedItem && (
           <div 
-            className={`fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 transition-all duration-300 ${
-              isModalOpen ? 'opacity-100 backdrop-blur-sm' : 'opacity-0'
+            className={`fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 transition-all duration-300 ${
+              isModalOpen ? 'opacity-100 backdrop-blur-md' : 'opacity-0'
             }`}
             onClick={(e) => {
               if (e.target === e.currentTarget) closeModal()
@@ -548,11 +564,14 @@ export default function MediaGallery() {
           >
             <div 
               ref={modalRef}
-              className={`bg-slate-800 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 ${
+              className={`relative bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-white/10 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 ${
                 isModalOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
               }`}
             >
-              <div className="relative">
+              {/* Radial glow in modal */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.1),_transparent_60%)] pointer-events-none rounded-2xl" />
+              
+              <div className="relative z-10">
                 <button
                   onClick={closeModal}
                   title="Close gallery"
@@ -591,14 +610,14 @@ export default function MediaGallery() {
                         src={selectedItem.files[currentFileIndex]?.url}
                         poster={selectedItem.files[currentFileIndex]?.thumbnail}
                         controls
-                        className="w-full h-full object-cover rounded-t-lg"
+                        className="w-full h-full object-cover rounded-t-2xl"
                       />
                     ) : (
                       <img
                         key={selectedItem.files[currentFileIndex]?.id}
                         src={selectedItem.files[currentFileIndex]?.thumbnail || "/placeholder.svg"}
                         alt={selectedItem.title}
-                        className="w-full h-full object-cover rounded-t-lg transition-transform duration-300"
+                        className="w-full h-full object-cover rounded-t-2xl transition-transform duration-300"
                       />
                     )}
                   </div>
