@@ -4,6 +4,7 @@ import PersonalTrainingServices from "@/components/personal-training-services";
 import MediaGallery from "@/components/media-gallery";
 import AboutTrainer from "@/components/about-trainer";
 import BookingWizard from "@/components/booking-wizard";
+import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import FloatingFAB from "@/components/floating-fab";
 
@@ -36,6 +37,7 @@ export default function Home() {
           <BookingWizard />
         </div>
       </section>
+      <ContactSection />
       <Footer />
       <FloatingFAB />
     </main>
