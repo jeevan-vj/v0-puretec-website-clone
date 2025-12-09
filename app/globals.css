@@ -224,6 +224,13 @@
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 48px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .timeline-card_trigger:active {
+    transform: scale(0.98);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
   .timeline-card_trigger:focus-visible {
@@ -506,6 +513,7 @@
   height: 100dvh; /* Dynamic viewport height for mobile */
   min-height: 100vh;
   min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .hero-bg-mobile {
@@ -717,4 +725,29 @@
 
 .animate-float {
   animation: subtle-float 4s ease-in-out infinite;
+}
+
+/* Section Transition Helpers */
+.section-transition-to-dark::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(5, 7, 15, 0.3) 40%, rgba(5, 7, 15, 0.8) 80%, rgba(5, 7, 15, 1) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.section-transition-to-light::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 1) 100%);
+  pointer-events: none;
+  z-index: 5;
 }
