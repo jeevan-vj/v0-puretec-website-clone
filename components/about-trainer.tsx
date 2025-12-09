@@ -612,7 +612,7 @@ export default function AboutTrainer() {
     <section
       id="about-trainer"
       ref={sectionRef}
-      className="relative py-20 overflow-hidden bg-white"
+      className="relative py-20 overflow-hidden bg-white section-transition-to-dark"
     >
       <div className="relative z-10 container mx-auto px-4">
         <div className="flex flex-col gap-2">
@@ -810,7 +810,7 @@ export default function AboutTrainer() {
                       {/* Card Header - Always Visible */}
                       <button
                         type="button"
-                        className="timeline-card_trigger"
+                        className="timeline-card_trigger min-h-[48px]"
                         onClick={(event) => handleCardToggle(event, index)}
                       >
                         <div className="flex items-start gap-4">

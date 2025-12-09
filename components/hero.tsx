@@ -38,10 +38,9 @@ export default function Hero() {
                 Ready to get real results?
               </h1>
               <p className="text-lg lg:text-xl leading-relaxed">
-                Ready to get real results? I specialize in personalized
-                training, custom nutrition plans, and a complete lifestyle
-                overhaul. Let's build the body you've always wanted, just like
-                I've done for myself and countless others.
+                I specialize in personalized training, custom nutrition plans,
+                and a complete lifestyle overhaul. Let's build the body you've
+                always wanted, just like I've done for myself and countless others.
               </p>
             </div>
             <Button

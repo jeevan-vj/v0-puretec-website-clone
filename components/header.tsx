@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useCalEmbed } from "@/lib/useCalEmbed";
+import { Dumbbell, Mail, Calendar, Home } from "lucide-react";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,12 +23,12 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   const menuItems = [
-    { label: "ABOUT", href: "#about-trainer" },
-    { label: "TRAINING", href: "#equipment-series" },
-    { label: "GALLERY", href: "#media-gallery" },
-    { label: "WORKOUTS", href: "#workout-gallery" },
-    { label: "BOOK NOW", href: "#booking" },
-    { label: "CONTACT", href: "#footer" },
+    { label: "ABOUT", href: "#about-trainer", icon: Home },
+    { label: "TRAINING", href: "#equipment-series", icon: Dumbbell },
+    { label: "GALLERY", href: "#media-gallery", icon: Home },
+    { label: "WORKOUTS", href: "#workout-gallery", icon: Dumbbell },
+    { label: "BOOK NOW", href: "#booking", icon: Calendar },
+    { label: "CONTACT", href: "#footer", icon: Mail },
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -66,7 +67,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="text-white fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full backdrop-blur-md bg-black/30 py-3">
+      <header className="text-white fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full backdrop-blur-md bg-black/30 py-3" style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}>
         <nav className="flex items-center justify-between container w-full">
           <div className="flex relative">
             <Link
@@ -93,7 +94,7 @@ export default function Header() {
             <Link
               href="#workout-gallery"
               onClick={(e) => handleNavClick(e, "#workout-gallery")}
-              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors"
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-all active:scale-95"
             >
               WORKOUTS
             </Link>
@@ -101,14 +102,14 @@ export default function Header() {
             <Link
               href="#footer"
               onClick={(e) => handleNavClick(e, "#footer")}
-              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-colors"
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-all active:scale-95"
             >
               CONTACT
             </Link>
             <Link
               href="#booking"
               onClick={(e) => handleNavClick(e, "#booking")}
-              className="text-sm font-medium tracking-wide hover:text-yellow-400"
+              className="text-sm font-medium tracking-wide hover:text-yellow-400 active:scale-95"
             >
               BOOK NOW
             </Link>
@@ -147,29 +148,33 @@ export default function Header() {
         }}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
-          {menuItems.map((item, index) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className={`text-2xl font-medium tracking-wide text-white hover:text-yellow-400 transition-all duration-300 transform ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              } ${
-                item.label === "BOOK NOW"
-                  ? "bg-gradient-to-r from-yellow-400 to-teal-400 text-black px-6 py-3 rounded-full hover:from-yellow-300 hover:to-teal-300"
-                  : ""
-              }`}
-              style={{
-                transitionDelay: isMobileMenuOpen
-                  ? `${index * 100 + 200}ms`
-                  : "0ms",
-              }}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {menuItems.map((item, index) => {
+            const IconComponent = item.icon;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`flex items-center gap-3 text-2xl font-medium tracking-wide text-white hover:text-yellow-400 transition-all duration-300 transform active:scale-95 ${
+                  isMobileMenuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                } ${
+                  item.label === "BOOK NOW"
+                    ? "bg-gradient-to-r from-yellow-400 to-teal-400 text-black px-6 py-3 rounded-full hover:from-yellow-300 hover:to-teal-300"
+                    : ""
+                }`}
+                style={{
+                  transitionDelay: isMobileMenuOpen
+                    ? `${index * 100 + 200}ms`
+                    : "0ms",
+                }}
+              >
+                <IconComponent className="w-6 h-6" />
+                {item.label}
+              </Link>
+            );
+          })}
 
           <div
             className={`mt-12 transform transition-all duration-500 ${
