@@ -29,6 +29,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useCalEmbed } from "@/lib/useCalEmbed";
 
 const stats = [
   {
@@ -526,6 +527,7 @@ export default function AboutTrainer() {
   const sectionRef = useRef<HTMLElement>(null);
   const timelineItemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const totalTimelineItems = journeyTimeline.length;
+  const { openCal } = useCalEmbed();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -1111,13 +1113,17 @@ export default function AboutTrainer() {
                   historic achievements.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-4 text-lg font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]">
+                  <Button 
+                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-4 text-lg font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]"
+                    onClick={openCal}
+                  >
                     Start Your Journey
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                   <Button
                     variant="outline"
                     className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-4 text-lg font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300"
+                    onClick={openCal}
                   >
                     Free Consultation
                   </Button>
