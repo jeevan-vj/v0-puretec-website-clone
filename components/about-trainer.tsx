@@ -6,14 +6,11 @@ import {
   useRef,
   type MouseEvent as ReactMouseEvent,
 } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import {
-  Award,
   Users,
-  Calendar,
-  Star,
   CheckCircle,
   ArrowRight,
   Dumbbell,
@@ -25,8 +22,6 @@ import {
   Flag,
   MapPin,
   GraduationCap,
-  Clock,
-  Sparkles,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useCalEmbed } from "@/lib/useCalEmbed";
@@ -110,11 +105,11 @@ const achievements = [
       { type: "Silver", category: "Men's Fitness Open", position: "2nd" },
     ],
     highlight: "First Competition Victory",
-    image:
-      "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
+    image: "/images/2022-icn-nationals/ruw_570.jpg",
     gallery: [
-      "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
-      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+      "/images/2022-icn-nationals/ruw_570.jpg",
+      "/images/2022-icn-nationals/_NZ91439-NEF_RCP.jpg",
+      "/images/2022-icn-nationals/_NZ91444-NEF_RCP.jpg",
     ],
   },
   {
@@ -127,10 +122,10 @@ const achievements = [
       { type: "Bronze", category: "Men's Physique 30+", position: "3rd" },
     ],
     highlight: "National Championship Trophy Winner",
-    image:
-      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+    image: "/images/2022-icn-nationals/_NZ93698-NEF_RCP.jpg",
     gallery: [
-      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+      "/images/2022-icn-nationals/_NZ93698-NEF_RCP.jpg",
+      "/images/2022-icn-nationals/_NZ93830-NEF_RCP.jpg",
       "/images/coach.png",
     ],
   },
@@ -145,10 +140,10 @@ const achievements = [
     ],
     highlight:
       "First Sri Lankan to Win Men's Fitness Model Championship in Christchurch",
-    image:
-      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+    image: "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
     gallery: [
-      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+      "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
+      "/images/2022-icn-nationals/_NZ94381-NEF_RCP.jpg",
       "/images/coach.png",
     ],
   },
@@ -157,36 +152,6 @@ const achievements = [
 const fallbackImage = "/images/showcase-fallback.svg";
 
 const journeyTimeline = [
-  // {
-  //   year: "2018",
-  //   title: "Migration to New Zealand",
-  //   description: "Moved from Dubai to New Zealand for work and residency",
-  //   icon: MapPin,
-  //   color: "text-blue-400",
-  //   details: {
-  //     content: "After working in Dubai, Ruwan made the life-changing decision to migrate to New Zealand in 2018. This move would eventually lead him to discover his passion for fitness and natural bodybuilding. The cultural shift and new environment provided the perfect backdrop for his transformation journey.",
-  //     images: [
-  //       "/professional-fitness-trainer-portrait-in-gym.jpg",
-  //       "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829"
-  //     ],
-  //     highlights: ["New Zealand Residency", "Career Transition", "Cultural Adaptation"]
-  //   }
-  // },
-  // {
-  //   year: "2020",
-  //   title: "Transformation Journey Begins",
-  //   description: "Saw a transformation picture on social media that changed everything",
-  //   icon: Sparkles,
-  //   color: "text-purple-400",
-  //   details: {
-  //     content: "The turning point came when Ruwan stumbled upon a transformation picture on social media. This single image sparked something inside him - a determination to change his life completely. He realized that if others could transform their bodies and lives, so could he. This moment of inspiration would set him on a path that would eventually lead to championship victories.",
-  //     images: [
-  //       "/before-transformation-out-of-shape-man.jpg",
-  //       "/before-transformation-older-man-out-of-shape.jpg"
-  //     ],
-  //     highlights: ["Social Media Inspiration", "Life-Changing Moment", "Mental Shift"]
-  //   }
-  // },
   {
     year: "2021",
     title: "12-Week Program Success",
@@ -198,8 +163,8 @@ const journeyTimeline = [
       content:
         "Ruwan committed to a proper 12-week transformation program, following scientific nutrition and training principles. Through discipline, consistency, and trusting the process, he achieved remarkable results - losing 12kg in just 12 weeks. This success proved that with the right approach and dedication, transformation was not only possible but achievable.",
       images: [
-        "/transformation-before-after-collage.jpg",
-        "/before-after-fitness-transformation-documentary.jpg",
+        "/images/transformations/568044454_10225701295994273_856687466947557545_n.jpg",
+        "/images/transformations/4762DC3F-4E78-42CD-9BA1-40890F4A2A9D (1).PNG",
       ],
       highlights: [
         "12kg Weight Loss",
@@ -219,8 +184,8 @@ const journeyTimeline = [
       content:
         "After 16 weeks of intense preparation, Ruwan competed in his first bodybuilding competition - The Great Lake Muscle & Model Classic Championship in Taupo, New Zealand. Against all odds, he won his first Gold medal in Men's Physique First Timer category, proving that his transformation was not just physical but mental as well.",
       images: [
-        "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
-        "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+        "/images/2022-icn-nationals/ruw_570.jpg",
+        "/images/2022-icn-nationals/_NZ91439-NEF_RCP.jpg",
       ],
       highlights: ["First Gold Medal", "16-Week Prep", "Taupo Championship"],
     },
@@ -236,8 +201,8 @@ const journeyTimeline = [
       content:
         "Recognizing his passion for helping others achieve their fitness goals, Ruwan enrolled in the NZ Certificate in Exercise Level 4 program at Manukau Institute of Technology. He graduated as a qualified personal trainer, combining his practical experience with scientific knowledge to help others transform their lives.",
       images: [
-        "/fitness-trainer-award-certificate-ceremony.jpg",
-        "/fitness-trainer-award-certificate-close-up.jpg",
+        "/images/2022-icn-nationals/_NZ93698-NEF_RCP.jpg",
+        "/images/2022-icn-nationals/_NZ93830-NEF_RCP.jpg",
       ],
       highlights: [
         "NZ Certificate Level 4",
@@ -257,8 +222,8 @@ const journeyTimeline = [
       content:
         "In a historic moment for Sri Lankan fitness, Ruwan became the first Sri Lankan to win the Men's Fitness Model Championship at the South Island Muscle & Model Classic Championship in Christchurch, New Zealand. This achievement not only marked his personal success but also inspired countless others from his homeland to pursue their fitness dreams.",
       images: [
-        "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
-        "/fitness-trainer-award-trophy-display.jpg",
+        "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
+        "/images/2022-icn-nationals/_NZ94381-NEF_RCP.jpg",
       ],
       highlights: [
         "First Sri Lankan Winner",
@@ -429,10 +394,12 @@ function ShowcaseCard({
             isImageLoaded ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         />
-        <img
+        <Image
           src={imageSrc}
           alt={achievement.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
           onLoad={() => setIsImageLoaded(true)}
           onError={() => setImageSrc(fallbackImage)}
         />
@@ -680,11 +647,14 @@ export default function AboutTrainer() {
             </div>
 
             <div className="relative">
-              <div className="relative h-full">
-                <img
+              <div className="relative h-full min-h-[400px] lg:min-h-[600px]">
+                <Image
                   src="/images/coach.png"
                   alt="Ruwan Palihawadana - Champion"
-                  className="w-full h-full relative z-1"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain object-bottom relative z-1"
+                  priority
                 />
               </div>
             </div>
@@ -829,10 +799,12 @@ export default function AboutTrainer() {
                           </div>
                           {previewImage && (
                             <div className="relative w-20 h-20 rounded-2xl overflow-hidden border border-white/40 shadow-lg hidden sm:block">
-                              <img
+                              <Image
                                 src={previewImage}
                                 alt={`${item.title} preview`}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                fill
+                                sizes="80px"
+                                className="object-cover transition-transform duration-500 group-hover:scale-110"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                             </div>
@@ -906,13 +878,15 @@ export default function AboutTrainer() {
                                             setIsImageModalOpen(true);
                                           }}
                                         >
-                                          <div className="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-yellow-400/20 to-teal-400/20 p-1">
-                                            <img
+                                          <div className="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-yellow-400/20 to-teal-400/20 p-1 relative">
+                                            <Image
                                               src={image}
                                               alt={`${item.title} - Image ${
                                                 imageIndex + 1
                                               }`}
-                                              className="w-full h-full object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
+                                              fill
+                                              sizes="(max-width: 768px) 100vw, 50vw"
+                                              className="object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
                                             />
                                           </div>
                                           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
@@ -1193,10 +1167,12 @@ export default function AboutTrainer() {
             {/* Trainer image */}
             <div className="hidden lg:block">
               <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-yellow-400/30 shadow-[0_0_30px_rgba(250,204,21,0.2)]">
-                <img
+                <Image
                   src="/images/coach.png"
                   alt="Ruwan Palihawadana"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="192px"
+                  className="object-cover"
                 />
               </div>
             </div>
@@ -1217,11 +1193,14 @@ export default function AboutTrainer() {
             </button>
 
             {/* Main Image */}
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-400/20 to-teal-400/20 p-1">
-              <img
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-400/20 to-teal-400/20 p-1 min-h-[50vh]">
+              <Image
                 src={currentImages[selectedImageIndex]}
                 alt={`Gallery Image ${selectedImageIndex + 1}`}
-                className="w-full h-full max-h-[70vh] object-contain rounded-xl"
+                fill
+                sizes="(max-width: 1024px) 100vw, 896px"
+                className="object-contain rounded-xl"
+                priority
               />
             </div>
 
@@ -1262,16 +1241,18 @@ export default function AboutTrainer() {
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                      className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${
                         index === selectedImageIndex
                           ? "border-yellow-400 scale-110"
                           : "border-white/30 hover:border-white/60"
                       }`}
                     >
-                      <img
+                      <Image
                         src={image}
                         alt={`Thumbnail ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="64px"
+                        className="object-cover"
                       />
                     </button>
                   ))}
