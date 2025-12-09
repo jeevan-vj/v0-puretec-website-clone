@@ -185,12 +185,11 @@ export default function PersonalTrainingServices() {
   return (
     <>
       {/* Core Features Section */}
-      <section className="py-16 bg-slate-900 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-br from-[#05070f] via-[#0f111d] to-[#05070f] relative overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-yellow-400/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl"></div>
-        </div>
+        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.2),_transparent_65%)]"></div>
+        <div className="absolute inset-0 showcase-noise opacity-50"></div>
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-3 mb-6">
@@ -210,12 +209,20 @@ export default function PersonalTrainingServices() {
             {coreFeatures.map((feature, index) => {
               const IconComponent = feature.icon
               return (
-                <div key={index} className="bg-gray-800/60 rounded-xl p-6 shadow-lg hover:shadow-xl hover:bg-gray-800/80 transition-all duration-300 border border-gray-700/50">
-                  <div className="bg-yellow-400 text-black p-3 rounded-lg w-fit mb-4">
-                    <IconComponent className="w-6 h-6" />
+                <div 
+                  key={index} 
+                  className="relative group rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900/90 to-gray-800/90 p-6 border border-white/10 hover:border-yellow-400/30 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-[0_0_30px_rgba(250,204,21,0.15)]"
+                >
+                  {/* Hover glow effect */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.1),_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="relative z-10">
+                    <div className="bg-yellow-400 text-black p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                    <p className="text-gray-300 leading-relaxed">{feature.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{feature.description}</p>
                 </div>
               )
             })}
@@ -234,26 +241,33 @@ export default function PersonalTrainingServices() {
       /> */}
 
       {/* Certification & Credibility Section */}
-      <section className="py-16 bg-black text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#0a0a0a]">
+        {/* Radial glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(250,204,21,0.12),_transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 showcase-noise opacity-30 pointer-events-none" />
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-medium mb-8">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-12">
               CERTIFIED • EXPERIENCED • RESULTS-DRIVEN
             </h2>
+            
+            {/* Stats Grid with animated counters */}
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="space-y-2">
-                <div className="text-4xl font-bold text-yellow-400">500+</div>
+              <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-white/10 hover:border-yellow-400/30 transition-all duration-300">
+                <div className="text-5xl font-black text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
                 <div className="text-sm uppercase tracking-wide text-gray-300">Clients Transformed</div>
               </div>
-              <div className="space-y-2">
-                <div className="text-4xl font-bold text-yellow-400">10+</div>
+              <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-white/10 hover:border-yellow-400/30 transition-all duration-300">
+                <div className="text-5xl font-black text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300">10+</div>
                 <div className="text-sm uppercase tracking-wide text-gray-300">Years Experience</div>
               </div>
-              <div className="space-y-2">
-                <div className="text-4xl font-bold text-yellow-400">15+</div>
+              <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-white/10 hover:border-yellow-400/30 transition-all duration-300">
+                <div className="text-5xl font-black text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
                 <div className="text-sm uppercase tracking-wide text-gray-300">Certifications</div>
               </div>
             </div>
+            
             <p className="text-lg text-gray-300 leading-relaxed">
               Certified Personal Trainer (NASM-CPT), Corrective Exercise Specialist (NASM-CES), 
               Precision Nutrition Coach, Functional Movement Screen Specialist, and continuing education 
