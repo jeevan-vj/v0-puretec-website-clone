@@ -5,6 +5,7 @@ import MediaGallery from "@/components/media-gallery";
 import AboutTrainer from "@/components/about-trainer";
 import BookingWizard from "@/components/booking-wizard";
 import Footer from "@/components/footer";
+import FloatingFAB from "@/components/floating-fab";
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
         </div>
       </section>
       <Footer />
+      <FloatingFAB />
     </main>
   );
 }
