@@ -14,16 +14,16 @@ export default function ContactSection() {
     {
       icon: Phone,
       label: "Call Us",
-      value: "+1 (234) 567-8900",
-      href: "tel:+1234567890",
+      value: "+64 21 080 98711",
+      href: "tel:+64210809871",
       description: "We're here to help"
     },
     {
       icon: MapPin,
       label: "Visit Us",
-      value: "Downtown Fitness Center",
+      value: "Kiwi Lankan Fitness",
       href: null,
-      description: "Come see our facility"
+      description: "kiwilankanfitness.com"
     },
     {
       icon: Clock,
