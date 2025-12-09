@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import Header from "./header";
-import Image from "next/image";
-import { Marquee } from "@devnomic/marquee";
-import { useCalEmbed } from "@/lib/useCalEmbed";
+import { Button } from '@/components/ui/button';
+import Header from './header';
+import Image from 'next/image';
+import { Marquee } from '@devnomic/marquee';
+import { useCalEmbed } from '@/lib/useCalEmbed';
 
 export default function Hero() {
   const { openCal } = useCalEmbed();
@@ -14,8 +14,8 @@ export default function Hero() {
         className="relative hero-mobile-fix bg-black overflow-hidden min-h-dvh px-4 lg:px-5"
         style={{
           backgroundImage: `url("/images/hero-bg.jpg")`,
-          backgroundPosition: "center center",
-          backgroundSize: "cover",
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
         }}
       >
         <Header />
@@ -40,7 +40,8 @@ export default function Hero() {
               <p className="text-lg lg:text-xl leading-relaxed">
                 I specialize in personalized training, custom nutrition plans,
                 and a complete lifestyle overhaul. Let's build the body you've
-                always wanted, just like I've done for myself and countless others.
+                always wanted, just like I've done for myself and countless
+                others.
               </p>
             </div>
             <Button
