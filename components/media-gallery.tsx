@@ -1,9 +1,10 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Play, X, Calendar, Award, Tv, Camera, ChevronLeft, ChevronRight } from "lucide-react"
+import { Play, X, Calendar, Award, Tv, Camera, ChevronLeft, ChevronRight, Sparkles } from "lucide-react"
 
 interface MediaFile {
   id: string
@@ -15,7 +16,7 @@ interface MediaFile {
 
 interface MediaItem {
   id: string
-  category: "events" | "achievements" | "media" | "tv" | "trainers"
+  category: "events" | "achievements" | "media" | "tv" | "trainers" | "transformations"
   title: string
   description: string
   date: string
@@ -24,217 +25,286 @@ interface MediaItem {
 }
 
 const mediaItems: MediaItem[] = [
+  // 2022 ICN Nationals - Main Achievement
   {
-    id: "1",
+    id: "icn-2022",
+    category: "achievements",
+    title: "2022 ICN Nationals Championship",
+    description: "Ruwan's outstanding performance at the 2022 ICN Nationals in New Zealand, showcasing dedication to natural bodybuilding excellence.",
+    date: "2022-10-15",
+    tags: ["ICN", "Nationals", "Championship", "Natural Bodybuilding"],
+    files: [
+      {
+        id: "icn-1",
+        type: "image",
+        url: "/images/2022-icn-nationals/ruw_570.jpg",
+        thumbnail: "/images/2022-icn-nationals/ruw_570.jpg",
+        caption: "ICN Nationals 2022 - Championship Pose",
+      },
+      {
+        id: "icn-2",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ91439-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ91439-NEF_RCP.jpg",
+        caption: "Stage Presentation",
+      },
+      {
+        id: "icn-3",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ91444-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ91444-NEF_RCP.jpg",
+        caption: "Competition Pose",
+      },
+      {
+        id: "icn-4",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ91782-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ91782-NEF_RCP.jpg",
+        caption: "Stage Performance",
+      },
+      {
+        id: "icn-5",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ91785-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ91785-NEF_RCP.jpg",
+        caption: "Physique Display",
+      },
+      {
+        id: "icn-6",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ93698-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ93698-NEF_RCP.jpg",
+        caption: "Front Pose",
+      },
+      {
+        id: "icn-7",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ93830-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ93830-NEF_RCP.jpg",
+        caption: "Competition Highlight",
+      },
+      {
+        id: "icn-8",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ93947-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ93947-NEF_RCP.jpg",
+        caption: "Stage Presence",
+      },
+      {
+        id: "icn-9",
+        type: "video",
+        url: "/images/2022-icn-nationals/IMG_0679.MOV",
+        thumbnail: "/images/2022-icn-nationals/ruw_570.jpg",
+        caption: "Competition Walkout Video",
+      },
+      {
+        id: "icn-10",
+        type: "video",
+        url: "/images/2022-icn-nationals/IMG_0681.MOV",
+        thumbnail: "/images/2022-icn-nationals/_NZ91439-NEF_RCP.jpg",
+        caption: "Stage Routine Video",
+      },
+    ],
+  },
+  // ICN Nationals Gallery - More Photos
+  {
+    id: "icn-gallery",
+    category: "events",
+    title: "ICN Nationals 2022 - Behind the Scenes",
+    description: "Exclusive backstage and competition moments from the 2022 ICN Nationals Championship.",
+    date: "2022-10-15",
+    tags: ["ICN", "Backstage", "Competition Day", "Natural Bodybuilding"],
+    files: [
+      {
+        id: "icn-g1",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ93997-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ93997-NEF_RCP.jpg",
+        caption: "Backstage Preparation",
+      },
+      {
+        id: "icn-g2",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ94171-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94171-NEF_RCP.jpg",
+        caption: "Final Checks",
+      },
+      {
+        id: "icn-g3",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ94187-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94187-NEF_RCP.jpg",
+        caption: "Competition Ready",
+      },
+      {
+        id: "icn-g4",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ94228-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94228-NEF_RCP.jpg",
+        caption: "Pre-Stage Moment",
+      },
+      {
+        id: "icn-g5",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ94276-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94276-NEF_RCP.jpg",
+        caption: "Posing Practice",
+      },
+      {
+        id: "icn-g6",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
+        caption: "Victory Moment",
+      },
+      {
+        id: "icn-g7",
+        type: "image",
+        url: "/images/2022-icn-nationals/_NZ94381-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94381-NEF_RCP.jpg",
+        caption: "Championship Celebration",
+      },
+      {
+        id: "icn-g8",
+        type: "video",
+        url: "/images/2022-icn-nationals/IMG_0683.MOV",
+        thumbnail: "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
+        caption: "Award Ceremony Video",
+      },
+      {
+        id: "icn-g9",
+        type: "video",
+        url: "/images/2022-icn-nationals/IMG_0686.MOV",
+        thumbnail: "/images/2022-icn-nationals/_NZ94381-NEF_RCP.jpg",
+        caption: "Post-Victory Celebration",
+      },
+    ],
+  },
+  // TV Appearance - Swarnavahini
+  {
+    id: "tv-swarnavahini",
     category: "tv",
-    title: "Featured on Morning Fitness Show",
-    description: "Discussing the latest fitness trends and transformation techniques on Channel 7 Morning Show",
-    date: "2024-01-15",
-    tags: ["TV Interview", "Fitness Tips", "Media"],
+    title: "Featured on Swarnavahini TV",
+    description: "Ruwan's television appearance on Sri Lanka's Swarnavahini channel, discussing fitness, natural bodybuilding, and his championship journey.",
+    date: "2024-06-20",
+    tags: ["TV Interview", "Swarnavahini", "Sri Lanka", "Media Coverage"],
     files: [
       {
-        id: "1-1",
+        id: "tv-1",
         type: "video",
-        url: "https://example.com/tv-interview.mp4",
-        thumbnail: "/fitness-trainer-on-tv-show-interview.jpg",
-        caption: "Full interview segment",
+        url: "/images/media-ruwan/Swarnavahini.MP4",
+        thumbnail: "/images/media-ruwan/IMG_2235.jpg",
+        caption: "Full TV Interview Segment",
       },
       {
-        id: "1-2",
+        id: "tv-2",
         type: "image",
-        url: "/fitness-trainer-tv-studio-behind-scenes.jpg",
-        thumbnail: "/fitness-trainer-tv-studio-behind-scenes.jpg",
-        caption: "Behind the scenes at the studio",
+        url: "/images/media-ruwan/IMG_2235.jpg",
+        thumbnail: "/images/media-ruwan/IMG_2235.jpg",
+        caption: "On-set Photo",
       },
       {
-        id: "1-3",
+        id: "tv-3",
         type: "image",
-        url: "/fitness-trainer-with-tv-host-handshake.jpg",
-        thumbnail: "/fitness-trainer-with-tv-host-handshake.jpg",
-        caption: "Meeting with the show host",
+        url: "/images/media-ruwan/IMG_2382.jpg",
+        thumbnail: "/images/media-ruwan/IMG_2382.jpg",
+        caption: "Interview Moment",
       },
     ],
   },
+  // Social Media Highlights
   {
-    id: "2",
-    category: "achievements",
-    title: "Certified Personal Trainer of the Year",
-    description:
-      "Awarded by the National Fitness Association for outstanding client results and professional excellence",
-    date: "2023-12-10",
-    tags: ["Award", "Recognition", "Achievement"],
-    files: [
-      {
-        id: "2-1",
-        type: "image",
-        url: "/fitness-trainer-award-certificate-ceremony.jpg",
-        thumbnail: "/fitness-trainer-award-certificate-ceremony.jpg",
-        caption: "Award ceremony moment",
-      },
-      {
-        id: "2-2",
-        type: "image",
-        url: "/fitness-trainer-award-certificate-close-up.jpg",
-        thumbnail: "/fitness-trainer-award-certificate-close-up.jpg",
-        caption: "Certificate close-up",
-      },
-      {
-        id: "2-3",
-        type: "image",
-        url: "/fitness-trainer-award-celebration-team.jpg",
-        thumbnail: "/fitness-trainer-award-celebration-team.jpg",
-        caption: "Celebrating with the team",
-      },
-      {
-        id: "2-4",
-        type: "image",
-        url: "/fitness-trainer-award-trophy-display.jpg",
-        thumbnail: "/fitness-trainer-award-trophy-display.jpg",
-        caption: "Trophy display at gym",
-      },
-    ],
-  },
-  {
-    id: "3",
-    category: "events",
-    title: "Fitness Expo 2024 Keynote",
-    description:
-      'Delivering a keynote presentation on "The Future of Personal Training" at the International Fitness Expo',
-    date: "2024-02-20",
-    tags: ["Speaking", "Conference", "Keynote"],
-    files: [
-      {
-        id: "3-1",
-        type: "video",
-        url: "https://example.com/keynote.mp4",
-        thumbnail: "/fitness-trainer-speaking-at-conference-keynote.jpg",
-        caption: "Full keynote presentation",
-      },
-      {
-        id: "3-2",
-        type: "image",
-        url: "/fitness-expo-audience-packed-auditorium.jpg",
-        thumbnail: "/fitness-expo-audience-packed-auditorium.jpg",
-        caption: "Packed auditorium",
-      },
-      {
-        id: "3-3",
-        type: "image",
-        url: "/fitness-trainer-expo-booth-visitors.jpg",
-        thumbnail: "/fitness-trainer-expo-booth-visitors.jpg",
-        caption: "Meeting attendees at booth",
-      },
-    ],
-  },
-  {
-    id: "4",
-    category: "events",
-    title: "Community Fitness Challenge",
-    description: "Leading a 500-person outdoor fitness challenge in Central Park, raising funds for local charities",
-    date: "2024-03-05",
-    tags: ["Community", "Charity", "Group Training"],
-    files: [
-      {
-        id: "4-1",
-        type: "image",
-        url: "/large-group-fitness-class-outdoor-park.jpg",
-        thumbnail: "/large-group-fitness-class-outdoor-park.jpg",
-        caption: "500 participants in action",
-      },
-      {
-        id: "4-2",
-        type: "video",
-        url: "https://example.com/charity-workout.mp4",
-        thumbnail: "/fitness-challenge-warm-up-session.jpg",
-        caption: "Warm-up session highlights",
-      },
-      {
-        id: "4-3",
-        type: "image",
-        url: "/charity-fitness-event-donation-check.jpg",
-        thumbnail: "/charity-fitness-event-donation-check.jpg",
-        caption: "Presenting donation check",
-      },
-      {
-        id: "4-4",
-        type: "image",
-        url: "/community-fitness-challenge-group-photo.jpg",
-        thumbnail: "/community-fitness-challenge-group-photo.jpg",
-        caption: "Group photo with all participants",
-      },
-      {
-        id: "4-5",
-        type: "image",
-        url: "/fitness-challenge-setup-early-morning.jpg",
-        thumbnail: "/fitness-challenge-setup-early-morning.jpg",
-        caption: "Early morning setup",
-      },
-    ],
-  },
-  {
-    id: "5",
+    id: "social-media",
     category: "media",
-    title: "Transformation Success Stories",
-    description:
-      "Documentary feature showcasing incredible client transformations and the science behind effective training",
-    date: "2024-01-30",
-    tags: ["Documentary", "Transformations", "Success Stories"],
+    title: "Social Media Training Highlights",
+    description: "Collection of viral training videos and workout highlights shared across social media platforms.",
+    date: "2024-08-01",
+    tags: ["Social Media", "Training Videos", "Workout Highlights"],
     files: [
       {
-        id: "5-1",
+        id: "sm-1",
         type: "video",
-        url: "https://example.com/transformations.mp4",
-        thumbnail: "/before-after-fitness-transformation-documentary.jpg",
-        caption: "Full documentary feature",
+        url: "/images/media-ruwan/My Video.mp4",
+        thumbnail: "/images/media-ruwan/IMG_3863.jpg",
+        caption: "Training Montage",
       },
       {
-        id: "5-2",
+        id: "sm-2",
         type: "image",
-        url: "/documentary-filming-client-interview.jpg",
-        thumbnail: "/documentary-filming-client-interview.jpg",
-        caption: "Filming client interviews",
+        url: "/images/media-ruwan/IMG_3863.jpg",
+        thumbnail: "/images/media-ruwan/IMG_3863.jpg",
+        caption: "Gym Session",
       },
       {
-        id: "5-3",
+        id: "sm-3",
         type: "image",
-        url: "/transformation-before-after-collage.jpg",
-        thumbnail: "/transformation-before-after-collage.jpg",
-        caption: "Before and after collage",
+        url: "/images/media-ruwan/a2af64cf-e5b6-422e-9f94-a81d8aedf0d9.JPG",
+        thumbnail: "/images/media-ruwan/a2af64cf-e5b6-422e-9f94-a81d8aedf0d9.JPG",
+        caption: "Fitness Showcase",
+      },
+      {
+        id: "sm-4",
+        type: "image",
+        url: "/images/media-ruwan/1554bfbf-801a-489b-85bb-26269c2a6615.jpg",
+        thumbnail: "/images/media-ruwan/1554bfbf-801a-489b-85bb-26269c2a6615.jpg",
+        caption: "Progress Photo",
+      },
+      {
+        id: "sm-5",
+        type: "image",
+        url: "/images/media-ruwan/492001807_10223727106440768_5460577853285061362_na.jpg",
+        thumbnail: "/images/media-ruwan/492001807_10223727106440768_5460577853285061362_na.jpg",
+        caption: "Competition Ready",
+      },
+      {
+        id: "sm-6",
+        type: "image",
+        url: "/images/media-ruwan/492149465_10223727103600697_6979307235489043987_n.jpg",
+        thumbnail: "/images/media-ruwan/492149465_10223727103600697_6979307235489043987_n.jpg",
+        caption: "Championship Physique",
       },
     ],
   },
+  // Transformation Journey
   {
-    id: "6",
-    category: "achievements",
-    title: "Published Fitness Research",
-    description:
-      'Co-authored research paper on "High-Intensity Interval Training Effectiveness" published in Sports Medicine Journal',
-    date: "2023-11-15",
-    tags: ["Research", "Publication", "Science"],
+    id: "transformations",
+    category: "transformations",
+    title: "Ruwan's Transformation Journey",
+    description: "Witness the incredible transformation journey - from the beginning of the fitness journey to championship-winning physique. Proof that dedication and proper training delivers results.",
+    date: "2024-01-01",
+    tags: ["Transformation", "Before & After", "Results", "Inspiration"],
     files: [
       {
-        id: "6-1",
+        id: "trans-1",
         type: "image",
-        url: "/fitness-research-paper-publication-journal.jpg",
-        thumbnail: "/fitness-research-paper-publication-journal.jpg",
-        caption: "Published research paper",
+        url: "/images/transformations/568044454_10225701295994273_856687466947557545_n.jpg",
+        thumbnail: "/images/transformations/568044454_10225701295994273_856687466947557545_n.jpg",
+        caption: "Transformation Progress",
       },
       {
-        id: "6-2",
+        id: "trans-2",
         type: "image",
-        url: "/research-lab-fitness-testing-equipment.jpg",
-        thumbnail: "/research-lab-fitness-testing-equipment.jpg",
-        caption: "Research lab equipment",
+        url: "/images/transformations/4762DC3F-4E78-42CD-9BA1-40890F4A2A9D (1).PNG",
+        thumbnail: "/images/transformations/4762DC3F-4E78-42CD-9BA1-40890F4A2A9D (1).PNG",
+        caption: "Before & After Comparison",
       },
       {
-        id: "6-3",
+        id: "trans-3",
         type: "image",
-        url: "/fitness-research-data-analysis-charts.jpg",
-        thumbnail: "/fitness-research-data-analysis-charts.jpg",
-        caption: "Data analysis and charts",
+        url: "/images/transformations/79151233-B91D-45D3-8AA8-B2A1F57E54FF.PNG",
+        thumbnail: "/images/transformations/79151233-B91D-45D3-8AA8-B2A1F57E54FF.PNG",
+        caption: "Progress Milestone",
+      },
+      {
+        id: "trans-4",
+        type: "image",
+        url: "/images/transformations/BB382DC9-56DB-4FF1-AD0D-CE686324DA8B.PNG",
+        thumbnail: "/images/transformations/BB382DC9-56DB-4FF1-AD0D-CE686324DA8B.PNG",
+        caption: "Final Results",
       },
     ],
   },
+  // NZ Champions - Keep existing with local images
   {
     id: "7",
     category: "trainers",
@@ -246,40 +316,41 @@ const mediaItems: MediaItem[] = [
       {
         id: "7-1",
         type: "image",
-        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
-        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
-        caption: "New Zealand South Island Classic 2025 Overall Champion Men's Fitness",
+        url: "/images/2022-icn-nationals/ruw_570.jpg",
+        thumbnail: "/images/2022-icn-nationals/ruw_570.jpg",
+        caption: "ICN Nationals Champion 2022",
       },
       {
         id: "7-2",
         type: "image", 
-        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
-        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
-        caption: "Sri Lankan Men's Fitness Champion",
+        url: "/images/2022-icn-nationals/_NZ91439-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ91439-NEF_RCP.jpg",
+        caption: "Stage Presence at Nationals",
       },
       {
         id: "7-3",
         type: "image",
-        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhU_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
-        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhU_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
-        caption: "Professional Bodybuilder Competition Photo",
+        url: "/images/2022-icn-nationals/_NZ93698-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ93698-NEF_RCP.jpg",
+        caption: "Championship Pose",
       },
       {
         id: "7-4",
         type: "image",
-        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547310124_783761117731971_7305928698565373587_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=cbNiIBNuS24Q7kNvwFRnXkM&_nc_oc=AdktNUZzrcNuDG7PFtC4Auoq9-1ApbOuXxAVvqbu6TUG1FrCBWf6tx0dgm9320pjVoF1t89etWDIUibEluyw8XTp&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYRIHEJWCU0hCbJEc2Zw8SnXJXQfZQhVW-Bh8DgDF4MfQ&oe=68DBAED6",
-        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547310124_783761117731971_7305928698565373587_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=cbNiIBNuS24Q7kNvwFRnXkM&_nc_oc=AdktNUZzrcNuDG7PFtC4Auoq9-1ApbOuXxAVvqbu6TUG1FrCBWf6tx0dgm9320pjVoF1t89etWDIUibEluyw8XTp&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYRIHEJWCU0hCbJEc2Zw8SnXJXQfZQhVW-Bh8DgDF4MfQ&oe=68DBAED6",
-        caption: "New Zealand South Island Classic 2025 - Multiple Competitors",
+        url: "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94376-NEF_RCP.jpg",
+        caption: "Victory Moment",
       },
       {
         id: "7-5",
         type: "image",
-        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547005151_783761097731973_3523782292342795538_n.jpg?stp=c0.140.1624.1624a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=o_A8EwfiVMMQ7kNvwGNofA0&_nc_oc=AdlavV4Eal0AdZMwq8oSsicS6cXf45vYPvGvgmAcU39ofDeq6PPeADy6sL0YrLJjHKvI4QGmKVnYZ2wPtMHry0mh&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb36M1X4OnsoRge0bquzHhzW2gnO734na0HzHo8U3rjbw&oe=68DBA41E",
-        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547005151_783761097731973_3523782292342795538_n.jpg?stp=c0.140.1624.1624a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=o_A8EwfiVMMQ7kNvwGNofA0&_nc_oc=AdlavV4Eal0AdZMwq8oSsicS6cXf45vYPvGvgmAcU39ofDeq6PPeADy6sL0YrLJjHKvI4QGmKVnYZ2wPtMHry0mh&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb36M1X4OnsoRge0bquzHhzW2gnO734na0HzHo8U3rjbw&oe=68DBA41E",
-        caption: "Professional Bodybuilder with Competition Text",
+        url: "/images/2022-icn-nationals/_NZ94381-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94381-NEF_RCP.jpg",
+        caption: "Championship Celebration",
       },
     ],
   },
+  // World Champion Trainers - Updated with local images
   {
     id: "8",
     category: "trainers",
@@ -291,30 +362,30 @@ const mediaItems: MediaItem[] = [
       {
         id: "8-1",
         type: "image",
-        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547443797_783761091065307_3759639552296253486_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=101&ccb=1-7&_nc_sid=50ad20&_nc_ohc=1q39RCD4C3EQ7kNvwHx1EmQ&_nc_oc=AdmU-QFJfk3u_mFYTuXlfC2kZaR1pcrHpLxUVPdRKP-PuHWjK3J5ROJLK2P9lirowxZXtbnprNb-HA6egQOvCTUv&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfbcRfguPM9A5rVQ4Q4dEnKA2TSlC91rqPNFktfw0fBv3g&oe=68DBAB6F",
-        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/547443797_783761091065307_3759639552296253486_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=101&ccb=1-7&_nc_sid=50ad20&_nc_ohc=1q39RCD4C3EQ7kNvwHx1EmQ&_nc_oc=AdmU-QFJfk3u_mFYTuXlfC2kZaR1pcrHpLxUVPdRKP-PuHWjK3J5ROJLK2P9lirowxZXtbnprNb-HA6egQOvCTUv&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfbcRfguPM9A5rVQ4Q4dEnKA2TSlC91rqPNFktfw0fBv3g&oe=68DBAB6F",
+        url: "/images/2022-icn-nationals/_NZ91782-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ91782-NEF_RCP.jpg",
         caption: "Muscle Model World New Zealand Overall Champion",
       },
       {
         id: "8-2",
         type: "image",
-        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/548207804_783761061065310_1006180264145076764_n.jpg?stp=c85.0.1878.1878a_cp6_dst-jpg_s552x414_tt6&_nc_cat=107&ccb=1-7&_nc_sid=50ad20&_nc_ohc=fnd959aDmE4Q7kNvwEx1jXd&_nc_oc=AdnyYhv3E8C9jdo7x55DuMq5FqhBj9H3q1HaTW92LrvQJArDACP7ggawWq8m_ueZEIvAiTryBsiyhyEAZQ9JMwcg&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afa9ij3uFH9LZoZ2IdgCcijFGjrz_jOpEfZPYnS4NDQWVw&oe=68DB8EB1",
-        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/548207804_783761061065310_1006180264145076764_n.jpg?stp=c85.0.1878.1878a_cp6_dst-jpg_s552x414_tt6&_nc_cat=107&ccb=1-7&_nc_sid=50ad20&_nc_ohc=fnd959aDmE4Q7kNvwEx1jXd&_nc_oc=AdnyYhv3E8C9jdo7x55DuMq5FqhBj9H3q1HaTW92LrvQJArDACP7ggawWq8m_ueZEIvAiTryBsiyhyEAZQ9JMwcg&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afa9ij3uFH9LZoZ2IdgCcijFGjrz_jOpEfZPYnS4NDQWVw&oe=68DB8EB1",
-        caption: "Group of Elite Fitness Competitors",
+        url: "/images/2022-icn-nationals/_NZ93830-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ93830-NEF_RCP.jpg",
+        caption: "Elite Competition Performance",
       },
       {
         id: "8-3",
         type: "image",
-        url: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547368206_783761054398644_4339144588284793795_n.jpg?stp=c0.156.1576.1576a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=gGSzY9PB_DEQ7kNvwGNrwuH&_nc_oc=AdmzWZ3q1cVmoz3tN0iLLVo6nI1bv8f-S9gI_MSvH3AkREfN-Fi6YQvcj4dKt9eCag9g4ramuNyPYfOk63TccDoT&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfZHw2Ys-wJK4QM8T7gSDe0Dueh1iHOCYcVwRTPDsqeA4g&oe=68DB893F",
-        thumbnail: "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547368206_783761054398644_4339144588284793795_n.jpg?stp=c0.156.1576.1576a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=gGSzY9PB_DEQ7kNvwGNrwuH&_nc_oc=AdmzWZ3q1cVmoz3tN0iLLVo6nI1bv8f-S9gI_MSvH3AkREfN-Fi6YQvcj4dKt9eCag9g4ramuNyPYfOk63TccDoT&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfZHw2Ys-wJK4QM8T7gSDe0Dueh1iHOCYcVwRTPDsqeA4g&oe=68DB893F",
+        url: "/images/2022-icn-nationals/_NZ93947-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ93947-NEF_RCP.jpg",
         caption: "New Zealand Muscle Model World Champion",
       },
       {
         id: "8-4",
         type: "image",
-        url: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/546101753_781860691255347_2020129501768908139_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=z8wjAcJf-YQQ7kNvwGMg2h1&_nc_oc=AdlZ0wU1PAiBaHd2HlPA12Ij0-p1nK8KJtit0mBLkdN3mWpy_m6R63aA6dozBnJsDNqjVOFsYoNS6MTKlCXbjJZJ&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=QdmdtFbcw1HaDhmE3Ov2-g&oh=00_AfYnOWzCwX6TrAVrgr0qb-gphLYJBP0OqqPm8oseLf1SLw&oe=68DB8A3C",
-        thumbnail: "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/546101753_781860691255347_2020129501768908139_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=103&ccb=1-7&_nc_sid=50ad20&_nc_ohc=z8wjAcJf-YQQ7kNvwGMg2h1&_nc_oc=AdlZ0wU1PAiBaHd2HlPA12Ij0-p1nK8KJtit0mBLkdN3mWpy_m6R63aA6dozBnJsDNqjVOFsYoNS6MTKlCXbjJZJ&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=QdmdtFbcw1HaDhmE3Ov2-g&oh=00_AfYnOWzCwX6TrAVrgr0qb-gphLYJBP0OqqPm8oseLf1SLw&oe=68DB8A3C",
-        caption: "Sri Lankan Men's Fitness Life Champion",
+        url: "/images/2022-icn-nationals/_NZ94171-NEF_RCP.jpg",
+        thumbnail: "/images/2022-icn-nationals/_NZ94171-NEF_RCP.jpg",
+        caption: "Championship Physique Display",
       },
     ],
   },
@@ -322,9 +393,10 @@ const mediaItems: MediaItem[] = [
 
 const categories = [
   { id: "all", label: "All Media", icon: Camera },
+  { id: "achievements", label: "Achievements", icon: Award },
+  { id: "transformations", label: "Transformations", icon: Sparkles },
   { id: "trainers", label: "Trainers", icon: Award },
   { id: "events", label: "Events", icon: Calendar },
-  { id: "achievements", label: "Achievements", icon: Award },
   { id: "media", label: "Media Coverage", icon: Camera },
   { id: "tv", label: "TV & Podcasts", icon: Tv },
 ]
@@ -336,7 +408,15 @@ export default function MediaGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [cardAnimationKey, setCardAnimationKey] = useState(0)
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
   const modalRef = useRef<HTMLDivElement>(null)
+  
+  // Simple blur placeholder for smooth loading
+  const blurDataURL = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzFhMWEyZSIvPjwvc3ZnPg=="
+  
+  const handleImageLoad = (imageId: string) => {
+    setLoadedImages(prev => new Set(prev).add(imageId))
+  }
 
   const filteredItems =
     selectedCategory === "all" ? mediaItems : mediaItems.filter((item) => item.category === selectedCategory)
@@ -372,6 +452,8 @@ export default function MediaGallery() {
         return "bg-green-500"
       case "tv":
         return "bg-purple-500"
+      case "transformations":
+        return "bg-gradient-to-r from-pink-500 to-orange-500"
       default:
         return "bg-gray-500"
     }
@@ -478,11 +560,28 @@ export default function MediaGallery() {
               <div className="relative z-10">
                 <div className="relative">
                   {/* Main image */}
-                  <div className="aspect-[4/3] overflow-hidden relative">
-                    <img
+                  <div className="aspect-[4/3] overflow-hidden relative bg-gray-800">
+                    {/* Skeleton loader */}
+                    {!loadedImages.has(`grid-${item.id}-0`) && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 animate-pulse">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-600/50 to-transparent animate-shimmer" />
+                      </div>
+                    )}
+                    
+                    <Image
                       src={item.files[0]?.thumbnail || "/placeholder.svg"}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      quality={75}
+                      priority={index < 3}
+                      loading={index >= 3 ? "lazy" : undefined}
+                      placeholder="blur"
+                      blurDataURL={blurDataURL}
+                      className={`object-cover group-hover:scale-110 transition-all duration-700 ease-out ${
+                        loadedImages.has(`grid-${item.id}-0`) ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      onLoad={() => handleImageLoad(`grid-${item.id}-0`)}
                     />
                     {/* Dark gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
@@ -510,19 +609,33 @@ export default function MediaGallery() {
                   {/* Thumbnail grid for additional files */}
                   {item.files.length > 1 && (
                     <div className="grid grid-cols-4 gap-1 p-2 bg-gray-900/50">
-                      {item.files.slice(1, 5).map((file, index) => (
-                        <div key={file.id} className="aspect-square relative overflow-hidden rounded">
-                          <img
+                      {item.files.slice(1, 5).map((file, thumbIndex) => (
+                        <div key={file.id} className="aspect-square relative overflow-hidden rounded bg-gray-800">
+                          {/* Skeleton for thumbnails */}
+                          {!loadedImages.has(`thumb-${item.id}-${thumbIndex}`) && (
+                            <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 animate-pulse" />
+                          )}
+                          
+                          <Image
                             src={file.thumbnail || "/placeholder.svg"}
-                            alt={`${item.title} ${index + 2}`}
-                            className="w-full h-full object-cover"
+                            alt={`${item.title} ${thumbIndex + 2}`}
+                            fill
+                            sizes="80px"
+                            quality={60}
+                            loading="lazy"
+                            placeholder="blur"
+                            blurDataURL={blurDataURL}
+                            className={`object-cover transition-opacity duration-300 ${
+                              loadedImages.has(`thumb-${item.id}-${thumbIndex}`) ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onLoad={() => handleImageLoad(`thumb-${item.id}-${thumbIndex}`)}
                           />
                           {file.type === "video" && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black/50">
                               <Play className="w-3 h-3 text-white" />
                             </div>
                           )}
-                          {index === 3 && item.files.length > 5 && (
+                          {thumbIndex === 3 && item.files.length > 5 && (
                             <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-xs font-semibold">
                               +{item.files.length - 5}
                             </div>
@@ -602,8 +715,8 @@ export default function MediaGallery() {
                   </>
                 )}
 
-                <div className="aspect-video relative overflow-hidden">
-                  <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}>
+                <div className="aspect-video relative overflow-hidden bg-gray-800">
+                  <div className={`w-full h-full transition-all duration-300 ${isTransitioning ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}>
                     {selectedItem.files[currentFileIndex]?.type === "video" ? (
                       <video
                         key={selectedItem.files[currentFileIndex]?.id}
@@ -613,12 +726,30 @@ export default function MediaGallery() {
                         className="w-full h-full object-cover rounded-t-2xl"
                       />
                     ) : (
-                      <img
-                        key={selectedItem.files[currentFileIndex]?.id}
-                        src={selectedItem.files[currentFileIndex]?.thumbnail || "/placeholder.svg"}
-                        alt={selectedItem.title}
-                        className="w-full h-full object-cover rounded-t-2xl transition-transform duration-300"
-                      />
+                      <div className="relative w-full h-full">
+                        {/* Modal skeleton */}
+                        {!loadedImages.has(`modal-${selectedItem.files[currentFileIndex]?.id}`) && (
+                          <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 animate-pulse">
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-600/50 to-transparent animate-shimmer" />
+                          </div>
+                        )}
+                        
+                        <Image
+                          key={selectedItem.files[currentFileIndex]?.id}
+                          src={selectedItem.files[currentFileIndex]?.thumbnail || "/placeholder.svg"}
+                          alt={selectedItem.title}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 1024px"
+                          quality={85}
+                          priority
+                          placeholder="blur"
+                          blurDataURL={blurDataURL}
+                          className={`object-cover rounded-t-2xl transition-all duration-500 ${
+                            loadedImages.has(`modal-${selectedItem.files[currentFileIndex]?.id}`) ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onLoad={() => handleImageLoad(`modal-${selectedItem.files[currentFileIndex]?.id}`)}
+                        />
+                      </div>
                     )}
                   </div>
                 </div>
@@ -657,27 +788,41 @@ export default function MediaGallery() {
                   {/* File thumbnails navigation */}
                   {selectedItem.files.length > 1 && (
                     <div className="flex gap-2 overflow-x-auto pb-2">
-                      {selectedItem.files.map((file, index) => (
+                      {selectedItem.files.map((file, navIndex) => (
                         <button
                           key={file.id}
-                          onClick={() => setCurrentFileIndex(index)}
-                          className={`relative flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all duration-200 hover:scale-105 ${
-                            index === currentFileIndex 
+                          onClick={() => setCurrentFileIndex(navIndex)}
+                          className={`relative flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all duration-200 hover:scale-105 bg-gray-800 ${
+                            navIndex === currentFileIndex 
                               ? "border-yellow-500 shadow-lg shadow-yellow-500/20 scale-105" 
                               : "border-gray-600 hover:border-yellow-500/50"
                           }`}
                         >
-                          <img
+                          {/* Nav thumbnail skeleton */}
+                          {!loadedImages.has(`nav-${file.id}`) && (
+                            <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 animate-pulse" />
+                          )}
+                          
+                          <Image
                             src={file.thumbnail || "/placeholder.svg"}
-                            alt={`${selectedItem.title} ${index + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-200 hover:scale-110"
+                            alt={`${selectedItem.title} ${navIndex + 1}`}
+                            fill
+                            sizes="64px"
+                            quality={60}
+                            loading="lazy"
+                            placeholder="blur"
+                            blurDataURL={blurDataURL}
+                            className={`object-cover transition-all duration-200 hover:scale-110 ${
+                              loadedImages.has(`nav-${file.id}`) ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onLoad={() => handleImageLoad(`nav-${file.id}`)}
                           />
                           {file.type === "video" && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                               <Play className="w-3 h-3 text-white" />
                             </div>
                           )}
-                          {index === currentFileIndex && (
+                          {navIndex === currentFileIndex && (
                             <div className="absolute inset-0 border-2 border-yellow-500 rounded animate-pulse" />
                           )}
                         </button>

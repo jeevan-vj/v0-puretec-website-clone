@@ -727,6 +727,20 @@
   animation: subtle-float 4s ease-in-out infinite;
 }
 
+/* Shimmer effect for image loading skeleton */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
 /* Section Transition Helpers */
 .section-transition-to-dark::after {
   content: '';

@@ -1,5 +1,14 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Large video files (too large for GitHub)
+*.MOV
+*.mov
+*.MP4
+*.mp4
+*.avi
+*.mkv
+*.webm
+
 # dependencies
 /node_modules
 
