@@ -224,14 +224,14 @@ export default function PersonalTrainingServices() {
       </section>
 
       {/* Services Cards Section */}
-      <StickyCardSection
+      {/* <StickyCardSection
         id="personal-training-services"
         sectionTag="COMPREHENSIVE SERVICES"
         sectionTitle="EXPERT PERSONAL TRAINING SPECIALIZATIONS"
         reviews={personalTrainingServices}
         buttonText="Book Consultation"
         className="bg-gradient-to-br from-gray-900 via-gray-800 to-black"
-      />
+      /> */}
 
       {/* Certification & Credibility Section */}
       <section className="py-16 bg-black text-white">

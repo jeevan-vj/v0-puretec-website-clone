@@ -1,0 +1,33 @@
+<svg width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#000000" />
+    </linearGradient>
+    <linearGradient id="trophy" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#bg)" />
+  <circle cx="120" cy="80" r="5" fill="rgba(255,255,255,0.18)" />
+  <circle cx="520" cy="60" r="4" fill="rgba(255,255,255,0.12)" />
+  <circle cx="360" cy="320" r="6" fill="rgba(16,185,129,0.25)" />
+  <circle cx="80" cy="300" r="3" fill="rgba(45,212,191,0.2)" />
+  <text x="50" y="345" fill="#e5e7eb" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">
+    Championship Showcase
+  </text>
+  <g transform="translate(260 70)">
+    <path
+      d="M80 140h-40c-18 0-32-14-32-32V24h16v84c0 8.8 7.2 16 16 16h16V24H32C14.3 24 0 9.7 0-8V-40h56v-16h32v16h56v32c0 17.7-14.3 32-32 32H88v100h16c8.8 0 16-7.2 16-16V24h16v84c0 18-14 32-32 32H80v28h24v16H56v-16h24v-28z"
+      fill="url(#trophy)"
+    />
+    <rect x="40" y="172" width="40" height="12" fill="#facc15" opacity="0.8" />
+    <rect x="28" y="188" width="64" height="12" fill="#facc15" opacity="0.6" />
+  </g>
+</svg>
+
+
+
+

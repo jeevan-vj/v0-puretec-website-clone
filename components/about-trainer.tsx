@@ -28,24 +28,34 @@ import {
   Clock,
   Sparkles,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 const stats = [
   {
     icon: Trophy,
-    value: "3x",
+    value: 3,
+    suffix: "x",
     label: "Championship Winner",
     color: "text-yellow-400",
   },
-  { icon: Medal, value: "6+", label: "Gold Medals", color: "text-yellow-400" },
+  {
+    icon: Medal,
+    value: 6,
+    suffix: "+",
+    label: "Gold Medals",
+    color: "text-yellow-400",
+  },
   {
     icon: Flag,
-    value: "1st",
+    value: 1,
+    suffix: "st",
     label: "Sri Lankan Winner",
     color: "text-green-400",
   },
   {
     icon: Users,
-    value: "100+",
+    value: 100,
+    suffix: "+",
     label: "Clients Transformed",
     color: "text-teal-400",
   },
@@ -99,6 +109,12 @@ const achievements = [
       { type: "Silver", category: "Men's Fitness Open", position: "2nd" },
     ],
     highlight: "First Competition Victory",
+    image:
+      "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
+    gallery: [
+      "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829",
+      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+    ],
   },
   {
     year: "2022",
@@ -110,6 +126,12 @@ const achievements = [
       { type: "Bronze", category: "Men's Physique 30+", position: "3rd" },
     ],
     highlight: "National Championship Trophy Winner",
+    image:
+      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+    gallery: [
+      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC",
+      "/images/coach.png",
+    ],
   },
   {
     year: "2025",
@@ -122,8 +144,16 @@ const achievements = [
     ],
     highlight:
       "First Sri Lankan to Win Men's Fitness Model Championship in Christchurch",
+    image:
+      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+    gallery: [
+      "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
+      "/images/coach.png",
+    ],
   },
 ];
+
+const fallbackImage = "/images/showcase-fallback.svg";
 
 const journeyTimeline = [
   // {
@@ -272,6 +302,216 @@ const cardToneClasses: Record<string, string> = {
   champion:
     "bg-gradient-to-br from-yellow-50 via-white to-yellow-100 border border-yellow-300 shadow-xl ring-1 ring-yellow-300/40 shimmer-border",
 };
+
+const useCountUp = (target: number, duration = 1800) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const hasAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    let frame: number;
+    let startTime: number | null = null;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+
+        if (entry.isIntersecting && !hasAnimatedRef.current) {
+          hasAnimatedRef.current = true;
+          const animate = (timestamp: number) => {
+            if (startTime === null) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            setCount(Math.round(progress * target));
+            if (progress < 1) {
+              frame = requestAnimationFrame(animate);
+            } else {
+              setCount(target);
+            }
+          };
+
+          frame = requestAnimationFrame(animate);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+      if (frame) {
+        cancelAnimationFrame(frame);
+      }
+    };
+  }, [target, duration]);
+
+  return { ref, count };
+};
+
+type AchievementItem = (typeof achievements)[number];
+
+function AnimatedStat({
+  icon: Icon,
+  value,
+  suffix = "",
+  label,
+  color,
+}: {
+  icon: LucideIcon;
+  value: number;
+  suffix?: string;
+  label: string;
+  color: string;
+}) {
+  const { ref, count } = useCountUp(value);
+  const displayValue = count > value ? value : count;
+
+  return (
+    <div
+      ref={ref}
+      className="text-center transform transition-all duration-600 hover:scale-105 cursor-default"
+    >
+      <div className={`${color} mb-3 flex justify-center drop-shadow-lg`}>
+        <Icon className="w-8 h-8" />
+      </div>
+      <div className="text-3xl font-black text-white mb-1 drop-shadow-lg">
+        {displayValue}
+        {suffix}
+      </div>
+      <div className="text-sm text-gray-300 uppercase tracking-wide drop-shadow-lg">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function ShowcaseCard({
+  achievement,
+  index,
+  isVisible,
+  openGallery,
+}: {
+  achievement: AchievementItem;
+  index: number;
+  isVisible: boolean;
+  openGallery: (images: string[]) => void;
+}) {
+  const [imageSrc, setImageSrc] = useState(achievement.image);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const isFeatured = index === achievements.length - 1;
+
+  const galleryImages =
+    achievement.gallery && achievement.gallery.length > 0
+      ? achievement.gallery
+      : undefined;
+
+  return (
+    <div
+      className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm shadow-2xl transform transition-all duration-700 hover:scale-105 hover:shadow-3xl ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      } ${
+        isFeatured
+          ? "showcase-gold-glow ring-2 ring-yellow-400/40 shadow-[0_0_40px_rgba(250,204,21,0.35)]"
+          : ""
+      }`}
+      style={{
+        transitionDelay: isVisible ? `${1000 + index * 200}ms` : "0ms",
+      }}
+    >
+      <div className="relative h-64 overflow-hidden">
+        <div
+          className={`absolute inset-0 bg-gray-800/40 animate-pulse transition-opacity duration-500 ${
+            isImageLoaded ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        />
+        <img
+          src={imageSrc}
+          alt={achievement.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          onLoad={() => setIsImageLoaded(true)}
+          onError={() => setImageSrc(fallbackImage)}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-teal-400/10 mix-blend-overlay" />
+        <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+          <Trophy className="w-8 h-8 text-black" />
+        </div>
+        <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2">
+          <span className="text-yellow-400 font-bold text-lg">
+            {achievement.year}
+          </span>
+        </div>
+        {isFeatured && (
+          <span className="showcase-ribbon">Historic Achievement</span>
+        )}
+        <div className="absolute bottom-4 left-4 right-4">
+          <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-lg font-bold text-sm text-center">
+            {achievement.highlight}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-6 relative z-10">
+        <div className="mb-4">
+          <h4 className="text-xl font-bold text-white mb-2 line-clamp-2">
+            {achievement.title}
+          </h4>
+          <div className="flex items-center gap-2 text-gray-300 mb-4">
+            <MapPin className="w-4 h-4 text-yellow-400" />
+            <span className="text-sm">{achievement.location}</span>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          {achievement.awards.map((award, awardIndex) => (
+            <div
+              key={`${award.category}-${awardIndex}`}
+              className="flex items-center gap-3 p-3 bg-black/30 rounded-lg border border-white/10 transition-all duration-300 group-hover:translate-x-1 hover:bg-black/50"
+              style={{ transitionDelay: `${awardIndex * 60}ms` }}
+            >
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 medal-pulse ${
+                  award.type === "Gold"
+                    ? "bg-gradient-to-br from-yellow-300 to-yellow-500"
+                    : award.type === "Silver"
+                    ? "bg-gradient-to-br from-gray-200 to-gray-400"
+                    : "bg-gradient-to-br from-orange-400 to-orange-500"
+                }`}
+              >
+                <Medal className="w-4 h-4 text-black" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-white font-semibold text-sm truncate">
+                  {award.category}
+                </div>
+                <div className="text-gray-300 text-xs">
+                  {award.type} - {award.position} Place
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button
+          className="showcase-button-shimmer w-full mt-5 bg-gradient-to-r from-yellow-400/20 to-teal-400/20 hover:from-yellow-400/30 hover:to-teal-400/30 border border-yellow-400/30 text-yellow-400 py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+          onClick={() =>
+            openGallery(
+              galleryImages && galleryImages.length > 0
+                ? galleryImages
+                : [imageSrc]
+            )
+          }
+        >
+          View Full Gallery
+          <ArrowRight className="inline-block ml-2 w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function AboutTrainer() {
   const [isVisible, setIsVisible] = useState(false);
@@ -696,257 +936,145 @@ export default function AboutTrainer() {
         </div>
 
         {/* Modern Achievements Showcase */}
-        <div className="max-w-7xl mx-auto mb-20">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              Championship{" "}
-              <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-                Showcase
-              </span>
-            </h3>
-            <p className="text-gray-300 text-xl max-w-3xl mx-auto">
-              A visual journey through Ruwan's championship victories and
-              historic achievements
-            </p>
-          </div>
+        {/* <div className="relative mb-20 overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-[#05070f] via-[#0f111d] to-[#05070f] px-4 py-16 sm:px-8 lg:px-12">
+          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.25),_transparent_60%)]"></div>
+          <div className="absolute inset-0 showcase-noise"></div>
+          <div className="relative z-10 max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+                Championship{" "}
+                <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
+                  Showcase
+                </span>
+              </h3>
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+                A visual journey through Ruwan's championship victories and
+                historic achievements
+              </p>
+            </div>
 
-          {/* Interactive Event Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {achievements.map((achievement, index) => (
-              <div
-                key={index}
-                className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm border border-white/10 shadow-2xl transform transition-all duration-700 hover:scale-105 hover:shadow-3xl ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-                style={{
-                  transitionDelay: isVisible
-                    ? `${1000 + index * 200}ms`
-                    : "0ms",
-                }}
-              >
-                {/* Hero Image Section */}
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-teal-400/20"></div>
-                  <img
-                    src={
-                      index === 0
-                        ? "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829"
-                        : index === 1
-                        ? "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC"
-                        : "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42"
-                    }
-                    alt={achievement.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+              {achievements.map((achievement, index) => (
+                <ShowcaseCard
+                  key={`${achievement.title}-${achievement.year}`}
+                  achievement={achievement}
+                  index={index}
+                  isVisible={isVisible}
+                  openGallery={(images) => {
+                    setCurrentImages(images);
+                    setSelectedImageIndex(0);
+                    setIsImageModalOpen(true);
+                  }}
+                />
+              ))}
+            </div>
 
-                  {/* Overlay with Trophy Icon */}
-                  <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
-                    <Trophy className="w-8 h-8 text-black" />
-                  </div>
-
-                  {/* Year Badge */}
-                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2">
-                    <span className="text-yellow-400 font-bold text-lg">
-                      {achievement.year}
-                    </span>
-                  </div>
-
-                  {/* Highlight Badge */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-lg font-bold text-sm text-center">
-                      {achievement.highlight}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content Section */}
-                <div className="p-6">
-                  <div className="mb-4">
-                    <h4 className="text-xl font-bold text-white mb-2 line-clamp-2">
-                      {achievement.title}
-                    </h4>
-                    <div className="flex items-center gap-2 text-gray-300 mb-4">
-                      <MapPin className="w-4 h-4 text-yellow-400" />
-                      <span className="text-sm">{achievement.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Awards Grid */}
-                  <div className="space-y-3">
-                    {achievement.awards.map((award, awardIndex) => (
-                      <div
-                        key={awardIndex}
-                        className="flex items-center gap-3 p-3 bg-black/30 rounded-lg border border-white/10 hover:bg-black/50 transition-colors duration-200"
-                      >
-                        <div
-                          className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                            award.type === "Gold"
-                              ? "bg-yellow-400"
-                              : award.type === "Silver"
-                              ? "bg-gray-300"
-                              : "bg-orange-400"
-                          }`}
-                        >
-                          <Medal
-                            className={`w-4 h-4 ${
-                              award.type === "Gold"
-                                ? "text-black"
-                                : "text-black"
-                            }`}
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-white font-semibold text-sm truncate">
-                            {award.category}
-                          </div>
-                          <div className="text-gray-300 text-xs">
-                            {award.type} - {award.position} Place
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* View Details Button */}
-                  <button
-                    className="w-full mt-4 bg-gradient-to-r from-yellow-400/20 to-teal-400/20 hover:from-yellow-400/30 hover:to-teal-400/30 border border-yellow-400/30 text-yellow-400 py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:scale-105"
-                    onClick={() => {
-                      setCurrentImages([
-                        index === 0
-                          ? "https://scontent.fakl1-4.fna.fbcdn.net/v/t39.30808-6/549744299_787666347341448_8296222060750083575_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=50ad20&_nc_ohc=9oQ5US-_IHUQ7kNvwHdhvnK&_nc_oc=AdmQ-VLSLxs681bKpqLadsm14Ayw5Zj2GoMz7VopiU_Wtwsm6yPn4poI0O1dFtpwH6W61ky3AP_qFSCeloOCVCKP&_nc_zt=23&_nc_ht=scontent.fakl1-4.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb-awQJ1nBHx6tucsNvvWYhZZJ6_TIsyzKUnyYQQmCUQw&oe=68DB9829"
-                          : index === 1
-                          ? "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/548215441_787666307341452_8148520755277527195_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s552x414_tt6&_nc_cat=105&ccb=1-7&_nc_sid=50ad20&_nc_ohc=xSeKEYP2hk0Q7kNvwHMRFak&_nc_oc=Adk-QCXdek2BJQ1xlLgriwCautd7MH_P9Jki5LZBoPp87m5geZsVhJnFmis3vJQpdVuKnMWW_N1aQZmlPnKgqkI0&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_Afb58Lrlb2Oy-A9n19rZoYdDP0GugGSwwWG5pi5pgl6p9A&oe=68DBAECC"
-                          : "https://scontent.fakl1-3.fna.fbcdn.net/v/t39.30808-6/547915185_787666300674786_3781282252748569396_n.jpg?stp=c0.73.1826.1826a_cp6_dst-jpg_s552x414_tt6&_nc_cat=109&ccb=1-7&_nc_sid=50ad20&_nc_ohc=5Z5Yx_aJ-A0Q7kNvwF60qNM&_nc_oc=AdkC-HeYi_DleeFQrk50kxHTPLjTKJG4jGMSATfP6xxWO2XRJNfhV_TOMp1slo8sSOUbLO9kJqrvEPrxqtGUigFh&_nc_zt=23&_nc_ht=scontent.fakl1-3.fna&_nc_gid=1Fc2sJooJqqUtfBnvDCmCg&oh=00_AfYPtM4iI1xbbY1ARLrqLM3vg5W5NLWgt9WNZEzPaWPiqA&oe=68DB9F42",
-                      ]);
-                      setSelectedImageIndex(0);
-                      setIsImageModalOpen(true);
-                    }}
-                  >
-                    View Full Gallery
-                    <ArrowRight className="inline-block ml-2 w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div
-          className={`grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20 transform transition-all duration-800 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-          style={{ transitionDelay: isVisible ? "700ms" : "0ms" }}
-        >
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div
-                key={stat.label}
-                className={`text-center transform transition-all duration-600 hover:scale-105 cursor-default`}
-                style={{
-                  transitionDelay: isVisible ? `${900 + index * 100}ms` : "0ms",
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                }}
-              >
-                <div
-                  className={`${stat.color} mb-3 flex justify-center drop-shadow-lg`}
-                >
-                  <Icon className="w-8 h-8" />
-                </div>
-                <div className="text-3xl font-black text-white mb-1 drop-shadow-lg">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-300 uppercase tracking-wide drop-shadow-lg">
-                  {stat.label}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
-          <div
-            className={`transform transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-8"
-            }`}
-            style={{ transitionDelay: isVisible ? "1000ms" : "0ms" }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">
-              Specialties
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {specialties.map((specialty, index) => {
-                const Icon = specialty.icon;
-                return (
-                  <div
-                    key={specialty.name}
-                    className={`flex items-center gap-3 p-3 bg-gray-900/80 backdrop-blur-sm rounded-lg hover:bg-gray-800/80 transition-all duration-300 hover:scale-105 transform transition-all duration-500 shadow-lg`}
-                    style={{
-                      transitionDelay: isVisible
-                        ? `${1200 + index * 100}ms`
-                        : "0ms",
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible
-                        ? "translateY(0)"
-                        : "translateY(20px)",
-                    }}
-                  >
-                    <Icon className="w-5 h-5 text-yellow-400 drop-shadow-lg" />
-                    <span className="text-sm font-medium text-white drop-shadow-lg">
-                      {specialty.name}
-                    </span>
-                  </div>
-                );
-              })}
+            <div
+              className={`grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16 transform transition-all duration-800 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "700ms" : "0ms" }}
+            >
+              {stats.map((stat) => (
+                <AnimatedStat
+                  key={stat.label}
+                  icon={stat.icon}
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  color={stat.color}
+                />
+              ))}
             </div>
           </div>
+        </div> */}
 
-          <div
-            className={`transform transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-8"
-            }`}
-            style={{ transitionDelay: isVisible ? "1100ms" : "0ms" }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">
-              Certifications
-            </h3>
-            <div className="space-y-4">
-              {certifications.map((cert, index) => (
-                <div
-                  key={cert.title}
-                  className={`p-4 bg-gray-900/80 backdrop-blur-sm rounded-lg border-l-4 border-yellow-400 hover:bg-gray-800/80 transition-all duration-300 hover:scale-105 transform transition-all duration-500 shadow-lg`}
-                  style={{
-                    transitionDelay: isVisible
-                      ? `${1300 + index * 100}ms`
-                      : "0ms",
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                  }}
-                >
-                  <h4 className="font-semibold text-white mb-1 drop-shadow-lg">
-                    {cert.title}
-                  </h4>
-                  <p className="text-sm text-gray-300 mb-1 drop-shadow-lg">
-                    {cert.organization}
-                  </p>
-                  <p className="text-xs text-gray-400 mb-2 drop-shadow-lg">
-                    {cert.description}
-                  </p>
-                  <Badge
-                    variant="secondary"
-                    className="bg-yellow-400/30 text-yellow-400 text-xs border border-yellow-400/50"
+        <div className="relative mb-20 overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-[#05070f] via-[#0f111d] to-[#05070f] px-6 py-10 sm:px-10">
+          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.3),_transparent_65%)]"></div>
+          <div className="absolute inset-0 showcase-noise opacity-50"></div>
+          <div className="relative grid lg:grid-cols-2 gap-12">
+            <div
+              className={`transform transition-all duration-700 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "1000ms" : "0ms" }}
+            >
+              <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">
+                Specialties
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {specialties.map((specialty, index) => {
+                  const Icon = specialty.icon;
+                  return (
+                    <div
+                      key={specialty.name}
+                      className={`flex items-center gap-3 p-3 bg-gray-900/80 backdrop-blur-sm rounded-lg hover:bg-gray-800/80 transition-all duration-300 hover:scale-105 transform transition-all duration-500 shadow-lg`}
+                      style={{
+                        transitionDelay: isVisible
+                          ? `${1200 + index * 100}ms`
+                          : "0ms",
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible
+                          ? "translateY(0)"
+                          : "translateY(20px)",
+                      }}
+                    >
+                      <Icon className="w-5 h-5 text-yellow-400 drop-shadow-lg" />
+                      <span className="text-sm font-medium text-white drop-shadow-lg">
+                        {specialty.name}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div
+              className={`transform transition-all duration-700 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "1100ms" : "0ms" }}
+            >
+              <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">
+                Certifications
+              </h3>
+              <div className="space-y-4">
+                {certifications.map((cert, index) => (
+                  <div
+                    key={cert.title}
+                    className={`p-4 bg-gray-900/80 backdrop-blur-sm rounded-lg border-l-4 border-yellow-400 hover:bg-gray-800/80 transition-all duration-300 hover:scale-105 transform transition-all duration-500 shadow-lg`}
+                    style={{
+                      transitionDelay: isVisible
+                        ? `${1300 + index * 100}ms`
+                        : "0ms",
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                    }}
                   >
-                    {cert.year}
-                  </Badge>
-                </div>
-              ))}
+                    <h4 className="font-semibold text-white mb-1 drop-shadow-lg">
+                      {cert.title}
+                    </h4>
+                    <p className="text-sm text-gray-300 mb-1 drop-shadow-lg">
+                      {cert.organization}
+                    </p>
+                    <p className="text-xs text-gray-400 mb-2 drop-shadow-lg">
+                      {cert.description}
+                    </p>
+                    <Badge
+                      variant="secondary"
+                      className="bg-yellow-400/30 text-yellow-400 text-xs border border-yellow-400/50"
+                    >
+                      {cert.year}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -954,63 +1082,118 @@ export default function AboutTrainer() {
         {/* Call to Action */}
         <div className="max-w-4xl mx-auto text-center mb-20">
           <div
-            className={`bg-gradient-to-r from-yellow-400/20 via-transparent to-teal-400/20 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 shadow-2xl transform transition-all duration-800 ${
+            className={`relative rounded-[32px] overflow-hidden transform transition-all duration-800 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: isVisible ? "1500ms" : "0ms" }}
           >
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Ready to Start Your{" "}
-              <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-                Transformation?
-              </span>
-            </h3>
-            <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
-              Join Ruwan's proven program and experience the same dedication,
-              science-based approach, and championship mindset that led to his
-              historic achievements.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-4 text-lg font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-4 text-lg font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300"
-              >
-                Free Consultation
-              </Button>
+            {/* Animated glow border */}
+            <div className="absolute inset-0 rounded-[32px] p-[2px] bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 animate-border-glow" />
+
+            {/* Inner dark container */}
+            <div className="relative m-[2px] rounded-[30px] bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#0a0a0a] p-8 lg:p-12">
+              {/* Radial glow */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(250,204,21,0.15),_transparent_60%)] pointer-events-none" />
+
+              {/* Content */}
+              <div className="relative z-10">
+                <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+                  Ready to Start Your{" "}
+                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
+                    Transformation?
+                  </span>
+                </h3>
+                <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
+                  Join Ruwan's proven program and experience the same dedication,
+                  science-based approach, and championship mindset that led to his
+                  historic achievements.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-4 text-lg font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]">
+                    Start Your Journey
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-4 text-lg font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300"
+                  >
+                    Free Consultation
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
+        {/* Training Philosophy */}
         <div
-          className={`bg-gradient-to-r from-yellow-400/20 via-transparent to-teal-400/20 backdrop-blur-sm rounded-2xl p-8 lg:p-12 text-center border border-white/10 shadow-2xl transform transition-all duration-800 ${
+          className={`relative rounded-[32px] bg-gradient-to-br from-[#05070f] via-[#0f111d] to-[#05070f] border border-white/10 p-8 lg:p-12 overflow-hidden transform transition-all duration-800 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
           style={{ transitionDelay: isVisible ? "1500ms" : "0ms" }}
         >
-          <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">
-            Training Philosophy
-          </h3>
-          <blockquote className="text-xl text-gray-200 italic leading-relaxed max-w-4xl mx-auto border-l-4 border-yellow-400 pl-6 drop-shadow-lg">
-            "I've been where you are - struggling with weight, lacking
-            confidence, and feeling lost in the fitness world. I understand the
-            frustration of trying everything without seeing results. That's why
-            I'm here to share the scientific approach that transformed my life
-            and made me a champion. Trust the process, stay consistent, and let
-            me guide you to unleash your full potential."
-          </blockquote>
-          <div className="mt-6">
-            <span className="text-yellow-400 font-semibold drop-shadow-lg">
-              - Ruwan Palihawadana
-            </span>
-            <p className="text-sm text-gray-400 mt-2">
-              Natural Bodybuilding Champion & NZ Qualified Trainer
-            </p>
+          {/* Background effects */}
+          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.2),_transparent_65%)] pointer-events-none" />
+          <div className="absolute inset-0 showcase-noise opacity-50 pointer-events-none" />
+
+          <div className="relative z-10 grid lg:grid-cols-[1fr,auto] gap-8 items-center">
+            {/* Quote side */}
+            <div className="relative">
+              {/* Large decorative quote mark */}
+              <svg
+                className="absolute -top-4 -left-4 w-20 h-20 text-yellow-400/20 animate-float"
+                viewBox="0 0 100 100"
+                fill="currentColor"
+              >
+                <text
+                  x="0"
+                  y="80"
+                  fontSize="100"
+                  fontFamily="serif"
+                  fontWeight="bold"
+                >
+                  "
+                </text>
+              </svg>
+
+              <div className="relative z-10 pl-8">
+                <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">
+                  Training Philosophy
+                </h3>
+
+                <blockquote className="text-xl text-gray-200 italic leading-relaxed mb-6">
+                  "I've been where you are - struggling with weight, lacking
+                  confidence, and feeling lost in the fitness world. I
+                  understand the frustration of trying everything without
+                  seeing results. That's why I'm here to share the scientific
+                  approach that transformed my life and made me a champion.
+                  Trust the process, stay consistent, and let me guide you to
+                  unleash your full potential."
+                </blockquote>
+
+                <div className="mt-6">
+                  <span className="text-yellow-400 font-bold text-lg drop-shadow-lg">
+                    - Ruwan Palihawadana
+                  </span>
+                  <p className="text-sm text-gray-400 mt-2">
+                    Natural Bodybuilding Champion & NZ Qualified Trainer
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Trainer image */}
+            <div className="hidden lg:block">
+              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-yellow-400/30 shadow-[0_0_30px_rgba(250,204,21,0.2)]">
+                <img
+                  src="/images/coach.png"
+                  alt="Ruwan Palihawadana"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
