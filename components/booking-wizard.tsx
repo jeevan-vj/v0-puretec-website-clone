@@ -578,11 +578,11 @@ export default function BookingWizard() {
         </Button>
       </DialogTrigger>
       <DialogContent 
-        className="sm:max-w-md w-full max-w-[95vw] h-[90vh] max-h-[90vh] bg-gray-900 border-gray-700 text-white p-0 overflow-hidden"
+        className="sm:max-w-md w-full max-w-[95vw] h-[90vh] max-h-[90vh] bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#0a0a0a] border-white/10 text-white p-0 overflow-hidden"
         onInteractOutside={(e) => e.preventDefault()}
       >
         {/* Mobile Header */}
-        <DialogHeader className="p-4 border-b border-gray-700 bg-gray-800">
+        <DialogHeader className="p-4 border-b border-white/10 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               {currentStep > 0 && (
@@ -611,7 +611,7 @@ export default function BookingWizard() {
         </div>
 
         {/* Mobile Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gray-800 border-t border-gray-700">
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0a0a0a] to-gray-900/95 border-t border-white/10 backdrop-blur-sm">
           {currentStep < steps.length - 1 ? (
             <Button
               onClick={nextStep}

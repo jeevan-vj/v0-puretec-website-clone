@@ -30,9 +30,12 @@ export default function Footer() {
   }
 
   return (
-    <footer id="footer" className="relative bg-black text-white overflow-hidden">
+    <footer id="footer" className="relative bg-gradient-to-br from-[#05070f] via-[#0f111d] to-[#05070f] text-white overflow-hidden">
+      {/* Radial glow at top */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 bg-[radial-gradient(ellipse_at_top,_rgba(250,204,21,0.15),_transparent_70%)]"></div>
+      
       {/* Geometric accent elements */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-b from-yellow-400 to-transparent transform -skew-x-12"></div>
         <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-b from-yellow-400 to-transparent transform skew-x-12"></div>
         <div className="absolute bottom-0 left-1/4 w-16 h-64 bg-gradient-to-t from-yellow-400 to-transparent transform -skew-x-6"></div>

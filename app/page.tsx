@@ -15,9 +15,17 @@ export default function Home() {
       {/* <EquipmentSeries /> */}
       <MediaGallery />
       {/* <WorkoutGallery /> */}
-      <section id="booking" className="py-20 bg-black text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-6">
+      <section id="booking" className="relative py-20 overflow-hidden bg-gradient-to-br from-[#05070f] via-[#0f111d] to-[#05070f] text-white">
+        {/* Background Effects */}
+        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.2),_transparent_65%)]"></div>
+        <div className="absolute inset-0 showcase-noise opacity-50"></div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-8 h-0.5 bg-yellow-400"></div>
+            <span className="text-sm font-medium text-yellow-400 uppercase tracking-wider">BOOK YOUR SESSION</span>
+          </div>
+          <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Start Your Transformation?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
