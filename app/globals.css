@@ -765,3 +765,48 @@
   pointer-events: none;
   z-index: 5;
 }
+
+/* Hero Before/After Morphing Animations */
+@keyframes morphBackground {
+  0%, 40% { 
+    opacity: 1; 
+  }
+  50%, 90% { 
+    opacity: 0; 
+  }
+  100% { 
+    opacity: 1; 
+  }
+}
+
+@keyframes countUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(250, 204, 21, 0.6); 
+  }
+}
+
+.animate-morph-bg {
+  animation: morphBackground 8s ease-in-out infinite;
+}
+
+.animate-count-up {
+  animation: countUp 1s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
