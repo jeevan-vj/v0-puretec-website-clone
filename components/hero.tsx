@@ -6,24 +6,26 @@ import Image from "next/image";
 import { Marquee } from "@devnomic/marquee";
 import { useCalEmbed } from "@/lib/useCalEmbed";
 import { useEffect, useState } from "react";
-import { CheckCircle2, Trophy, Users } from "lucide-react";
+import { CheckCircle2, Trophy, Users, LogIn } from "lucide-react";
+
+const MEMBER_PORTAL_URL = "https://jnokfitplan.vercel.app/";
 
 // Transformation image pairs for morphing background - Using trainer's actual transformation photos
 const transformationPairs = [
   {
-    before: "/before-transformation-overweight-man.jpg",
+    before: "/images/transformations/4762DC3F-4E78-42CD-9BA1-40890F4A2A9D (1).PNG",
     after: "/images/transformations/4762DC3F-4E78-42CD-9BA1-40890F4A2A9D (1).PNG",
   },
   {
-    before: "/before-transformation-out-of-shape-man-office-work.jpg",
+    before: "/images/transformations/568044454_10225701295994273_856687466947557545_n.jpg",
     after: "/images/transformations/568044454_10225701295994273_856687466947557545_n.jpg",
   },
   {
-    before: "/before-transformation-overweight-man.jpg",
+    before: "/images/transformations/79151233-B91D-45D3-8AA8-B2A1F57E54FF.PNG",
     after: "/images/transformations/79151233-B91D-45D3-8AA8-B2A1F57E54FF.PNG",
   },
   {
-    before: "/before-transformation-out-of-shape-man-office-work.jpg",
+    before: "/images/transformations/568044454_10225701295994273_856687466947557545_n.jpg",
     after: "/images/transformations/BB382DC9-56DB-4FF1-AD0D-CE686324DA8B.PNG",
   },
 ];
@@ -192,11 +194,23 @@ export default function Hero() {
               </Button>
             </div>
 
-            {/* Urgency Text */}
-            <p className="text-sm text-gray-400 opacity-0 animate-slideUp flex items-center gap-2" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-              <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
-              Limited spots available this month
-            </p>
+            {/* Urgency Text + Member Login */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 opacity-0 animate-slideUp" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+              <p className="text-sm text-gray-400 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+                Limited spots available this month
+              </p>
+              <span className="hidden sm:inline text-gray-600">|</span>
+              <a 
+                href={MEMBER_PORTAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-400 hover:text-yellow-400 transition-colors flex items-center gap-1.5 group"
+              >
+                <LogIn className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                Already a member? <span className="text-yellow-400 font-medium">Login here</span>
+              </a>
+            </div>
           </div>
 
           {/* Right Side - Trainer Trophy Image */}

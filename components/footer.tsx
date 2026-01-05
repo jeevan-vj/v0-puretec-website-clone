@@ -16,7 +16,10 @@ import {
   Calendar,
   Users,
   Award,
+  ExternalLink,
 } from "lucide-react"
+
+const MEMBER_PORTAL_URL = "https://jnokfitplan.vercel.app/"
 
 export default function Footer() {
   const [email, setEmail] = useState("")
@@ -114,6 +117,17 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={MEMBER_PORTAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-yellow-400 hover:text-yellow-300 transition-colors duration-300 flex items-center space-x-2 group font-semibold"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  <span>Member Portal</span>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -162,12 +176,12 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Phone</p>
-                  <a href="tel:+1234567890" className="text-white hover:text-yellow-400 transition-colors">
-                    +1 (234) 567-8900
+                  <a href="tel:+64210809871" className="text-white hover:text-yellow-400 transition-colors">
+                    +64 210 809 8711
                   </a>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
+              {/* <div className="flex items-center space-x-3">
                 <div className="bg-yellow-400/10 p-2 rounded-lg">
                   <MapPin className="w-4 h-4 text-yellow-400" />
                 </div>
@@ -175,7 +189,7 @@ export default function Footer() {
                   <p className="text-sm text-gray-400">Location</p>
                   <p className="text-white">Downtown Fitness Center</p>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Social Media */}
@@ -183,8 +197,8 @@ export default function Footer() {
               <h4 className="font-semibold mb-4">Follow Me</h4>
               <div className="flex space-x-3">
                 {[
-                  { icon: Instagram, href: "#", label: "Instagram" },
-                  { icon: Facebook, href: "#", label: "Facebook" },
+                  { icon: Instagram, href: "https://www.instagram.com/kiwilankanfitness_official/", label: "Instagram" },
+                  { icon: Facebook, href: "https://www.facebook.com/kiwilankanfitness.co", label: "Facebook" },
                   { icon: Twitter, href: "#", label: "Twitter" },
                   { icon: Youtube, href: "#", label: "YouTube" },
                 ].map((social, index) => (

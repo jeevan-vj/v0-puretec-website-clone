@@ -4,7 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useCalEmbed } from "@/lib/useCalEmbed";
-import { Dumbbell, Mail, Calendar, Home } from "lucide-react";
+import { Dumbbell, Mail, Calendar, Home, LogIn } from "lucide-react";
+
+const MEMBER_PORTAL_URL = "https://jnokfitplan.vercel.app/";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,6 +31,7 @@ export default function Header() {
     { label: "WORKOUTS", href: "#workout-gallery", icon: Dumbbell },
     { label: "BOOK NOW", href: "#booking", icon: Calendar },
     { label: "CONTACT", href: "#footer", icon: Mail },
+    { label: "MEMBER LOGIN", href: MEMBER_PORTAL_URL, icon: LogIn, isExternal: true },
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -113,6 +116,15 @@ export default function Header() {
             >
               BOOK NOW
             </Link>
+            <a
+              href={MEMBER_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-full text-sm font-bold tracking-wide hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(250,204,21,0.4)]"
+            >
+              <LogIn className="w-4 h-4" />
+              MEMBER LOGIN
+            </a>
           </div>
 
           <button
@@ -150,6 +162,32 @@ export default function Header() {
         <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
           {menuItems.map((item, index) => {
             const IconComponent = item.icon;
+            const isExternal = 'isExternal' in item && item.isExternal;
+            
+            if (isExternal) {
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center gap-3 text-2xl font-medium tracking-wide transition-all duration-300 transform active:scale-95 ${
+                    isMobileMenuOpen
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-8 opacity-0"
+                  } bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-6 py-3 rounded-full hover:from-yellow-500 hover:to-yellow-600`}
+                  style={{
+                    transitionDelay: isMobileMenuOpen
+                      ? `${index * 100 + 200}ms`
+                      : "0ms",
+                  }}
+                >
+                  <IconComponent className="w-6 h-6" />
+                  {item.label}
+                </a>
+              );
+            }
+            
             return (
               <Link
                 key={item.label}
