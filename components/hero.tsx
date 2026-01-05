@@ -8,23 +8,23 @@ import { useCalEmbed } from "@/lib/useCalEmbed";
 import { useEffect, useState } from "react";
 import { CheckCircle2, Trophy, Users } from "lucide-react";
 
-// Transformation image pairs for morphing background
+// Transformation image pairs for morphing background - Using trainer's actual transformation photos
 const transformationPairs = [
   {
     before: "/before-transformation-overweight-man.jpg",
-    after: "/after-transformation-fit-muscular-man.jpg",
-  },
-  {
-    before: "/before-transformation-woman-beginner-fitness.jpg",
-    after: "/after-transformation-strong-athletic-woman.jpg",
+    after: "/images/transformations/4762DC3F-4E78-42CD-9BA1-40890F4A2A9D (1).PNG",
   },
   {
     before: "/before-transformation-out-of-shape-man-office-work.jpg",
-    after: "/after-transformation-athletic-muscular-man.jpg",
+    after: "/images/transformations/568044454_10225701295994273_856687466947557545_n.jpg",
   },
   {
-    before: "/before-transformation-post-pregnancy-woman.jpg",
-    after: "/after-transformation-fit-toned-mother.jpg",
+    before: "/before-transformation-overweight-man.jpg",
+    after: "/images/transformations/79151233-B91D-45D3-8AA8-B2A1F57E54FF.PNG",
+  },
+  {
+    before: "/before-transformation-out-of-shape-man-office-work.jpg",
+    after: "/images/transformations/BB382DC9-56DB-4FF1-AD0D-CE686324DA8B.PNG",
   },
 ];
 
