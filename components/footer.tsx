@@ -19,7 +19,7 @@ import {
   ExternalLink,
 } from "lucide-react"
 
-const MEMBER_PORTAL_URL = "https://jnokfitplan.vercel.app/"
+const MEMBER_PORTAL_URL = "https://portal.kiwilankanfitness.com/"
 
 export default function Footer() {
   const [email, setEmail] = useState("")
