@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useCalEmbed } from "@/lib/useCalEmbed";
 import { Dumbbell, Mail, Calendar, Home, LogIn } from "lucide-react";
 
-const MEMBER_PORTAL_URL = "https://jnokfitplan.vercel.app/";
+const MEMBER_PORTAL_URL = "https://portal.kiwilankanfitness.com/";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -8,7 +8,7 @@ import { useCalEmbed } from "@/lib/useCalEmbed";
 import { useEffect, useState } from "react";
 import { CheckCircle2, Trophy, Users, LogIn } from "lucide-react";
 
-const MEMBER_PORTAL_URL = "https://jnokfitplan.vercel.app/";
+const MEMBER_PORTAL_URL = "https://portal.kiwilankanfitness.com/";
 
 // Transformation image pairs for morphing background - Using trainer's actual transformation photos
 const transformationPairs = [
