@@ -70,24 +70,23 @@ export default function Header() {
 
   return (
     <>
-      <header className="text-white fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full backdrop-blur-md bg-black/30 py-3" style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}>
+      <header className="text-white fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full backdrop-blur-md bg-black/30 py-2 sm:py-3" style={{ paddingTop: 'max(0.5rem, env(safe-area-inset-top))' }}>
         <nav className="flex items-center justify-between container w-full">
           <div className="flex relative">
             <Link
               href="/"
-              className={`flex items-center  transition-all duration-300 ease-in-out ${
+              className={`flex items-center transition-all duration-300 ease-in-out ${
                 isScrolled
-                  ? "w-[60px] h-[60px] lg:w-[80px] lg:h-[80px]"
-                  : "w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
+                  ? "w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] lg:w-[80px] lg:h-[80px]"
+                  : "w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] lg:w-[100px] lg:h-[100px]"
               }`}
             >
               <Image
                 src="/logo.png"
                 alt="Kiwi Lankan Fitness Coaching Logo"
-                // Dynamically set width and height based on scroll state
-                width={isScrolled ? 80 : 100} // Example: 70px when scrolled, 100px when not
-                height={isScrolled ? 80 : 100} // Example: 70px when scrolled, 100px when not
-                className="object-contain rounded-full transition-all duration-300 ease-in-out" // Add transition for smooth scaling
+                width={100}
+                height={100}
+                className="object-contain rounded-full transition-all duration-300 ease-in-out w-full h-full"
                 priority
               />
             </Link>
@@ -129,7 +128,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50 relative"
+            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 sm:w-8 sm:h-8 space-y-1.5 z-50 relative mr-2 sm:mr-0"
             aria-label="Toggle mobile menu"
           >
             <span

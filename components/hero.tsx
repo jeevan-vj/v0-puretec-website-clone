@@ -120,17 +120,17 @@ export default function Hero() {
           direction="left"
           reverse={false}
           pauseOnHover={false}
-          className="absolute top-3/4 left-0 transform -translate-y-[30%] z-0 h-auto w-full opacity-10"
-          innerClassName="gap-[10rem] font-display uppercase text-[16rem]"
+          className="absolute top-3/4 left-0 transform -translate-y-[30%] z-0 h-auto w-full opacity-10 hidden md:flex"
+          innerClassName="gap-[4rem] md:gap-[6rem] lg:gap-[10rem] font-display uppercase text-[3rem] md:text-[6rem] lg:text-[10rem] xl:text-[14rem]"
         >
           <span className="inline-block text-white">Personal Trainer</span>
           <span className="inline-block text-white">Certified Coach</span>
           <span className="inline-block text-white">NZ Champion</span>
         </Marquee>
 
-        <div className="container mx-auto relative z-10 h-full flex flex-col lg:flex-row justify-center items-center lg:items-center text-center lg:text-left gap-6 lg:gap-10 pt-28 pb-20 lg:py-20">
+        <div className="container mx-auto relative z-10 h-full flex flex-col lg:flex-row justify-center items-center lg:items-center text-center lg:text-left gap-4 md:gap-6 lg:gap-10 pt-28 sm:pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 lg:py-20">
           {/* Left Side - Main Content */}
-          <div className="flex-1 flex flex-col items-center lg:items-start gap-6 lg:gap-10">
+          <div className="flex-1 flex flex-col items-center lg:items-start gap-4 md:gap-6 lg:gap-10">
             {/* Tag Line */}
             <div className="inline-flex items-center gap-2 lg:gap-3 opacity-0 animate-slideUp" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
               <div className="w-6 lg:w-8 h-0.5 bg-yellow-400"></div>
@@ -141,37 +141,39 @@ export default function Hero() {
             </div>
 
             {/* Main Headline with animated counter */}
-            <div className="space-y-4 max-w-3xl opacity-0 animate-slideUp" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-display text-white leading-tight">
+            <div className="space-y-3 md:space-y-4 max-w-3xl opacity-0 animate-slideUp" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-display text-white leading-tight">
                 YOUR{" "}
                 <span className="inline-block text-yellow-400 animate-count-up" style={{ animationDelay: '0.5s' }}>
                   {counter}
                 </span>
                 -WEEK
-                <br />
+                <span className="hidden sm:inline"><br /></span>
+                <span className="sm:hidden"> </span>
                 TRANSFORMATION
-                <br />
+                <span className="hidden sm:inline"><br /></span>
+                <span className="sm:hidden"> </span>
                 STARTS TODAY
               </h1>
-              <p className="text-base md:text-xl lg:text-2xl text-gray-300 leading-relaxed font-light italic">
+              <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-300 leading-relaxed font-light italic">
                 "From where you are to where you deserve to be — with a certified
                 NZ Champion by your side."
               </p>
             </div>
 
             {/* Social Proof Stats Bar */}
-            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-3 lg:gap-6 opacity-0 animate-slideUp" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 hover:border-yellow-400/30 transition-all duration-300">
-                <Users className="w-4 h-4 text-yellow-400 flex-shrink-0" />
-                <span className="text-white font-semibold text-xs">500+ Transformations</span>
+            <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center lg:justify-start items-center gap-2 md:gap-3 lg:gap-6 opacity-0 animate-slideUp overflow-x-auto pb-2 md:pb-0 max-w-full scrollbar-hide" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
+              <div className="flex items-center gap-1.5 md:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 md:px-4 py-1.5 md:py-2 hover:border-yellow-400/30 transition-all duration-300 flex-shrink-0">
+                <Users className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 flex-shrink-0" />
+                <span className="text-white font-semibold text-[10px] md:text-xs whitespace-nowrap">500+ Clients</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 hover:border-yellow-400/30 transition-all duration-300">
-                <CheckCircle2 className="w-4 h-4 text-yellow-400 flex-shrink-0" />
-                <span className="text-white font-semibold text-xs">16 Week Programs</span>
+              <div className="flex items-center gap-1.5 md:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 md:px-4 py-1.5 md:py-2 hover:border-yellow-400/30 transition-all duration-300 flex-shrink-0">
+                <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 flex-shrink-0" />
+                <span className="text-white font-semibold text-[10px] md:text-xs whitespace-nowrap">16 Week Program</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 hover:border-yellow-400/30 transition-all duration-300">
-                <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0" />
-                <span className="text-white font-semibold text-xs">NZ Champion</span>
+              <div className="flex items-center gap-1.5 md:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 md:px-4 py-1.5 md:py-2 hover:border-yellow-400/30 transition-all duration-300 flex-shrink-0">
+                <Trophy className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 flex-shrink-0" />
+                <span className="text-white font-semibold text-[10px] md:text-xs whitespace-nowrap">NZ Champion</span>
               </div>
             </div>
 
@@ -195,31 +197,32 @@ export default function Hero() {
             </div>
 
             {/* Urgency Text + Member Login */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 opacity-0 animate-slideUp" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-              <p className="text-sm text-gray-400 flex items-center gap-2">
-                <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
-                Limited spots available this month
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 opacity-0 animate-slideUp" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+              <p className="text-xs sm:text-sm text-gray-400 flex items-center gap-1.5 sm:gap-2">
+                <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+                Limited spots available
               </p>
               <span className="hidden sm:inline text-gray-600">|</span>
               <a 
                 href={MEMBER_PORTAL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-gray-400 hover:text-yellow-400 transition-colors flex items-center gap-1.5 group"
+                className="text-xs sm:text-sm text-gray-400 hover:text-yellow-400 transition-colors flex items-center gap-1 sm:gap-1.5 group"
               >
-                <LogIn className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
-                Already a member? <span className="text-yellow-400 font-medium">Login here</span>
+                <LogIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:scale-110 transition-transform" />
+                Member? <span className="text-yellow-400 font-medium">Login</span>
               </a>
             </div>
           </div>
 
           {/* Right Side - Trainer Trophy Image */}
-          <div className="relative flex-shrink-0 w-full max-w-sm lg:max-w-xl opacity-0 animate-slideUp" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+          <div className="relative flex-shrink-0 w-full max-w-[200px] sm:max-w-[280px] md:max-w-sm lg:max-w-xl opacity-0 animate-slideUp" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
             {/* Champion Badge */}
-            <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 z-20 bg-gradient-to-br from-yellow-400 to-yellow-500 text-black px-4 py-2 lg:px-6 lg:py-3 rounded-full font-bold text-xs lg:text-sm uppercase tracking-wider shadow-lg animate-pulse-glow border-2 border-yellow-300">
-              <div className="flex items-center gap-2">
-                <Trophy className="w-3 h-3 lg:w-4 lg:h-4" />
-                <span>NZ Champion</span>
+            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 lg:-top-4 lg:-right-4 z-20 bg-gradient-to-br from-yellow-400 to-yellow-500 text-black px-2 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-full font-bold text-[10px] sm:text-xs lg:text-sm uppercase tracking-wider shadow-lg animate-pulse-glow border-2 border-yellow-300">
+              <div className="flex items-center gap-1 sm:gap-2">
+                <Trophy className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4" />
+                <span className="hidden sm:inline">NZ Champion</span>
+                <span className="sm:hidden">Champ</span>
               </div>
             </div>
 
@@ -240,27 +243,27 @@ export default function Hero() {
                 />
                 
                 {/* Bottom gradient overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
-                  <p className="text-white font-bold text-lg">Your Trainer</p>
-                  <p className="text-yellow-400 text-sm font-semibold">Ruwan Palihawadana</p>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4 md:p-6">
+                  <p className="text-white font-bold text-sm sm:text-base md:text-lg">Your Trainer</p>
+                  <p className="text-yellow-400 text-xs sm:text-sm font-semibold">Ruwan Palihawadana</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Transformation Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-4 text-white/60 text-sm z-20">
+        {/* Transformation Indicator - Hidden on small mobile to prevent overlap */}
+        <div className="hidden sm:flex absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 items-center gap-2 md:gap-4 text-white/60 text-xs md:text-sm z-20">
           <span className={`transition-all duration-500 ${!showAfter ? 'text-white font-semibold' : ''}`}>
             BEFORE
           </span>
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2">
             {transformationPairs.map((_, index) => (
               <div
                 key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all duration-300 ${
                   index === currentPairIndex
-                    ? 'bg-yellow-400 w-8'
+                    ? 'bg-yellow-400 w-6 md:w-8'
                     : 'bg-white/30'
                 }`}
               ></div>

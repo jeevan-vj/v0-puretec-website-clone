@@ -137,6 +137,15 @@
   .bg-gradient-radial {
     background: radial-gradient(circle, var(--tw-gradient-stops));
   }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
@@ -419,7 +428,19 @@
     transform: scale(1) translateX(0) translateY(0);
   }
   100% {
-    transform: scale(1.1) translateX(-2%) translateY(-1%);
+    transform: scale(1.05) translateX(-1%) translateY(-0.5%);
+  }
+}
+
+/* Less aggressive Ken Burns on larger screens */
+@media (min-width: 768px) {
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1) translateX(0) translateY(0);
+    }
+    100% {
+      transform: scale(1.1) translateX(-2%) translateY(-1%);
+    }
   }
 }
 
