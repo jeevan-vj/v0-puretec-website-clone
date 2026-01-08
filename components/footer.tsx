@@ -68,7 +68,7 @@ export default function Footer() {
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800">
+            {/* <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800">
               <h3 className="text-xl font-bold mb-3">Stay Updated</h3>
               <p className="text-gray-400 text-sm mb-4">
                 Get fitness tips, workout plans, and exclusive content delivered to your inbox.
@@ -99,7 +99,7 @@ export default function Footer() {
                   )}
                 </button>
               </form>
-            </div>
+            </div> */}
           </div>
 
           {/* Navigation Links */}
@@ -137,7 +137,7 @@ export default function Footer() {
             <div className="space-y-4">
               {[
                 { icon: Dumbbell, title: "Personal Training", desc: "One-on-one coaching" },
-                { icon: Users, title: "Group Classes", desc: "High-energy workouts" },
+                // { icon: Users, title: "Group Classes", desc: "High-energy workouts" },
                 { icon: Calendar, title: "Online Coaching", desc: "Remote guidance" },
               ].map((service, index) => (
                 <div key={index} className="flex items-start space-x-3 group cursor-pointer">
@@ -165,8 +165,8 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Email</p>
-                  <a href="mailto:info@kiwilankanfitness.co.nz" className="text-white hover:text-yellow-400 transition-colors">
-                    info@kiwilankanfitness.co.nz
+                  <a href="mailto:ruwan@kiwilankanfitness.com" className="text-white hover:text-yellow-400 transition-colors">
+                    ruwan@kiwilankanfitness.com
                   </a>
                 </div>
               </div>
@@ -229,7 +229,17 @@ export default function Footer() {
               </a>
             </div>
             <div className="text-sm text-gray-400">
-              <p>Designed with ❤️ for your fitness journey</p>
+              <p>
+                Designed with ❤️ for your fitness journey &middot; Developed by{" "}
+                <a
+                  href="https://jnok.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-yellow-400 transition-colors font-semibold"
+                >
+                  jnok.com
+                </a>
+              </p>
             </div>
           </div>
         </div>

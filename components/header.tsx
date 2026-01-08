@@ -28,7 +28,7 @@ export default function Header() {
     { label: "ABOUT", href: "#about-trainer", icon: Home },
     { label: "TRAINING", href: "#equipment-series", icon: Dumbbell },
     { label: "GALLERY", href: "#media-gallery", icon: Home },
-    { label: "WORKOUTS", href: "#workout-gallery", icon: Dumbbell },
+    // { label: "WORKOUTS", href: "#workout-gallery", icon: Dumbbell },
     { label: "BOOK NOW", href: "#booking", icon: Calendar },
     { label: "CONTACT", href: "#footer", icon: Mail },
     { label: "MEMBER LOGIN", href: MEMBER_PORTAL_URL, icon: LogIn, isExternal: true },
@@ -94,13 +94,13 @@ export default function Header() {
           </div>
 
           <div className="hidden lg:flex items-center space-x-8">
-            <Link
+            {/* <Link
               href="#workout-gallery"
               onClick={(e) => handleNavClick(e, "#workout-gallery")}
               className="text-sm font-medium tracking-wide hover:text-yellow-400 transition-all active:scale-95"
             >
               WORKOUTS
-            </Link>
+            </Link> */}
 
             <Link
               href="#footer"

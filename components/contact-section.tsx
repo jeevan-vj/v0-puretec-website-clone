@@ -7,8 +7,8 @@ export default function ContactSection() {
     {
       icon: Mail,
       label: "Email Us",
-      value: "info@kiwilankanfitness.co.nz",
-      href: "mailto:info@kiwilankanfitness.co.nz",
+      value: "ruwan@kiwilankanfitness.com",
+      href: "mailto:ruwan@kiwilankanfitness.com",
       description: "Send us a message anytime"
     },
     {

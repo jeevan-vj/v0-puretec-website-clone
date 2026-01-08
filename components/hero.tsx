@@ -183,7 +183,7 @@ export default function Hero() {
               >
                 Start Your Transformation
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 className="w-full sm:w-auto border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-6 py-5 text-sm lg:text-lg font-bold tracking-wide uppercase transition-all duration-300 rounded-full"
                 onClick={() => {
@@ -191,7 +191,7 @@ export default function Hero() {
                 }}
               >
                 Watch Success Stories
-              </Button>
+              </Button> */}
             </div>
 
             {/* Urgency Text + Member Login */}
