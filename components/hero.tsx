@@ -242,7 +242,7 @@ export default function Hero() {
                 {/* Bottom gradient overlay */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
                   <p className="text-white font-bold text-lg">Your Trainer</p>
-                  <p className="text-yellow-400 text-sm font-semibold">Ruwan Jayasinghe</p>
+                  <p className="text-yellow-400 text-sm font-semibold">Ruwan Palihawadana</p>
                 </div>
               </div>
             </div>
