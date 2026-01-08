@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import Hero from "@/components/hero";
+import VideoShowcase from "@/components/video-showcase";
 import PersonalTrainingServices from "@/components/personal-training-services";
 import MediaGallery from "@/components/media-gallery";
 import AboutTrainer from "@/components/about-trainer";
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <VideoShowcase />
       <AboutTrainer />
       <PersonalTrainingServices />
       {/* <EquipmentSeries /> */}
