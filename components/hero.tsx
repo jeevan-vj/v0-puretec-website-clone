@@ -5,7 +5,7 @@ import Header from "./header";
 import Image from "next/image";
 import { Marquee } from "@devnomic/marquee";
 import { useCalEmbed } from "@/lib/useCalEmbed";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { CheckCircle2, Trophy, Users, LogIn } from "lucide-react";
 
 const MEMBER_PORTAL_URL = "https://portal.kiwilankanfitness.com/";
@@ -36,6 +36,80 @@ export default function Hero() {
   const [showAfter, setShowAfter] = useState(false);
   const [counter, setCounter] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
+  
+  // Scroll-driven animation states
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  
+  // Scroll animation config
+  const SCROLL_DISTANCE = 350; // px to scroll before releasing
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 3.5; // Scale up to fill screen
+
+  // Initialize on client side only
+  useEffect(() => {
+    const checkMobile = () => window.innerWidth < 768;
+    setIsMobile(checkMobile());
+    
+    // Reset scroll position to 0 for clean animation start
+    if (checkMobile() && window.scrollY !== 0) {
+      window.scrollTo(0, 0);
+    }
+    
+    // Small delay before enabling scroll effect
+    const timer = setTimeout(() => setIsReady(true), 150);
+    
+    const handleResize = () => setIsMobile(checkMobile());
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Scroll-driven animation for mobile - optimized with RAF
+  useEffect(() => {
+    if (!isReady || !isMobile) {
+      setScrollProgress(0);
+      return;
+    }
+
+    let rafId: number;
+    let lastScrollY = window.scrollY;
+    
+    const handleScroll = () => {
+      // Cancel previous RAF to prevent stacking
+      if (rafId) cancelAnimationFrame(rafId);
+      
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        // Only update if scroll changed significantly (reduces jank)
+        if (Math.abs(scrollY - lastScrollY) > 1) {
+          const progress = Math.max(0, Math.min(scrollY / SCROLL_DISTANCE, 1));
+          setScrollProgress(progress);
+          lastScrollY = scrollY;
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [isReady, isMobile]);
+
+  // Calculate transforms - only apply on mobile when ready
+  const shouldAnimate = isReady && isMobile;
+  const trainerScale = shouldAnimate ? MIN_SCALE + (scrollProgress * (MAX_SCALE - MIN_SCALE)) : 1;
+  // Content fades out quickly
+  const contentOpacity = shouldAnimate ? Math.max(0, 1 - (scrollProgress * 1.5)) : 1;
+  const contentTranslate = shouldAnimate ? scrollProgress * -80 : 0;
+  // Move trainer card up toward center as it scales
+  const trainerTranslateY = shouldAnimate ? scrollProgress * -120 : 0;
 
   // Animated counter for "16"
   useEffect(() => {
@@ -80,7 +154,22 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative hero-mobile-fix bg-black overflow-hidden min-h-dvh px-4 lg:px-5">
+      {/* Scroll buffer for mobile scroll-lock animation */}
+      <div 
+        ref={heroRef}
+        className="relative"
+        style={{ 
+          height: shouldAnimate ? `calc(100dvh + ${SCROLL_DISTANCE}px)` : 'auto' 
+        }}
+      >
+      <section 
+        className={`relative hero-mobile-fix bg-black min-h-dvh px-4 lg:px-5 ${
+          shouldAnimate ? 'sticky top-0' : ''
+        }`}
+        style={{
+          overflow: shouldAnimate && scrollProgress > 0.1 ? 'visible' : 'hidden'
+        }}
+      >
         {/* Morphing Background Images */}
         <div className="absolute inset-0 z-0">
           {/* Before Image */}
@@ -130,7 +219,15 @@ export default function Hero() {
 
         <div className="container mx-auto relative z-10 h-full flex flex-col lg:flex-row justify-center items-center lg:items-center text-center lg:text-left gap-4 md:gap-6 lg:gap-10 pt-28 sm:pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 lg:py-20">
           {/* Left Side - Main Content */}
-          <div className="flex-1 flex flex-col items-center lg:items-start gap-4 md:gap-6 lg:gap-10">
+          <div 
+            className="flex-1 flex flex-col items-center lg:items-start gap-4 md:gap-6 lg:gap-10"
+            style={{
+              opacity: contentOpacity,
+              transform: `translate3d(0, ${contentTranslate}px, 0)`,
+              transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+              willChange: shouldAnimate ? 'opacity, transform' : 'auto'
+            }}
+          >
             {/* Tag Line */}
             <div className="inline-flex items-center gap-2 lg:gap-3 opacity-0 animate-slideUp" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
               <div className="w-6 lg:w-8 h-0.5 bg-yellow-400"></div>
@@ -215,10 +312,38 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Side - Trainer Trophy Image */}
-          <div className="relative flex-shrink-0 w-full max-w-[200px] sm:max-w-[280px] md:max-w-sm lg:max-w-xl opacity-0 animate-slideUp" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-            {/* Champion Badge */}
-            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 lg:-top-4 lg:-right-4 z-20 bg-gradient-to-br from-yellow-400 to-yellow-500 text-black px-2 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-full font-bold text-[10px] sm:text-xs lg:text-sm uppercase tracking-wider shadow-lg animate-pulse-glow border-2 border-yellow-300">
+          {/* Right Side - Trainer Trophy Image - Scroll-driven scale on mobile */}
+          {/* Outer wrapper for entry animation */}
+          <div 
+            className="relative flex-shrink-0 w-full max-w-[200px] sm:max-w-[280px] md:max-w-sm lg:max-w-xl opacity-0 animate-slideUp"
+            style={{ 
+              animationDelay: '0.6s', 
+              animationFillMode: 'forwards',
+              zIndex: shouldAnimate ? 40 : 10,
+            }}
+          >
+          {/* Inner wrapper for scroll-driven scale transform */}
+          <div 
+            className="origin-center"
+            style={{ 
+              transform: shouldAnimate 
+                ? `scale3d(${trainerScale}, ${trainerScale}, 1) translate3d(0, ${trainerTranslateY}px, 0)` 
+                : 'scale3d(1, 1, 1)',
+              transition: 'transform 0.25s cubic-bezier(0.33, 1, 0.68, 1)',
+              willChange: shouldAnimate ? 'transform' : 'auto',
+              overflow: shouldAnimate && scrollProgress > 0.1 ? 'visible' : undefined
+            }}
+          >
+            {/* Champion Badge - Fades out as image scales */}
+            <div 
+              className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 lg:-top-4 lg:-right-4 z-20 bg-gradient-to-br from-yellow-400 to-yellow-500 text-black px-2 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-full font-bold text-[10px] sm:text-xs lg:text-sm uppercase tracking-wider shadow-lg animate-pulse-glow border-2 border-yellow-300 transition-all duration-300"
+              style={{
+                opacity: shouldAnimate ? Math.max(0, 1 - scrollProgress * 1.5) : 1,
+                boxShadow: shouldAnimate && scrollProgress > 0.2 
+                  ? `0 0 ${30 + scrollProgress * 80}px rgba(250, 204, 21, ${0.6 + scrollProgress * 0.4})` 
+                  : undefined
+              }}
+            >
               <div className="flex items-center gap-1 sm:gap-2">
                 <Trophy className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4" />
                 <span className="hidden sm:inline">NZ Champion</span>
@@ -228,11 +353,32 @@ export default function Hero() {
 
             {/* Image Container with Glow */}
             <div className="relative group">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/30 to-yellow-500/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse-glow"></div>
+              {/* Glow effect - Intense during scroll for cinematic effect */}
+              <div 
+                className="absolute inset-0 bg-gradient-to-br from-yellow-400/40 to-yellow-600/40 rounded-2xl"
+                style={{
+                  opacity: shouldAnimate ? 0.5 + scrollProgress * 0.5 : 0.5,
+                  filter: `blur(${shouldAnimate ? 20 + scrollProgress * 60 : 20}px)`,
+                  transform: `scale3d(${shouldAnimate ? 1 + scrollProgress * 0.3 : 1}, ${shouldAnimate ? 1 + scrollProgress * 0.3 : 1}, 1)`,
+                  transition: 'opacity 0.3s ease-out, filter 0.3s ease-out, transform 0.3s ease-out'
+                }}
+              ></div>
               
               {/* Image */}
-              <div className="relative rounded-2xl overflow-hidden border-2 border-yellow-400/30 group-hover:border-yellow-400/60 transition-all duration-300 bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-sm">
+              <div 
+                className="relative rounded-2xl overflow-hidden border-2 bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-sm"
+                style={{
+                  borderColor: shouldAnimate 
+                    ? `rgba(250, 204, 21, ${0.4 + scrollProgress * 0.6})` 
+                    : 'rgba(250, 204, 21, 0.3)',
+                  boxShadow: shouldAnimate 
+                    ? `0 0 ${30 + scrollProgress * 150}px rgba(250, 204, 21, ${0.2 + scrollProgress * 0.6}), 
+                       inset 0 0 ${scrollProgress * 30}px rgba(250, 204, 21, ${scrollProgress * 0.2})` 
+                    : undefined,
+                  borderRadius: shouldAnimate ? `${16 - scrollProgress * 8}px` : '16px',
+                  transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out, border-radius 0.3s ease-out'
+                }}
+              >
                 <Image
                   src="/images/hero-portrait-1.png"
                   alt="NZ Champion Personal Trainer"
@@ -242,18 +388,37 @@ export default function Hero() {
                   priority
                 />
                 
-                {/* Bottom gradient overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4 md:p-6">
+                {/* Bottom gradient overlay - Fades as image scales */}
+                <div 
+                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4 md:p-6 transition-opacity duration-200"
+                  style={{
+                    opacity: shouldAnimate ? Math.max(0, 1 - scrollProgress * 2) : 1
+                  }}
+                >
                   <p className="text-white font-bold text-sm sm:text-base md:text-lg">Your Trainer</p>
                   <p className="text-yellow-400 text-xs sm:text-sm font-semibold">Ruwan Palihawadana</p>
                 </div>
               </div>
             </div>
+            
+            {/* Full screen vignette overlay when scaled */}
+            {shouldAnimate && scrollProgress > 0.5 && (
+              <div 
+                className="fixed inset-0 pointer-events-none z-50 transition-opacity duration-300"
+                style={{
+                  background: `radial-gradient(circle at center, transparent 30%, rgba(0,0,0,${scrollProgress * 0.7}) 100%)`,
+                  opacity: (scrollProgress - 0.5) * 2
+                }}
+              />
+            )}
+          </div>
           </div>
         </div>
 
-        {/* Transformation Indicator - Hidden on small mobile to prevent overlap */}
-        <div className="hidden sm:flex absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 items-center gap-2 md:gap-4 text-white/60 text-xs md:text-sm z-20">
+        {/* Transformation Indicator - Hidden on mobile during scroll animation */}
+        <div 
+          className="hidden md:flex absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 items-center gap-2 md:gap-4 text-white/60 text-xs md:text-sm z-20"
+        >
           <span className={`transition-all duration-500 ${!showAfter ? 'text-white font-semibold' : ''}`}>
             BEFORE
           </span>
@@ -273,7 +438,23 @@ export default function Hero() {
             AFTER
           </span>
         </div>
+
+        {/* Scroll Progress Indicator - Mobile only, shows when not scrolled */}
+        {shouldAnimate && scrollProgress < 0.9 && (
+          <div 
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2 transition-opacity duration-300"
+            style={{ opacity: Math.max(0, 1 - scrollProgress * 1.5) }}
+          >
+            <div className="w-6 h-10 border-2 border-yellow-400/60 rounded-full flex items-start justify-center p-1.5">
+              <div className="w-1.5 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
+            </div>
+            <span className="text-[10px] text-yellow-400/80 uppercase tracking-wider font-medium">
+              Scroll
+            </span>
+          </div>
+        )}
       </section>
+      </div>
     </>
   );
 }
