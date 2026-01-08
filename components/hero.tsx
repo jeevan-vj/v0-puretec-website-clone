@@ -70,20 +70,36 @@ export default function Hero() {
     };
   }, []);
 
-  // Scroll-driven animation for mobile
+  // Scroll-driven animation for mobile - optimized with RAF
   useEffect(() => {
     if (!isReady || !isMobile) {
       setScrollProgress(0);
       return;
     }
 
+    let rafId: number;
+    let lastScrollY = window.scrollY;
+    
     const handleScroll = () => {
-      const progress = Math.max(0, Math.min(window.scrollY / SCROLL_DISTANCE, 1));
-      setScrollProgress(progress);
+      // Cancel previous RAF to prevent stacking
+      if (rafId) cancelAnimationFrame(rafId);
+      
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        // Only update if scroll changed significantly (reduces jank)
+        if (Math.abs(scrollY - lastScrollY) > 1) {
+          const progress = Math.max(0, Math.min(scrollY / SCROLL_DISTANCE, 1));
+          setScrollProgress(progress);
+          lastScrollY = scrollY;
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [isReady, isMobile]);
 
   // Calculate transforms - only apply on mobile when ready
@@ -204,10 +220,12 @@ export default function Hero() {
         <div className="container mx-auto relative z-10 h-full flex flex-col lg:flex-row justify-center items-center lg:items-center text-center lg:text-left gap-4 md:gap-6 lg:gap-10 pt-28 sm:pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 lg:py-20">
           {/* Left Side - Main Content */}
           <div 
-            className="flex-1 flex flex-col items-center lg:items-start gap-4 md:gap-6 lg:gap-10 transition-all duration-150 ease-out"
+            className="flex-1 flex flex-col items-center lg:items-start gap-4 md:gap-6 lg:gap-10"
             style={{
               opacity: contentOpacity,
-              transform: `translateY(${contentTranslate}px)`,
+              transform: `translate3d(0, ${contentTranslate}px, 0)`,
+              transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+              willChange: shouldAnimate ? 'opacity, transform' : 'auto'
             }}
           >
             {/* Tag Line */}
@@ -306,11 +324,13 @@ export default function Hero() {
           >
           {/* Inner wrapper for scroll-driven scale transform */}
           <div 
-            className="origin-center transition-transform duration-100 ease-out"
+            className="origin-center"
             style={{ 
               transform: shouldAnimate 
-                ? `scale(${trainerScale}) translateY(${trainerTranslateY}px)` 
-                : 'scale(1)',
+                ? `scale3d(${trainerScale}, ${trainerScale}, 1) translate3d(0, ${trainerTranslateY}px, 0)` 
+                : 'scale3d(1, 1, 1)',
+              transition: 'transform 0.25s cubic-bezier(0.33, 1, 0.68, 1)',
+              willChange: shouldAnimate ? 'transform' : 'auto',
               overflow: shouldAnimate && scrollProgress > 0.1 ? 'visible' : undefined
             }}
           >
@@ -335,17 +355,18 @@ export default function Hero() {
             <div className="relative group">
               {/* Glow effect - Intense during scroll for cinematic effect */}
               <div 
-                className="absolute inset-0 bg-gradient-to-br from-yellow-400/40 to-yellow-600/40 rounded-2xl transition-all duration-200 animate-pulse-glow"
+                className="absolute inset-0 bg-gradient-to-br from-yellow-400/40 to-yellow-600/40 rounded-2xl"
                 style={{
                   opacity: shouldAnimate ? 0.5 + scrollProgress * 0.5 : 0.5,
                   filter: `blur(${shouldAnimate ? 20 + scrollProgress * 60 : 20}px)`,
-                  transform: `scale(${shouldAnimate ? 1 + scrollProgress * 0.3 : 1})`
+                  transform: `scale3d(${shouldAnimate ? 1 + scrollProgress * 0.3 : 1}, ${shouldAnimate ? 1 + scrollProgress * 0.3 : 1}, 1)`,
+                  transition: 'opacity 0.3s ease-out, filter 0.3s ease-out, transform 0.3s ease-out'
                 }}
               ></div>
               
               {/* Image */}
               <div 
-                className="relative rounded-2xl overflow-hidden border-2 transition-all duration-200 bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-sm"
+                className="relative rounded-2xl overflow-hidden border-2 bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-sm"
                 style={{
                   borderColor: shouldAnimate 
                     ? `rgba(250, 204, 21, ${0.4 + scrollProgress * 0.6})` 
@@ -354,7 +375,8 @@ export default function Hero() {
                     ? `0 0 ${30 + scrollProgress * 150}px rgba(250, 204, 21, ${0.2 + scrollProgress * 0.6}), 
                        inset 0 0 ${scrollProgress * 30}px rgba(250, 204, 21, ${scrollProgress * 0.2})` 
                     : undefined,
-                  borderRadius: shouldAnimate ? `${16 - scrollProgress * 8}px` : '16px'
+                  borderRadius: shouldAnimate ? `${16 - scrollProgress * 8}px` : '16px',
+                  transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out, border-radius 0.3s ease-out'
                 }}
               >
                 <Image
