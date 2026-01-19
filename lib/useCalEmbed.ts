@@ -4,17 +4,22 @@ import { useEffect, useState, useCallback } from "react";
 
 declare global {
   interface Window {
-    Cal?: any;
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
   }
 }
+
+// Dark theme colors: background, text, and primary (yellow accent)
+const CALENDLY_URL = "https://calendly.com/kiwilankanfitness/30min?background_color=1a1a2e&text_color=ffffff&primary_color=facc15";
 
 export function useCalEmbed() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // Check if Cal is ready
-    const checkCal = () => {
-      if (typeof window !== "undefined" && window.Cal && window.Cal.loaded) {
+    // Check if Calendly is ready
+    const checkCalendly = () => {
+      if (typeof window !== "undefined" && window.Calendly) {
         setIsReady(true);
         return true;
       }
@@ -22,11 +27,11 @@ export function useCalEmbed() {
     };
 
     // Check immediately
-    if (checkCal()) return;
+    if (checkCalendly()) return;
 
     // Poll every 200ms for up to 15 seconds
     const interval = setInterval(() => {
-      if (checkCal()) {
+      if (checkCalendly()) {
         clearInterval(interval);
       }
     }, 200);
@@ -44,24 +49,19 @@ export function useCalEmbed() {
   const openCal = useCallback(() => {
     if (typeof window === "undefined") return;
 
-    // Check if Cal exists and has loaded
-    if (!window.Cal) {
-      console.warn("Cal.com not available, opening in new tab");
-      window.open("https://cal.com/jeevan-wijerathna-oszrh3", "_blank");
+    // Check if Calendly exists
+    if (!window.Calendly) {
+      console.warn("Calendly not available, opening in new tab");
+      window.open(CALENDLY_URL, "_blank");
       return;
     }
 
     try {
-      // Open the modal
-      window.Cal("modal", {
-        calLink: "jeevan-wijerathna-oszrh3",
-        config: {
-          layout: "month_view",
-        },
-      });
+      // Open the Calendly popup widget
+      window.Calendly.initPopupWidget({ url: CALENDLY_URL });
     } catch (error) {
-      console.error("Error opening Cal.com modal:", error);
-      window.open("https://cal.com/jeevan-wijerathna-oszrh3", "_blank");
+      console.error("Error opening Calendly popup:", error);
+      window.open(CALENDLY_URL, "_blank");
     }
   }, []);
 

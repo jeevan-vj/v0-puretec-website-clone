@@ -60,43 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Cal.com Embed - Initialize namespace first */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function (C, A, L) {
-                let p = function (a, ar) { a.q.push(ar); };
-                let d = C.document;
-                C.Cal = C.Cal || function () {
-                  let cal = C.Cal;
-                  let ar = arguments;
-                  if (!cal.loaded) {
-                    cal.ns = {};
-                    cal.q = cal.q || [];
-                    d.head.appendChild(d.createElement("style")).innerHTML = "@host,@-webkit-component{.cal-embed{display:block}}";
-                  }
-                  if (typeof ar[0] === "string") {
-                    const namespace = ar[0];
-                    if (namespace.indexOf("/") === 0) {
-                      if (cal.ns[namespace]) {
-                        return cal.ns[namespace];
-                      }
-                      cal.ns[namespace] = { loaded: false, q: [] };
-                      p(cal.ns[namespace], ar);
-                      return cal.ns[namespace];
-                    }
-                    p(cal, ar);
-                    return;
-                  }
-                  p(cal, ar);
-                };
-              })(window, "script", "https://app.cal.com/embed/embed.js");
-              Cal("init", { origin: "https://cal.com" });
-            `,
-          }}
-        />
-        {/* Load the actual embed script async */}
-        <script async src="https://app.cal.com/embed/embed.js" />
+        {/* Calendly Embed */}
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <script src="https://assets.calendly.com/assets/external/widget.js" async />
       </head>
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${displayFont.variable}`}
